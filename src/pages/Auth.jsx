@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
-import { Toastify } from "../components/Toastify";
+import { Spotlight } from "../components/Spotlight";
 
 export const Auth = () => {
-  const { signInUser, signUpUser, msg } = useContext(UserContext);
+  const { signInUser, signUpUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   const location = useLocation();
@@ -15,88 +15,71 @@ export const Auth = () => {
     const data = new FormData(event.currentTarget);
     if (isSignIn) {
       signInUser(data.get("email"), data.get("password"));
+      navigate("/dashboard");
     } else {
-      signUpUser(data.get("email"), data.get("password"), data.get("displayName"));
+      signUpUser(
+        data.get("email"),
+        data.get("displayName"),
+        data.get("password")
+      );
+      navigate("/dashboard");
     }
   };
 
   return (
-    <div
-      className="min-h-screen bg-gray-100 flex items-center justify-center p-4"
-    >
-      <div className="max-w-md w-full bg-white rounded-xl shadow-lg p-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-          {isSignIn ? "Bejelentkezés" : "Regisztráció"}
-        </h2>
-
-        <form className="space-y-4" onSubmit={handleSubmit}>
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
-            <input
-              type="email"
-              name="email"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
-              placeholder="your@email.com"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Password</label>
-            <input
-              type="password"
-              name="password"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
-              placeholder="••••••••"
-            />
-          </div>
-
+    <div className="flex min-h-screen w-full items-center justify-center">
+      <form
+        onSubmit={handleSubmit}
+        className="flex h-[408px] w-fit flex-col items-center justify-center gap-2 rounded-lg border-2 border-sky-950 bg-black/20 p-4 shadow-md backdrop-blur-md"
+      >
+        <h1 className="font-nohemi mb-2 text-4xl">
+          {isSignIn ? <p>Login</p> : <p>Sign Up</p>}
+        </h1>
+        <div className="flex flex-col items-center justify-center gap-6">
+          <input
+            type="email"
+            name="email"
+            className="font-nohemiLight max-w-[250px] rounded-lg bg-black/30 py-1 text-center text-2xl text-white shadow-md outline-none"
+            placeholder="Your Email"
+          />
           {!isSignIn && (
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">Username</label>
-              <input
-                type="text"
-                name="displayName"
-                required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all"
-              />
-            </div>
+            <input
+              type="text"
+              name="displayName"
+              className="font-nohemiLight max-w-[250px] rounded-lg bg-black/30 py-1 text-center text-2xl text-white shadow-md outline-none"
+              placeholder="Your Username"
+            />
           )}
-
-          <div className="flex items-center justify-between">
-            <label className="flex items-center">
-              <input type="checkbox" className="rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
-              <span className="ml-2 text-sm text-gray-600">Remember me</span>
-            </label>
-            <a
-              href="#"
-              className="text-sm text-indigo-600 hover:text-indigo-500"
-              onClick={() => navigate("/pwreset")}
-            >
-              Forgot password?
-            </a>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2.5 rounded-lg transition-colors"
-          >
-            {isSignIn ? "Sign In" : "Sign Up"}
-          </button>
-        </form>
-
-        <div className="mt-6 text-center text-sm text-gray-600">
-          Don't have an account?{" "}
-          <a
-            href="#"
-            className="text-indigo-600 hover:text-indigo-500 font-medium"
-            onClick={() => navigate(isSignIn ? "/auth/signup" : "/auth/in")}
-          >
-            {isSignIn ? "Sign up" : "Sign in"}
-          </a>
+          <input
+            type="password"
+            name="password"
+            className="font-nohemiLight max-w-[250px] rounded-lg bg-black/30 py-1 text-center text-2xl text-white shadow-md outline-none"
+            placeholder="Password"
+          />
         </div>
-
-        {msg && <Toastify {...msg} />}
-      </div>
+        <button
+          type="submit"
+          className="font-nohemi my-2 rounded-xl border-2 border-sky-950 bg-sky-900 px-3 py-1 text-2xl uppercase tracking-wide text-sky-400 shadow-md transition-all hover:text-sky-200"
+        >
+          {isSignIn ? <p>Login</p> : <p>Sign Up</p>}
+        </button>
+        <div className="flex flex-row items-center justify-center gap-2">
+          <span className="font-nohemiLight text-xl">
+            {isSignIn ? (
+              <p>Don&apos;t have an account?</p>
+            ) : (
+              <p>Already have an account?</p>
+            )}
+          </span>
+          <Link
+            to={isSignIn ? "/auth/up" : "/auth/in"}
+            className="font-nohemi text-xl text-sky-200 transition-all hover:text-sky-300"
+          >
+            {isSignIn ? <p>Sign Up</p> : <p>Login</p>}
+          </Link>
+        </div>
+      </form>
+      <Spotlight />
     </div>
   );
 };

@@ -1,11 +1,10 @@
-import React, { useState, useContext, useEffect } from "react";
-import { NavLink, Outlet } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import { NavLink, Link } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { RxAvatar } from "react-icons/rx";
 import { extractUrlAndId } from "../utility/utils";
 
-export const Header = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const Header = () => {
   const { user, logOut } = useContext(UserContext);
   const [avatar, setAvatar] = useState(null);
 
@@ -14,57 +13,20 @@ export const Header = () => {
     !user && setAvatar(null);
   }, [user, user?.photoURL]);
 
-  const toggle = () => setIsOpen(!isOpen);
-
   return (
     <div>
-      <nav className="bg-black fixed w-full top-0 z-50 shadow-lg py-4 px-6">
+      <nav className="bg-black fixed w-full top-0 z-50 shadow-lg py-4 px-6 border-b">
         <div className="flex items-center justify-between">
           <NavLink to="/" className="text-white text-xl font-bold">
             {/* Logo or brand */}
           </NavLink>
 
-          <button
-            className="text-white md:hidden"
-            onClick={toggle}
-            aria-label="Toggle navigation"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              className="h-6 w-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          </button>
-
-          <div className={`${isOpen ? "block" : "hidden"} md:flex space-x-4`}>
-            <NavLink
-              to="/"
-              className="text-white text-lg font-medium py-2 px-4 hover:text-[#ff8a00] transition-colors duration-300"
-            >
-              Főoldal
-            </NavLink>
-            <NavLink
-              to="/posts"
-              className="text-white text-lg font-medium py-2 px-4 hover:text-[#ff8a00] transition-colors duration-300"
-            >
-              Posztok
-            </NavLink>
+          <div className="flex">
             {user && (
-              <NavLink
-                to="/create"
-                className="text-white text-lg font-medium py-2 px-4 hover:text-[#ff8a00] transition-colors duration-300"
-              >
-                Új bejegyzés
-              </NavLink>
+              <div className="flex justify-center items-center gap-4">
+                <Link to="/dashboard">Dashboard</Link>
+                <Link to="/transactions">Transactions</Link>
+              </div>
             )}
           </div>
 
@@ -106,22 +68,14 @@ export const Header = () => {
                       <RxAvatar className="text-white text-2xl" />
                     )}
                   </button>
-                  <div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg py-2">
-                    <NavLink
-                      to="/profile"
-                      className="block text-black py-2 px-4 hover:bg-gray-200"
-                    >
-                      Személyes adatok
-                    </NavLink>
-                  </div>
                 </div>
               </>
             )}
           </div>
         </div>
       </nav>
-
-      <Outlet />
     </div>
   );
 };
+
+export default Header;

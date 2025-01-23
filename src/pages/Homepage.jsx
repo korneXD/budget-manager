@@ -1,8 +1,12 @@
-import React from 'react'
+import Header from "../components/Header";
+import { Spotlight } from "../components/Spotlight";
 
 export const Homepage = () => {
   return (
-    <div>Homepage</div>
-  )
-}
-
+    <div className="flex">
+      <Header />
+      <h1>Homepage</h1>
+      <Spotlight />
+    </div>
+  );
+};
