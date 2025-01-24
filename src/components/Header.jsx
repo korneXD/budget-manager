@@ -11,9 +11,46 @@ const Header = () => {
     setMsg({});
   }, []);
 
+  useEffect(() => {
+    if (msg?.logout) console.log(msg?.logout);
+  }, [msg]);
+
+  useEffect(() => {
+    user?.photoURL && setAvatar(extractUrlAndId(user.photoURL).url);
+    !user && setAvatar(null);
+  }, [user, user?.photoURL]);
+
+  const navLinks = [
+    { name: "kezelőpanel", path: "/dashboard" },
+    { name: "tranzakciók", path: "/transactions" },
+    { name: "eredmények", path: "/transactions" },
+    { name: "beállítások", path: "/transactions" },
+  ];
+
+  const handleLogout = () => {
+    setMsg({ err: null });
+    logOut();
+    console.log(msg?.logout ? msg.logout : msg?.logout);
+  };
+
   return (
     <nav className="fixed top-0 z-50 w-full bg-black/30 px-6 py-4 shadow-lg">
       <div className="flex items-center justify-between">
+        <div className="flex w-full items-center justify-center">
+          {user && (
+            <div className="flex w-full items-center justify-around gap-8">
+              {navLinks.map((e) => (
+                <Link
+                  to={e.path}
+                  key={e.name}
+                  className="flex-1 flex-grow cursor-pointer text-center font-nohemiLight text-sm uppercase tracking-widest text-sky-200 transition-all hover:text-sky-500"
+                >
+                  {e.name}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
         <div className="items-center space-x-4 md:flex">
           {!user ? (
             <>
@@ -23,11 +60,18 @@ const Header = () => {
               >
                 Belépés
               </Link>
+              <Link
+                to={"/auth/up"}
+                className="my-6 rounded-xl border-2 border-sky-600 bg-sky-800 px-3 py-1 font-nohemi text-lg uppercase tracking-wide text-sky-400 shadow-md transition-all hover:text-sky-200"
+              >
+                Regisztráció
+              </Link>
             </>
           ) : (
             <>
               <Link
                 to={"/"}
+                onClick={handleLogout}
                 className="my-2 rounded-xl border-2 border-sky-950 bg-sky-900 px-3 py-1 font-nohemi text-lg uppercase tracking-wide text-sky-400 shadow-md transition-all hover:text-sky-200"
               >
                 Kijelentkezés
