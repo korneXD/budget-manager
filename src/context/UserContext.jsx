@@ -82,12 +82,14 @@ export const UserProvider = ({ children }) => {
   };
 
   const deleteAccount = async () => {
-    setMsg({});
+    setMsg({})
     try {
       await deleteUser(auth.currentUser);
       setMsg({ deleteUser: "Sikeres törlés!" });
+      console.log(msg);
+      
     } catch (error) {
-      console.log({ err: error.message });
+      setMsg({ err: error.message });
     }
   };
 
