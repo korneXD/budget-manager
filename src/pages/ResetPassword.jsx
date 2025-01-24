@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Spotlight } from "../components/Spotlight";
+import Navbar from "../components/Navbar";
 
-export const PWreset = () => {
+export const ResetPassword = () => {
   return (
     <div className="flex min-h-screen w-full items-center justify-center">
+      <Navbar />
       <form className="flex h-fit flex-col items-center justify-center gap-2 rounded-lg border-2 border-sky-800 bg-black/20 p-4 shadow-md backdrop-blur-md">
         <h1 className="mb-2 font-nohemi text-4xl">Reset Your Password</h1>
         <input

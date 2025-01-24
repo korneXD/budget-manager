@@ -1,4 +1,11 @@
-import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
 import { db } from "./firebaseApp";
 
 export const readCategories = (setCategories) => {
@@ -10,11 +17,8 @@ export const readCategories = (setCategories) => {
   return unsubscribe;
 };
 
-export const readExpenses = (setExpenses) => {
-  const collectionRef = collection(db, "expenses");
-  const q = query(collectionRef);
-  const unsubscribe = onSnapshot(q, (snapshot) => {
-    setExpenses(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-  });
-  return unsubscribe;
+export const addCateg = async (categData) => {
+  const collectionRef = collection(db, "categories");
+  const newItem = { ...categData };
+  await addDoc(collectionRef, newItem);
 };
