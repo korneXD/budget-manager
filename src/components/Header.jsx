@@ -5,76 +5,54 @@ import { RxAvatar } from "react-icons/rx";
 import { extractUrlAndId } from "../utility/utils";
 
 const Header = () => {
-  const { user, logOut } = useContext(UserContext);
-  const [avatar, setAvatar] = useState(null);
+  const { user, logOut, msg, setMsg } = useContext(UserContext);
 
   useEffect(() => {
-    user?.photoURL && setAvatar(extractUrlAndId(user.photoURL).url);
-    !user && setAvatar(null);
-  }, [user, user?.photoURL]);
+    setMsg({});
+  }, []);
 
   return (
-    <div>
-      <nav className="bg-black fixed w-full top-0 z-50 shadow-lg py-4 px-6 border-b">
-        <div className="flex items-center justify-between">
-          <NavLink to="/" className="text-white text-xl font-bold">
-            {/* Logo or brand */}
-          </NavLink>
-
-          <div className="flex">
-            {user && (
-              <div className="flex justify-center items-center gap-4">
-                <Link to="/dashboard">Dashboard</Link>
-                <Link to="/transactions">Transactions</Link>
-              </div>
-            )}
-          </div>
-
-          <div className="md:flex items-center space-x-4">
-            {!user ? (
-              <>
-                <NavLink
-                  to="/auth/in"
-                  className="bg-gradient-to-r from-[#ff8a00] to-[#e52e71] text-white py-2 px-4 rounded-lg text-lg font-medium transition-all duration-300 hover:bg-gradient-to-r hover:from-[#e52e71] hover:to-[#ff8a00]"
+    <nav className="fixed top-0 z-50 w-full bg-black/30 px-6 py-4 shadow-lg">
+      <div className="flex items-center justify-between">
+        <div className="items-center space-x-4 md:flex">
+          {!user ? (
+            <>
+              <Link
+                to={"/auth/in"}
+                className="my-2 rounded-xl border-2 border-sky-950 bg-sky-900 px-3 py-1 font-nohemi text-lg uppercase tracking-wide text-sky-400 shadow-md transition-all hover:text-sky-200"
+              >
+                Belépés
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link
+                to={"/"}
+                className="my-2 rounded-xl border-2 border-sky-950 bg-sky-900 px-3 py-1 font-nohemi text-lg uppercase tracking-wide text-sky-400 shadow-md transition-all hover:text-sky-200"
+              >
+                Kijelentkezés
+              </Link>
+              <Link to={"/profile"}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="size-8 text-sky-200"
                 >
-                  Belépés
-                </NavLink>
-                <NavLink
-                  to="/auth/up"
-                  className="bg-gradient-to-r from-[#ff8a00] to-[#e52e71] text-white py-2 px-4 rounded-lg text-lg font-medium transition-all duration-300 hover:bg-gradient-to-r hover:from-[#e52e71] hover:to-[#ff8a00]"
-                >
-                  Regisztráció
-                </NavLink>
-              </>
-            ) : (
-              <>
-                <NavLink
-                  to="/"
-                  onClick={() => logOut()}
-                  className="bg-gradient-to-r from-[#ff8a00] to-[#e52e71] text-white py-2 px-4 rounded-lg text-lg font-medium transition-all duration-300 hover:bg-gradient-to-r hover:from-[#e52e71] hover:to-[#ff8a00]"
-                >
-                  Kijelentkezés
-                </NavLink>
-
-                <div className="relative">
-                  <button className="bg-black p-2 rounded-full focus:outline-none transition-all">
-                    {avatar ? (
-                      <img
-                        className="w-8 h-8 rounded-full"
-                        src={avatar}
-                        alt="User Avatar"
-                      />
-                    ) : (
-                      <RxAvatar className="text-white text-2xl" />
-                    )}
-                  </button>
-                </div>
-              </>
-            )}
-          </div>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                  />
+                </svg>
+              </Link>
+            </>
+          )}
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 };
 

@@ -27,28 +27,33 @@ export const UserProvider = ({ children }) => {
   }, []);
 
   const signInUser = async (email, password) => {
+    setMsg({});
     try {
       await signInWithEmailAndPassword(auth, email, password);
-
-      setMsg({});
       setMsg({ signin: "Sikeres bejelentkezés!" });
-    } catch (error) {
-      console.log(error);
-      setMsg({ err: error.message });
+    } catch {
+      setMsg({ err: "Sikertelen bejelentkezés!" });
     }
   };
 
   const logOut = async () => {
-    await signOut(auth);
     setMsg({});
+    try {
+      await signOut(auth);
+      setMsg({ logout: "Sikeres kijelentkezés!" });
+    } catch (error) {
+      setMsg({ err: "sikertelen kijelentkezés!" });
+    }
   };
 
   const signUpUser = async (email, displayName, password) => {
+    setMsg({});
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser, { displayName });
-    } catch (error) {
-      setMsg({ err: error.message });
+      setMsg({ signup: "Sikeres regisztráció!" });
+    } catch {
+      setMsg({ err: "Sikertelen regisztráció!" });
     }
   };
 
@@ -77,9 +82,9 @@ export const UserProvider = ({ children }) => {
   };
 
   const deleteAccount = async () => {
+    setMsg({});
     try {
       await deleteUser(auth.currentUser);
-      setMsg({});
       setMsg({ deleteUser: "Sikeres törlés!" });
     } catch (error) {
       console.log({ err: error.message });
