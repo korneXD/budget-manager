@@ -14,25 +14,24 @@ export const Auth = () => {
   const isSignIn = location.pathname === "/auth/in";
 
   useEffect(() => {
-    setMsg({});
-  }, []);
+    if (isSignIn) {
+      document.title = "Budget Manager | Belépés";
+    } else if (!isSignIn) {
+      document.title = "Budget Manager | Regisztráció";
+    }
+  }, [isSignIn]);
 
   useEffect(() => {
     if (msg?.signin || msg?.signup) {
       navigate("/dashboard");
       toast.success(msg.signin || msg.signup);
+    } else if (msg?.err) {
+      toast.error(msg.err);
     }
   }, [msg, navigate]);
 
-  useEffect(() => {
-    if (msg?.err) toast.error(msg.err);
-  }, [msg]);
-
-  console.log(msg);
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    setMsg({ err: null });
     const data = new FormData(e.currentTarget);
     if (isSignIn) {
       signInUser(data.get("email"), data.get("password"));
