@@ -10,6 +10,7 @@ const Transactions = ({ values }) => {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState({});
   const [transactionName, setTransactionName] = useState("");
+  const [amount, setAmount] = useState("");
   const [disabled, setDisabled] = useState(true);
 
   const onSubmitTransactions = (e) => {
@@ -19,9 +20,14 @@ const Transactions = ({ values }) => {
       name: transactionName,
       userId: user.uid,
       categId: data.id,
+      amount: amount
     };
-    if (transactionName) addTransaction(transactionData);
-    document.getElementById("transactionName").value = "";
+    if (transactionName && amount){
+      addTransaction(transactionData);
+      document.getElementById("transactionName").value = "";
+      document.getElementById("amount").value = "";
+      toast.success("Tranzakció sikeresen hozzáadva!")
+    }
   };
 
   return (
@@ -54,7 +60,7 @@ const Transactions = ({ values }) => {
         </div>
       )}
       <form onSubmit={onSubmitTransactions} className="flex flex-row">
-        <div>
+        <div className="flex flex-col my-2">
           <input
             disabled={!data.name}
             type="name"
@@ -62,14 +68,25 @@ const Transactions = ({ values }) => {
             id="transactionName"
             placeholder="Tranzakció neve"
             onChange={(e) => setTransactionName(e.target.value)}
-            className="my-2 rounded-l-xl border-2 border-sky-950 bg-black/30 px-3 py-1 font-nohemiLight text-xl tracking-wide text-white shadow-md outline-none backdrop-blur-sm"
+            className=" rounded-tl-xl border-2 border-sky-950 bg-black/30 px-3 py-1 font-nohemiLight text-xl tracking-wide text-white shadow-md outline-none backdrop-blur-sm"
+          />
+          <input
+            disabled={!data.name}
+            type="text"
+            name="amount"
+            id="amount"
+            placeholder="Összeg"
+            onChange={(e) => setAmount(e.target.value)}
+            className=" rounded-bl-xl border-2 border-sky-950 bg-black/30 px-3 py-1 font-nohemiLight text-xl tracking-wide text-white shadow-md outline-none backdrop-blur-sm"
           />
         </div>
         <input
           type="submit"
           value="+"
           onClick={() => {
-            if (!transactionName) toast.info("Adj meg a tranzakció nevét!");
+            if (!transactionName && !amount) toast.info("Adja meg a tranzakció nevét és összegét!");
+            else if(!amount) toast.info("Adja meg a tranzakció összegét!")
+            else if(!transactionName) toast.info("Adja meg a tranzakció nevét!")
           }}
           className="my-2 cursor-pointer rounded-r-xl border-2 border-sky-950 bg-sky-900 px-3 py-1 font-nohemi text-xl uppercase tracking-wide text-sky-400 shadow-md transition-all hover:text-sky-200"
         />
