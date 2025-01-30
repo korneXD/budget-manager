@@ -1,36 +1,35 @@
-import { useState, useContext, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { useContext, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
-import { RxAvatar } from "react-icons/rx";
-import { extractUrlAndId } from "../utility/utils";
+import { toast } from "sonner";
 
 const Header = () => {
   const { user, logOut, msg, setMsg } = useContext(UserContext);
 
-  useEffect(() => {
-    setMsg({});
-  }, []);
-
-  useEffect(() => {
-    if (msg?.logout) console.log(msg?.logout);
-  }, [msg]);
-
-  useEffect(() => {
-    user?.photoURL && setAvatar(extractUrlAndId(user.photoURL).url);
-    !user && setAvatar(null);
-  }, [user, user?.photoURL]);
+  const navigate = useNavigate();
 
   const navLinks = [
     { name: "kezelőpanel", path: "/dashboard" },
     { name: "tranzakciók", path: "/transactions" },
-    { name: "eredmények", path: "/transactions" },
-    { name: "beállítások", path: "/transactions" },
+    { name: "eredmények", path: "/results" },
+    { name: "beállítások", path: "/settings" },
   ];
 
+  useEffect(() => {
+    if (msg?.logout) {
+      navigate("/");
+      toast.success(msg.logout);
+    } else if (msg?.err) {
+      toast.error(msg.err);
+    }
+  }, [msg]);
+
   const handleLogout = () => {
-    setMsg({ err: null });
-    logOut();
-    console.log(msg?.logout ? msg.logout : msg?.logout);
+    try {
+      logOut();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -69,13 +68,12 @@ const Header = () => {
             </>
           ) : (
             <>
-              <Link
-                to={"/"}
+              <button
                 onClick={handleLogout}
                 className="my-2 rounded-xl border-2 border-sky-950 bg-sky-900 px-3 py-1 font-nohemi text-lg uppercase tracking-wide text-sky-400 shadow-md transition-all hover:text-sky-200"
               >
                 Kijelentkezés
-              </Link>
+              </button>
               <Link to={"/profile"}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
