@@ -24,7 +24,7 @@ const Dashboard = () => {
   if (!user) return <NotFound />;
 
   return (
-    <div className="flex min-h-screen w-full flex-col items-center justify-center">
+    <div className="flex min-h-screen w-full flex-col items-center justify-center py-40">
       <Header />
       <h1 className="flex w-[90%] gap-2 text-left font-nohemiLight text-3xl">
         Üdvözlünk, <span className="text-sky-200">{user?.displayName}</span>
