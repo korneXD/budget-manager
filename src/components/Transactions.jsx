@@ -13,15 +13,15 @@ const Transactions = ({ values }) => {
   const [data, setData] = useState({});
   const [transactionName, setTransactionName] = useState("");
   const [amount, setAmount] = useState("");
-  const [currency,setCurrency] = useState("")
-  const {settings} = useContext(Context)
+  const [currency, setCurrency] = useState("");
+  const { settings } = useContext(Context);
 
-  useEffect(()=>{
-    if(settings && user.uid == settings[0].id){
-      setCurrency(settings[0].currency)
-    }
-  },[settings,user]) 
-   
+  useEffect(() => {
+    settings?.map((e) => {
+      if (e.id == user.uid) setCurrency(e.currency);
+    });
+  }, [settings, user]);
+
   const onSubmitTransactions = (e) => {
     e.preventDefault();
     setTransactionName("");
@@ -31,7 +31,7 @@ const Transactions = ({ values }) => {
       categId: data.id,
       amount: amount,
     };
-    if (transactionName && amount && currency!="") {
+    if (transactionName && amount && currency != "") {
       addTransaction(transactionData);
       document.getElementById("transactionName").value = "";
       document.getElementById("amount").value = "";
@@ -96,10 +96,11 @@ const Transactions = ({ values }) => {
             if (!transactionName && !amount)
               toast.info("Adja meg a tranzakció nevét és összegét!");
             else if (!amount) toast.info("Adja meg a tranzakció összegét!");
-            else if (!transactionName) toast.info("Adja meg a tranzakció nevét!");
-            else if(currency == ""){ toast.info('Válasszon ki pénznemet a "Beállítások" menüben!')
+            else if (!transactionName)
+              toast.info("Adja meg a tranzakció nevét!");
+            else if (currency == "") {
+              toast.info('Válasszon ki pénznemet a "Beállítások" menüben!');
             }
-            
           }}
           className="my-2 cursor-pointer rounded-r-xl border-2 border-sky-950 bg-sky-900 px-3 py-1 font-nohemi text-xl uppercase tracking-wide text-sky-400 shadow-md transition-all hover:text-sky-200"
         />

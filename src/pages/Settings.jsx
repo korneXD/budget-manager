@@ -8,36 +8,37 @@ import { Context } from "../context/Context";
 import { updateCurrency } from "../utility/crudUtility";
 
 const Settings = () => {
-    const [currencyName, setCurrency] = useState("");
+  const [currencyName, setCurrency] = useState("");
+  const [newCurrency, setNewCurrency] = useState("");
   const { user } = useContext(UserContext);
-    const { settings } = useContext(Context);
-   const currencies = [
-     { name: "EUR" },
-     { name: "USD" },
-     { name: "HUF" },
-     { name: "GBP" },
-   ];
-    useEffect(() => {
-       if (settings && user.uid == settings[0].id) {  
-         setCurrency(settings[0].currency);
-       }
-     }, [settings,user]);
-
-       
+  const { settings } = useContext(Context);
+  const currencies = [
+    { name: "EUR" },
+    { name: "USD" },
+    { name: "HUF" },
+    { name: "GBP" },
+  ];
 
   useEffect(() => {
-    if (settings && user.uid == settings[0].id && settings[0].currency != currencyName) {
+    settings?.map((e) => {
+      if (e.id == user.uid) setCurrency(e.currency);
+    });
+  }, [settings, user]);
+
+  useEffect(() => {
+    if (newCurrency && settings) {
       try {
-        updateCurrency(settings[0].id, currencyName);
+        settings?.map((e) => {
+          if (e.id == user.uid) updateCurrency(e.id, newCurrency);
+        });
       } catch (error) {
         console.log(error);
       }
     }
-  }, [currencyName, user]);
-   
+  }, [newCurrency, user, settings]);
 
   const selectCurrency = (e) => {
-    setCurrency(e);
+    setNewCurrency(e);
   };
 
   useEffect(() => {
@@ -47,15 +48,30 @@ const Settings = () => {
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center gap-2">
       <Header />
-      <h1 className="font-nohemi text-2xl text-sky-200">Beállítások</h1>
+      <h1 className="font-nohemi text-2xl tracking-wide text-sky-200">
+        Beállítások
+      </h1>
       <div className="flex flex-row items-center justify-center gap-4">
         {currencies.map((e) => (
-          <p key={e.name} onClick={() => selectCurrency(e.name)}>
-            {e.name}
-          </p>
+          <div
+            key={e.name}
+            onClick={() => selectCurrency(e.name)}
+            className="cursor-pointer"
+          >
+            <img
+              src={`/${e.name.toLowerCase()}.svg`}
+              alt={e.name}
+              className="size-12 rounded-full border-2 border-sky-950 bg-black/20 shadow-md backdrop-blur-sm"
+            />
+          </div>
         ))}
       </div>
-      <p>Jelenlegi pénznem : {currencyName == "" ? "Nincs kiválasztva " : currencyName}</p>
+      <p className="font-nohemiLight text-2xl text-white">
+        Jelenlegi pénznem :{" "}
+        <span className="text-sky-200">
+          {currencyName == "" ? "Nincs kiválasztva " : currencyName}
+        </span>
+      </p>
       <Spotlight />
     </div>
   );
