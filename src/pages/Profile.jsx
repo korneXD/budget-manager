@@ -51,7 +51,7 @@ export const Profile = () => {
       </div>
       <button
         onClick={handleDelete}
-        className="-z-10 rounded-lg border-2 border-sky-950 bg-red-600/90 px-2 font-nohemi text-xl tracking-wide text-white shadow-md backdrop-blur-sm"
+        className="rounded-lg border-2 border-sky-950 bg-red-600/90 px-2 font-nohemi text-xl tracking-wide text-white shadow-md backdrop-blur-sm"
       >
         Delete Account
       </button>

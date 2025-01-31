@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
-import { deleteTransaction, updateCurrency } from "../utility/crudUtility";
+import { deleteTransaction, deleteTransactions } from "../utility/crudUtility";
 import { Context } from "../context/Context";
 import { toast } from "sonner";
 import { useState } from "react";
@@ -9,20 +9,18 @@ import { useEffect } from "react";
 import axios from "axios";
 
 const Checkout = ({ categories, transactions }) => {
-    const [currencyName, setCurrency] = useState("");
+  const [currencyName, setCurrency] = useState("");
   const { user } = useContext(UserContext);
-const { settings } = useContext(Context);
+  const { settings } = useContext(Context);
   const [exchangeAmount, setExchange] = useState("");
 
   const apiKey = import.meta.env.VITE_APP_CURRENCY_API_KEY;
 
-     useEffect(() => {
-         if (settings && user.uid == settings[0].id) {  
-           setCurrency(settings[0].currency);
-         }
-       }, [settings,user]);
-     
-
+  useEffect(() => {
+    settings?.map((e) => {
+      if (e.id == user.uid) setCurrency(e.currency);
+    });
+  }, [settings, user]);
 
   /*useEffect(() => {
     const exchange = async () => {
@@ -48,12 +46,10 @@ const { settings } = useContext(Context);
     }
   };
 
-
-
   return (
     <div className="flex flex-col items-center justify-center">
       <h1 className="font-nohemiLight text-3xl">Checkout</h1>
-   
+
       <div className="flex h-fit items-center">
         <div className="mx-auto w-full px-5">
           <div className="mx-auto max-w-screen-lg">
@@ -113,7 +109,7 @@ const { settings } = useContext(Context);
                               viewBox="0 0 24 24"
                               strokeWidth="1.5"
                               stroke="currentColor"
-                              className="size-6"
+                              className="size-6 cursor-pointer"
                               onClick={() => deleteTrans(x.id)}
                             >
                               <path

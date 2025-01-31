@@ -12,6 +12,12 @@ import {
 import { createContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import {
+  addSettings,
+  deleteCategories,
+  deleteSettings,
+  deleteTransactions,
+} from "../utility/crudUtility";
 
 export const UserContext = createContext();
 
@@ -51,7 +57,8 @@ export const UserProvider = ({ children }) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(auth.currentUser, { displayName });
-      setMsg({ signup: "Sikeres regisztráció!" });
+      addSettings(auth.currentUser.uid);
+      setMsg({ signup: "Sikeres regisztráció" });
     } catch {
       setMsg({ err: "Sikertelen regisztráció!" });
     }
@@ -61,7 +68,6 @@ export const UserProvider = ({ children }) => {
     setMsg({});
     try {
       await sendPasswordResetEmail(auth, email);
-
       setMsg({ resetPw: "A jelszó visszaállítási email elküldve!" });
     } catch (error) {
       setMsg({ err: err.message });
@@ -71,6 +77,9 @@ export const UserProvider = ({ children }) => {
   const deleteAccount = async () => {
     setMsg({});
     try {
+      await deleteCategories(auth.currentUser.uid);
+      await deleteTransactions(auth.currentUser.uid);
+      await deleteSettings(auth.currentUser.uid);
       await deleteUser(auth.currentUser);
       setMsg({ deleteUser: "Sikeres törlés!" });
     } catch (error) {
