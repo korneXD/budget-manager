@@ -9,36 +9,20 @@ import { useEffect } from "react";
 import axios from "axios";
 
 const Checkout = ({ categories, transactions }) => {
+    const [currencyName, setCurrency] = useState("");
   const { user } = useContext(UserContext);
-  const { settings } = useContext(Context);
-
-  const currencies = [
-    { name: "EUR" },
-    { name: "USD" },
-    { name: "HUF" },
-    { name: "GBP" },
-  ];
-
-  const [currencyName, setCurrency] = useState("");
+const { settings } = useContext(Context);
   const [exchangeAmount, setExchange] = useState("");
 
   const apiKey = import.meta.env.VITE_APP_CURRENCY_API_KEY;
 
-  useEffect(() => {
-    if (settings && user.uid == settings[0].id) {
-      setCurrency(settings[0].currency);
-    }
-  }, [settings]);
+     useEffect(() => {
+         if (settings && user.uid == settings[0].id) {  
+           setCurrency(settings[0].currency);
+         }
+       }, [settings,user]);
+     
 
-  useEffect(() => {
-    if (settings && user.uid == settings[0].id) {
-      try {
-        updateCurrency(settings[0].id, currencyName);
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }, [currencyName, user]);
 
   /*useEffect(() => {
     const exchange = async () => {
@@ -64,20 +48,12 @@ const Checkout = ({ categories, transactions }) => {
     }
   };
 
-  const selectCurrency = (e) => {
-    setCurrency(e);
-  };
+
 
   return (
     <div className="flex flex-col items-center justify-center">
       <h1 className="font-nohemiLight text-3xl">Checkout</h1>
-      <div className="flex flex-row items-center justify-center gap-4">
-        {currencies.map((e) => (
-          <p key={e.name} onClick={() => selectCurrency(e.name)}>
-            {e.name}
-          </p>
-        ))}
-      </div>
+   
       <div className="flex h-fit items-center">
         <div className="mx-auto w-full px-5">
           <div className="mx-auto max-w-screen-lg">
