@@ -70,7 +70,9 @@ export const UserProvider = ({ children }) => {
       await sendPasswordResetEmail(auth, email);
       setMsg({ resetPw: "A jelszó visszaállítási email elküldve!" });
     } catch (error) {
-      setMsg({ err: error.message });
+
+      setMsg({ err: "Ezzal az email címmel nem regisztráltak felhasználót"});
+
     }
   };
 
@@ -87,6 +89,8 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  
+
   return (
     <UserContext.Provider
       value={{
@@ -97,7 +101,6 @@ export const UserProvider = ({ children }) => {
         msg,
         setMsg,
         resetPassword,
-
         deleteAccount,
       }}
     >
