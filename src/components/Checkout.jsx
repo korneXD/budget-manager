@@ -81,12 +81,8 @@ const Checkout = ({ categories, transactions }) => {
                         <td className="max-w-[150px] truncate px-3 py-4 text-left font-nohemiLight text-lg text-white">
                           {x.name}
                         </td>
-<<<
-                       
-===
                         <td className="max-w-[250px] truncate px-3 py-4 text-right font-nohemiLight text-lg text-white">
                           {x.amount + " " + currencyName}
->>>
                         </td>
                         <td className="flex w-20 items-center justify-center gap-4 px-3 py-4 text-center text-white">
                           <svg
