@@ -15,7 +15,7 @@ export const ResetPassword = () => {
 
   const navigate = useNavigate();
   const { msg, resetPassword } = useContext(UserContext);
-  //javitani kell a useEffectet
+  //javitani kell
   useEffect(() => {
     if (msg?.resetPw) {
       navigate("/auth/in");
