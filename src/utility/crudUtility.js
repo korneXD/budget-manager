@@ -102,3 +102,6 @@ export const deleteSettings = async (userId) => {
   const docRef = doc(db, "settings", userId);
   await deleteDoc(docRef);
 };
+
+
+
