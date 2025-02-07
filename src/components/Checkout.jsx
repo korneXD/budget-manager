@@ -22,7 +22,7 @@ const Checkout = ({ categories, transactions }) => {
     });
   }, [settings, user]);
 
-  /*useEffect(() => {
+  useEffect(() => {
     const exchange = async () => {
       try {
         const response = await axios.get(
@@ -34,7 +34,7 @@ const Checkout = ({ categories, transactions }) => {
       }
       setExchange();
     };
-  }, [currencyName]);*/
+  }, [currencyName]);
 
   const deleteTrans = (id) => {
     try {
