@@ -47,7 +47,7 @@ export const UserProvider = ({ children }) => {
     try {
       setMsg({ logout: "Sikeres kijelentkezés!" });
       await signOut(auth);
-    } catch (error) {
+    } catch {
       setMsg({ err: "Sikertelen kijelentkezés!" });
     }
   };
@@ -69,10 +69,8 @@ export const UserProvider = ({ children }) => {
     try {
       await sendPasswordResetEmail(auth, email);
       setMsg({ resetPw: "A jelszó visszaállítási email elküldve!" });
-    } catch (error) {
-
-      setMsg({ err: "Ezzal az email címmel nem regisztráltak felhasználót"});
-
+    } catch {
+      setMsg({ err: "Ezzel az email címmel nem regisztráltak felhasználót" });
     }
   };
 
@@ -88,8 +86,6 @@ export const UserProvider = ({ children }) => {
       setMsg({ err: error.message });
     }
   };
-
-  
 
   return (
     <UserContext.Provider
