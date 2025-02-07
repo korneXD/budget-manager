@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 import { deleteTransaction } from "../utility/crudUtility";
 import { Context } from "../context/Context";
@@ -6,13 +6,8 @@ import { toast } from "sonner";
 
 const Checkout = ({ categories, transactions }) => {
   const [currencyName, setCurrency] = useState("");
-  const [previousCurrency, setPreviousCurrency] = useState("");
   const { user } = useContext(UserContext);
   const { settings } = useContext(Context);
-  const [exchangeRates, setExchangeRates] = useState({});
-
-  const apiKey = import.meta.env.VITE_APP_CURRENCY_API_KEY;
-  const apiUrl = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${currencyName}`;
 
   useEffect(() => {
     settings?.forEach((e) => {
@@ -21,28 +16,6 @@ const Checkout = ({ categories, transactions }) => {
       }
     });
   }, [settings, user]);
-
-  /*useEffect(() => {
-    const fetchRates = async () => {
-      if (!currencyName) return;
-      try {
-        const response = await fetch(apiUrl);
-        const data = await response.json();
-        setExchangeRates(data.conversion_rates);
-      } catch (error) {
-        console.error("Hiba történt az API lekérdezésekor:", error);
-      }
-    };
-    fetchRates();
-  }, [currencyName]);
-
-  const convertAmount = (amount, fromCurrency) => {
-    if (!exchangeRates[fromCurrency] || !exchangeRates[currencyName])
-      return amount;
-    const convertedAmount =
-      (amount / exchangeRates[fromCurrency]) * exchangeRates[currencyName];
-    return convertedAmount.toFixed(2);
-  };*/
 
   const deleteTrans = (id) => {
     try {
@@ -65,16 +38,16 @@ const Checkout = ({ categories, transactions }) => {
                 <thead className="border-b-2 border-sky-950 bg-black/30 backdrop-blur-sm">
                   <tr>
                     <th className="px-3 py-3 text-left font-nohemiLight text-lg text-white">
-                      Kategória
+                      🛍️ Kategória
                     </th>
                     <th className="px-3 py-3 text-center font-nohemiLight text-lg text-white">
-                      Dátum
+                      🕰️ Dátum
                     </th>
                     <th className="px-3 py-3 text-center font-nohemiLight text-lg text-white">
-                      Tranzakció
+                      📝 Tranzakció
                     </th>
                     <th className="px-3 py-3 text-right font-nohemiLight text-lg text-white">
-                      Összeg
+                      💸 Összeg
                     </th>
                     <th></th>
                   </tr>
@@ -82,7 +55,12 @@ const Checkout = ({ categories, transactions }) => {
                 <tbody className="divide-y divide-sky-950">
                   {transactions?.map((x, index) =>
                     x.userId === user?.uid ? (
-                      <tr key={index}>
+                      <tr
+                        key={index}
+                        className={
+                          x.amount > 0 ? "bg-green-600/20" : "bg-red-600/20"
+                        }
+                      >
                         <td className="px-3 py-4 text-left">
                           {categories?.map(
                             (e) =>
@@ -100,11 +78,15 @@ const Checkout = ({ categories, transactions }) => {
                         <td className="px-3 py-4 text-center font-nohemiLight text-lg text-white">
                           {x.timeStamp?.toDate().toLocaleDateString()}
                         </td>
-                        <td className="px-3 py-4 text-left font-nohemiLight text-lg text-white">
+                        <td className="max-w-[150px] truncate px-3 py-4 text-left font-nohemiLight text-lg text-white">
                           {x.name}
                         </td>
-                        <td className="px-3 py-4 text-right font-nohemiLight text-lg text-white">
-                          {x.amount +  " " + currencyName}
+<<<
+                       
+===
+                        <td className="max-w-[250px] truncate px-3 py-4 text-right font-nohemiLight text-lg text-white">
+                          {x.amount + " " + currencyName}
+>>>
                         </td>
                         <td className="flex w-20 items-center justify-center gap-4 px-3 py-4 text-center text-white">
                           <svg

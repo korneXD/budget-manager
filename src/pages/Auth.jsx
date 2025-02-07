@@ -7,7 +7,7 @@ import { useEffect } from "react";
 import { toast } from "sonner";
 
 export const Auth = () => {
-  const { signInUser, signUpUser, msg, setMsg } = useContext(UserContext);
+  const { signInUser, signUpUser, msg } = useContext(UserContext);
   const navigate = useNavigate();
 
   const location = useLocation();
