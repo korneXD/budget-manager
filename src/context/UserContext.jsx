@@ -70,7 +70,7 @@ export const UserProvider = ({ children }) => {
       await sendPasswordResetEmail(auth, email);
       setMsg({ resetPw: "A jelszó visszaállítási email elküldve!" });
     } catch (error) {
-      setMsg({ err: err.message });
+      setMsg({ err: error.message });
     }
   };
 
