@@ -1,4 +1,3 @@
-import React from "react";
 import { addTransaction } from "../utility/crudUtility";
 import { useState } from "react";
 import { useContext } from "react";
@@ -81,7 +80,7 @@ const Transactions = ({ values }) => {
           />
           <input
             disabled={!data.name}
-            type="text"
+            type="number"
             name="amount"
             id="amount"
             placeholder="Összeg"
