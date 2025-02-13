@@ -17,6 +17,7 @@ const Checkout = ({ categories, transactions }) => {
     });
   }, [settings, user]);
 
+
   const deleteTrans = (id) => {
     try {
       deleteTransaction(id);
