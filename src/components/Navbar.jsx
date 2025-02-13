@@ -2,11 +2,11 @@ import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
   const navLinks = [
-    "Why Choose Us",
-    "Features",
-    "Budget Tips",
-    "Contact",
-    "FAQ",
+    { name: "Why Choose Us", path: "/whychooseus" },
+    { name: "Features", path: "/features" },
+    { name: "Budget Tips", path: "/tips" },
+    { name: "Contact", path: "/contact" },
+    { name: "FAQ", path: "/faq" },
   ];
 
   const location = useLocation();
@@ -17,12 +17,13 @@ const Navbar = () => {
       <div className="flex h-fit w-full items-center justify-center py-6">
         <div className="flex w-full items-center justify-around">
           {navLinks.map((link) => (
-            <p
-              key={link}
+            <Link
+              key={link.name}
+              to={link.path}
               className="flex-1 flex-grow cursor-pointer text-center font-nohemiLight text-sm uppercase tracking-widest text-sky-200 transition-all hover:text-sky-500"
             >
-              {link}
-            </p>
+              {link.name}
+            </Link>
           ))}
         </div>
       </div>

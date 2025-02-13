@@ -1,10 +1,7 @@
-import React from "react";
+import { useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { Spotlight } from "../components/Spotlight";
 import Navbar from "../components/Navbar";
-import { useEffect } from "react";
-import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import { toast } from "sonner";
 
@@ -14,14 +11,16 @@ export const ResetPassword = () => {
   }, []);
 
   const navigate = useNavigate();
-  const { msg, resetPassword } = useContext(UserContext);
-  //javitani kell a useeffectet
+  const { msg, resetPassword, setMsg } = useContext(UserContext);
+
   useEffect(() => {
     if (msg?.resetPw) {
-      navigate("/auth/in");
       toast.success(msg.resetPw);
+      setMsg({});
+      navigate("/auth/in", { replace: true });
     } else if (msg?.err) {
       toast.error(msg.err);
+      setMsg({});
     }
   }, [msg, navigate]);
 
