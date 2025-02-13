@@ -8,7 +8,7 @@ import Header from "../components/Header";
 import { Spotlight } from "../components/Spotlight";
 import { useState } from "react";
 import { extractUrlAndId } from '../utility/utils';
-import { uploadFile } from '../utility/uploadFile.';
+//import { uploadFile } from '../utility/uploadFile.';
 
 export const Profile = () => {
   const { user, deleteAccount, updateCredentials, logOut, msg } = useContext(UserContext);
