@@ -11,6 +11,7 @@ import Transactions from "./pages/Transactions";
 import { ResetPassword } from "./pages/ResetPassword";
 import { Toaster } from "sonner";
 import Settings from "./pages/Settings";
+import { Contact } from "./pages/Contact";
 
 const router = createBrowserRouter(
   [
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
     { path: "/profile", element: <Profile /> },
     { path: "/settings", element: <Settings /> },
     { path: "/results", element: <Results /> },
+    { path: "/contact", element: <Contact /> },
     { path: "*", element: <NotFound /> },
   ],
   {
