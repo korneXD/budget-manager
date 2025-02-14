@@ -12,6 +12,7 @@ import { ResetPassword } from "./pages/ResetPassword";
 import { Toaster } from "sonner";
 import Settings from "./pages/Settings";
 import { Features } from "./pages/Features";
+import { WhyChooseUs } from "./pages/WhyChooseUs";
 
 const router = createBrowserRouter(
   [
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
     { path: "/results", element: <Results /> },
     { path: "/features", element: <Features /> },
     { path: "*", element: <NotFound /> },
+    { path: "/whychooseus", element: <WhyChooseUs /> },
   ],
   {
     future: {
