@@ -13,6 +13,7 @@ import { Toaster } from "sonner";
 import Settings from "./pages/Settings";
 import { Contact } from "./pages/Contact";
 import { Features } from "./pages/Features";
+import { WhyChooseUs } from "./pages/WhyChooseUs";
 
 const router = createBrowserRouter(
   [
@@ -28,6 +29,7 @@ const router = createBrowserRouter(
     { path: "/contact", element: <Contact /> },
     { path: "/features", element: <Features /> },
     { path: "*", element: <NotFound /> },
+    { path: "/whychooseus", element: <WhyChooseUs /> },
   ],
   {
     future: {
