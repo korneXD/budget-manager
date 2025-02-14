@@ -20,6 +20,7 @@
     "clsx": "^2.1.1",
     "dotenv": "^16.4.7",
     "firebase": "^11.2.0",
+    "lucide-react": "^0.475.0",
     "material-ui-confirm": "^3.0.18",
     "motion": "^12.4.2",
     "prop-types": "^15.8.1",
