@@ -12,6 +12,7 @@ const Transactions = ({ values }) => {
   const [data, setData] = useState({});
   const [transactionName, setTransactionName] = useState("");
   const [amount, setAmount] = useState("");
+  const [currencyType, setCurrencyType] = useState("");
   const [currency, setCurrency] = useState("");
   const { settings } = useContext(Context);
 
@@ -37,6 +38,7 @@ const Transactions = ({ values }) => {
       toast.success("Tranzakció sikeresen hozzáadva!");
     }
   };
+  
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
@@ -87,6 +89,15 @@ const Transactions = ({ values }) => {
             onChange={(e) => setAmount(e.target.value)}
             className="rounded-bl-xl border-2 border-sky-950 bg-black/30 px-3 py-1 font-nohemiLight text-xl tracking-wide text-white shadow-md outline-none backdrop-blur-sm"
           />
+          <input
+            disabled={!data.name}
+            type="number"
+            name="currencyType"
+            id="currencyType"
+            placeholder="Pénznem"
+            onChange={(e) => setCurrencyType(e.target.value)}
+            className="rounded-bl-xl border-2 border-sky-950 bg-black/30 px-3 py-1 font-nohemiLight text-xl tracking-wide text-white shadow-md outline-none backdrop-blur-sm"
+          />
         </div>
         <input
           type="submit"
@@ -105,7 +116,11 @@ const Transactions = ({ values }) => {
         />
       </form>
     </div>
+
   );
+  
 };
 
 export default Transactions;
+
+

@@ -10,6 +10,7 @@ import Categories from "../components/Categories";
 import Checkout from "../components/Checkout";
 import { useState } from "react";
 import Loading from "./Loading";
+import BudgetManager from "../components/imatmagja";
 
 const Dashboard = () => {
   const { user } = useContext(UserContext);
@@ -31,7 +32,7 @@ const Dashboard = () => {
       <div className="flex h-full w-[90%] flex-col items-center justify-center gap-4 rounded-lg border-2 border-sky-950 bg-black/20 p-4 shadow-md backdrop-blur-md">
         <div className="flex w-full items-start justify-center">
           <Categories values={categories} />
-          <Transactions values={categories} />
+          <BudgetManager values={categories} />
         </div>
         <Checkout categories={categories} transactions={transactions} />
       </div>
