@@ -10,7 +10,7 @@ import Categories from "../components/Categories";
 import Checkout from "../components/Checkout";
 import { useState } from "react";
 import Loading from "./Loading";
-import BudgetManager from "../components/imatmagja";
+import BudgetManager from "../components/CurrenyExchangeTest";
 
 const Dashboard = () => {
   const { user } = useContext(UserContext);

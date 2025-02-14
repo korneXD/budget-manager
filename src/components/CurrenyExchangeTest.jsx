@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-const API_KEY = "fca_live_W2KBuzLO12WJDdG4RB9Do4pKKoomFnAUg0foWvtz"; 
+const API_KEY = ""; 
 const BASE_CURRENCY = "HUF";
 
 const BudgetManager = () => {
@@ -10,7 +10,7 @@ const BudgetManager = () => {
   const [amount, setAmount] = useState("");
   const [currency, setCurrency] = useState("EUR");
 
-  // Árfolyamok lekérése API-ból
+  
   useEffect(() => {
     const fetchRates = async () => {
       try {
