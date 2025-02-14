@@ -1,3 +1,6 @@
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
 export const extractUrlAndId = (cloudinaryUrl) => {
   const lastSlashIndex = cloudinaryUrl.lastIndexOf("/");
   const url = cloudinaryUrl.substring(0, lastSlashIndex);
@@ -9,3 +12,7 @@ export const sanitizeHTML = (html) => {
   const doc = new DOMParser().parseFromString(html, "text/html");
   return doc.body.textContent || "";
 };
+
+export function cn(...inputs) {
+  return twMerge(clsx(inputs));
+}
