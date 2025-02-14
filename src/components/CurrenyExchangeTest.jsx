@@ -24,7 +24,7 @@ const BudgetManager = () => {
   }, []);
 
 
-  const addTransaction = () => {
+  const addTransaction = () =>  {
     if (!amount || !currency || !rates[currency]) return;
 
     const exchangeRate = rates[currency] || 1;
