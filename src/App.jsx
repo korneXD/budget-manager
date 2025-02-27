@@ -14,6 +14,7 @@ import Settings from "./pages/Settings";
 import { Contact } from "./pages/Contact";
 import { Features } from "./pages/Features";
 import { WhyChooseUs } from "./pages/WhyChooseUs";
+import { FAQ } from "./pages/FAQ";
 
 const router = createBrowserRouter(
   [
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
     { path: "/features", element: <Features /> },
     { path: "*", element: <NotFound /> },
     { path: "/whychooseus", element: <WhyChooseUs /> },
+    { path: "/faq", element: <FAQ /> }
   ],
   {
     future: {
