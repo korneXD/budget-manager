@@ -27,15 +27,14 @@ export const ResetPassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData(e.currentTarget);
-      resetPassword(data.get("email"))
-      if (msg?.resetPw) {
-        toast.success(msg.resetPw);
-        navigate("/auth/in");
-      } else if (msg?.err) {
-        toast.error(msg.err);
-      }
+    resetPassword(data.get("email"));
+    if (msg?.resetPw) {
+      toast.success(msg.resetPw);
+      navigate("/auth/in");
+    } else if (msg?.err) {
+      toast.error(msg.err);
     }
-
+  };
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center">
