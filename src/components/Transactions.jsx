@@ -38,7 +38,6 @@ const Transactions = ({ values }) => {
       toast.success("Tranzakció sikeresen hozzáadva!");
     }
   };
-  
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
@@ -116,11 +115,7 @@ const Transactions = ({ values }) => {
         />
       </form>
     </div>
-
   );
-  
 };
 
 export default Transactions;
-
-
