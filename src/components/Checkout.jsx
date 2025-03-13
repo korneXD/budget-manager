@@ -17,7 +17,6 @@ const Checkout = ({ categories, transactions }) => {
     });
   }, [settings, user]);
 
-
   const deleteTrans = (id) => {
     try {
       deleteTransaction(id);
@@ -39,6 +38,9 @@ const Checkout = ({ categories, transactions }) => {
                 <thead className="border-b-2 border-sky-950 bg-black/30 backdrop-blur-sm">
                   <tr>
                     <th className="px-3 py-3 text-left font-nohemiLight text-lg text-white">
+                      📈 Típus
+                    </th>
+                    <th className="px-3 py-3 text-left font-nohemiLight text-lg text-white">
                       🛍️ Kategória
                     </th>
                     <th className="px-3 py-3 text-center font-nohemiLight text-lg text-white">
@@ -50,7 +52,22 @@ const Checkout = ({ categories, transactions }) => {
                     <th className="px-3 py-3 text-right font-nohemiLight text-lg text-white">
                       💸 Összeg
                     </th>
-                    <th></th>
+                    <th className="flex justify-center px-3 py-3 font-nohemiLight text-lg text-white">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        strokeWidth={1.5}
+                        stroke="currentColor"
+                        className="size-6"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          d="M6.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM18.75 12a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+                        />
+                      </svg>
+                    </th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-sky-950">
@@ -59,9 +76,14 @@ const Checkout = ({ categories, transactions }) => {
                       <tr
                         key={index}
                         className={
-                          x.amount > 0 ? "bg-green-600/20" : "bg-red-600/20"
+                          x.type == "Bevétel"
+                            ? "bg-green-600/50"
+                            : "bg-red-600/50"
                         }
                       >
+                        <td className="px-3 py-4 text-center font-nohemiLight text-lg text-white">
+                          {x.type}
+                        </td>
                         <td className="px-3 py-4 text-left">
                           {categories?.map(
                             (e) =>
@@ -83,7 +105,7 @@ const Checkout = ({ categories, transactions }) => {
                           {x.name}
                         </td>
                         <td className="max-w-[250px] truncate px-3 py-4 text-right font-nohemiLight text-lg text-white">
-                          {x.amount + " " + currencyName}
+                          {x.amount + " " + x.currency}
                         </td>
                         <td className="flex w-20 items-center justify-center gap-4 px-3 py-4 text-center text-white">
                           <svg

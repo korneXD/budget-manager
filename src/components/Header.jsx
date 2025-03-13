@@ -33,7 +33,7 @@ const Header = () => {
   };
 
   return (
-    <nav className="fixed top-0 z-50 w-full bg-black/30 px-6 py-4 shadow-lg backdrop-blur-sm">
+    <nav className="fixed top-0 z-50 w-full border-b border-b-sky-950 bg-black/30 px-6 py-4 shadow-lg backdrop-blur-sm">
       <div className="flex items-center justify-between">
         <div className="flex w-full items-center justify-center">
           {user && (
