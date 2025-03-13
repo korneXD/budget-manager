@@ -29,7 +29,7 @@ const Checkout = ({ categories, transactions }) => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="font-nohemiLight text-3xl">Checkout</h1>
+      <h1 className="font-nohemiLight text-3xl">Tranzakciók</h1>
       <div className="flex h-fit items-center">
         <div className="mx-auto w-full px-5">
           <div className="mx-auto max-w-screen-lg">

@@ -30,7 +30,7 @@ const Dashboard = () => {
         Üdvözlünk, <span className="text-sky-200">{user?.displayName}</span>
       </h1>
       <div className="flex h-full w-[90%] flex-col items-center justify-center gap-4 rounded-lg border-2 border-sky-950 bg-black/20 p-4 shadow-md backdrop-blur-md">
-        <div className="flex w-full items-start justify-center">
+        <div className="flex w-full flex-col items-start justify-center gap-10 md:flex-row md:gap-0">
           <Categories values={categories} />
           <BudgetManager values={categories} />
         </div>
