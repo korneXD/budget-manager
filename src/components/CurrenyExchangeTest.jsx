@@ -141,6 +141,7 @@ const BudgetManager = ({ values }) => {
             value={amount == 0 ? "" : amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="Összeg"
+            min="0"
             className="text-md rounded-xl border-2 border-sky-950 bg-black/30 px-3 py-1 font-nohemiLight text-xl tracking-wide text-white shadow-md outline-none backdrop-blur-sm"
           />
         </div>
