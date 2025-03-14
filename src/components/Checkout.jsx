@@ -33,13 +33,13 @@ const Checkout = ({ categories, transactions }) => {
 
   return (
     <div className="flex flex-col items-center justify-center">
+      <h1 className="font-nohemiLight text-3xl">Tranzakciók</h1>
       <h1 className="font-nohemiLight text-3xl">Checkout</h1>
 
       {/* Budget Diagram Component */}
       <div className="w-full max-w-screen-lg mb-8">
         <BudgetDiagram transactions={userTransactions} categories={categories} currency={currencyName} />
       </div>
-
       <div className="flex h-fit items-center">
         <div className="mx-auto w-full px-5">
           <div className="mx-auto max-w-screen-lg">

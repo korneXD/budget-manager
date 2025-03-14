@@ -85,7 +85,7 @@ const BudgetManager = ({ values }) => {
           <select
             value={currency}
             onChange={(e) => setCurrency(e.target.value)}
-            className="w-fit rounded-lg border-2 border-sky-950 bg-black/30 px-2 py-1 font-nohemiLight text-xl tracking-wide text-gray-400 outline-none backdrop-blur-sm"
+            className="ml-1 w-fit rounded-lg border-2 border-sky-950 bg-black/30 px-2 py-1 font-nohemiLight text-xl tracking-wide text-gray-400 outline-none backdrop-blur-sm"
           >
             {currencies.map((curr) => (
               <option key={curr} value={curr}>
@@ -128,7 +128,7 @@ const BudgetManager = ({ values }) => {
             </svg>
           </button>
         </div>
-        <div className="flex flex-col items-center justify-center">
+        <div className="mt-1 flex flex-col items-center justify-center gap-1">
           <input
             type="text"
             value={name}

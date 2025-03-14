@@ -51,7 +51,10 @@ const Categories = ({ values }) => {
           )}
         </div>
       )}
-      <form onSubmit={onSubmitCateg}>
+      <form
+        onSubmit={onSubmitCateg}
+        className="flex flex-row items-center justify-center"
+      >
         <input
           type="name"
           name="name"

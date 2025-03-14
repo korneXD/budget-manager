@@ -10,8 +10,7 @@ const Header = () => {
 
   const navLinks = [
     { name: "kezelőpanel", path: "/dashboard" },
-    { name: "tranzakciók", path: "/transactions" },
-    { name: "eredmények", path: "/results" },
+    { name: "statisztika", path: "/dashboard" },
     { name: "beállítások", path: "/settings" },
   ];
 
