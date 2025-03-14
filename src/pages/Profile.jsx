@@ -70,7 +70,9 @@ export const Profile = () => {
     <div className="flex min-h-screen w-full flex-col items-center justify-center gap-2">
       <Header />
       <h1 className="font-nohemi text-2xl tracking-wide text-sky-200">Profile Management</h1>
-      <div> 
+      <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        
         <input 
           type="file" 
           {...register("file", {
@@ -93,7 +95,7 @@ export const Profile = () => {
             type="submit"
             className="w-full p-3 bg-blue-500 text-white font-semibold rounded-md cursor-pointer hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
-      {loading && <BounceLoader />}
+      </form>
       {avatar && <img src={avatar} className='img-thumbnail' style={{ marginTop: '15px', maxWidth: '300px', maxHeight: '300px', objectFit: 'cover' }} />}
       <p className="font-nohemiLight text-xl">Itt lesz a profilkép</p>
       <div className="flex flex-row items-center justify-center gap-2 text-xl">
