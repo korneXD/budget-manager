@@ -15,6 +15,7 @@ import { Contact } from "./pages/Contact";
 import { Features } from "./pages/Features";
 import { WhyChooseUs } from "./pages/WhyChooseUs";
 import { FAQ } from "./pages/FAQ";
+import { BudgetDiagram } from "./components/budget-diagram";
 
 const router = createBrowserRouter(
   [
@@ -31,7 +32,8 @@ const router = createBrowserRouter(
     { path: "/features", element: <Features /> },
     { path: "*", element: <NotFound /> },
     { path: "/whychooseus", element: <WhyChooseUs /> },
-    { path: "/faq", element: <FAQ /> }
+    { path: "/faq", element: <FAQ /> },
+    { path: "/budget-diagram", element: <BudgetDiagram /> }
   ],
   {
     future: {

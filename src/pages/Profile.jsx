@@ -1,20 +1,19 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { UserContext } from "../context/UserContext";
 import NotFound from "./NotFound";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 import { toast } from "sonner";
 import Header from "../components/Header";
 import { Spotlight } from "../components/Spotlight";
-import { useState } from "react";
 import { extractUrlAndId } from '../utility/utils';
-//import { uploadFile } from '../utility/uploadFile.';
+import { uploadFile } from "../utility/UploadFile";
 
 export const Profile = () => {
   const { user, deleteAccount, updateCredentials, logOut, msg } = useContext(UserContext);
-  const [loading,setLoading] = useState(false)
-  const [avatar,setAvatar] = useState(null)
-
+  const [loading, setLoading] = useState(false);
+  const [avatar, setAvatar] = useState(null);
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -41,45 +40,39 @@ export const Profile = () => {
 
   if (!user) return <NotFound />;
 
+  useEffect(() => {
+    if (user?.photoURL) {
+      setAvatar(extractUrlAndId(user.photoURL).url);
+    }
+  }, [user]);
 
-
-  /*useEffect(()=>{ profilkép feltöltés
-    user?.photoURL && setAvatar(extractUrlAndId(user.photoURL).url)
-  },[user])
-
-
-  const { register,handleSubmit,formState: { errors },} = useForm({
-    defaultValues:{
-      displayName:user?.displayName || ''
+  
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    defaultValues: {
+      displayName: user?.displayName || ''
     }
   });
-  const onSubmit = async (data)=>{
-    console.log(data.file[0]);
-    
-    setLoading(true)
+
+  const onSubmit = async (data) => {
+    setLoading(true);
     try {
-      const file = data?.file ? data?.file[0] : null
-      const {url,id} = file ? await uploadFile(file) : null
-      
-      
-      updateCredentials(data.displayName,url+'/'+id)
+      const file = data?.file ? data?.file[0] : null;
+      const { url, id } = file ? await uploadFile(file) : null;
+      updateCredentials(data.displayName, url + '/' + id);
     } catch (error) {
       console.log(error);
-
-      
-    }finally{
-      setLoading(false)
+    } finally {
+      setLoading(false);
     }
-    
-  }*/
+  };
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center gap-2">
       <Header />
-      <h1 className="font-nohemi text-2xl tracking-wide text-sky-200">
-        Profile Management
-      </h1>
-      {/*<div> profilkép feltöltés
+      <h1 className="font-nohemi text-2xl tracking-wide text-sky-200">Profile Management</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        
         <input 
           type="file" 
           {...register("file", {
@@ -97,15 +90,17 @@ export const Profile = () => {
         />
         <p className='text-danger' style={{ fontSize: '12px', color: 'red' }}>{errors?.file?.message}</p>
       </div>
-      {loading && <BounceLoader />}
-    {msg && <Toastify {...msg} />}
-    {avatar && <img src={avatar} className='img-thumbnail' style={{ marginTop: '15px', maxWidth: '300px', maxHeight: '300px', objectFit: 'cover' }} />}*/}
+      
+      <input
+            type="submit"
+            className="w-full p-3 bg-blue-500 text-white font-semibold rounded-md cursor-pointer hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+      </form>
+      {avatar && <img src={avatar} className='img-thumbnail' style={{ marginTop: '15px', maxWidth: '300px', maxHeight: '300px', objectFit: 'cover' }} />}
       <p className="font-nohemiLight text-xl">Itt lesz a profilkép</p>
       <div className="flex flex-row items-center justify-center gap-2 text-xl">
         <p className="font-nohemiLight">Felhasználóneved: </p>
-        <span className="font-nohemiLight text-sky-200">
-          {user?.displayName}
-        </span>
+        <span className="font-nohemiLight text-sky-200">{user?.displayName}</span>
       </div>
       <button
         onClick={handleDelete}
