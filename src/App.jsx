@@ -16,6 +16,7 @@ import { Features } from "./pages/Features";
 import { WhyChooseUs } from "./pages/WhyChooseUs";
 import { FAQ } from "./pages/FAQ";
 import { BudgetDiagram } from "./components/budget-diagram";
+import BudgetTips from "./pages/BudgetTips";
 
 const router = createBrowserRouter(
   [
@@ -33,7 +34,9 @@ const router = createBrowserRouter(
     { path: "*", element: <NotFound /> },
     { path: "/whychooseus", element: <WhyChooseUs /> },
     { path: "/faq", element: <FAQ /> },
-    { path: "/budget-diagram", element: <BudgetDiagram /> }
+    { path: "/budget-diagram", element: <BudgetDiagram /> },
+    { path: "/tips", element: <BudgetTips/> }
+
   ],
   {
     future: {

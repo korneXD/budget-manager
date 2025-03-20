@@ -1,5 +1,3 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import {
   PieChart,
@@ -21,34 +19,34 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
   const [summaryData, setSummaryData] = useState([])
   const [activeTab, setActiveTab] = useState("summary")
 
-  // Colors for the charts
+
   const COLORS = [
     "#4ade80",
     "#22c55e",
     "#16a34a",
-    "#15803d", // greens for income
+    "#15803d", 
     "#f87171",
     "#ef4444",
     "#dc2626",
-    "#b91c1c", // reds for expenses
+    "#b91c1c", 
     "#60a5fa",
     "#3b82f6",
     "#2563eb",
-    "#1d4ed8", // blues for other
+    "#1d4ed8", 
   ]
 
   useEffect(() => {
     if (!transactions || !categories) return
 
-    // Process transactions into chart data
+    
     const incomeTransactions = transactions.filter((t) => t.type === "Bevétel")
     const expenseTransactions = transactions.filter((t) => t.type !== "Bevétel")
 
-    // Group by category and sum amounts
+    
     const incomeByCategory = {}
     const expenseByCategory = {}
 
-    // Process income
+    
     incomeTransactions.forEach((transaction) => {
       const category = categories.find((c) => c.id === transaction.categId)?.name || "Egyéb"
       if (!incomeByCategory[category]) {
@@ -57,7 +55,7 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
       incomeByCategory[category] += Number.parseFloat(transaction.amount)
     })
 
-    // Process expenses
+  
     expenseTransactions.forEach((transaction) => {
       const category = categories.find((c) => c.id === transaction.categId)?.name || "Egyéb"
       if (!expenseByCategory[category]) {
@@ -66,7 +64,7 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
       expenseByCategory[category] += Number.parseFloat(transaction.amount)
     })
 
-    // Convert to array format for charts
+  
     const incomeChartData = Object.keys(incomeByCategory).map((category) => ({
       name: category,
       value: incomeByCategory[category],
@@ -77,7 +75,7 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
       value: expenseByCategory[category],
     }))
 
-    // Create summary data
+    
     const totalIncome = incomeChartData.reduce((sum, item) => sum + item.value, 0)
     const totalExpense = expenseChartData.reduce((sum, item) => sum + item.value, 0)
 
@@ -91,12 +89,11 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
     setSummaryData(summaryChartData)
   }, [transactions, categories])
 
-  // Format number with currency
   const formatAmount = (amount) => {
     return `${amount.toLocaleString()} ${currency}`
   }
 
-  // Custom tooltip for charts
+
   const CustomTooltip = ({ active, payload }) => {
     if (active && payload && payload.length) {
       return (
@@ -117,7 +114,6 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
       </div>
 
       <div className="p-4">
-        {/* Custom Tabs */}
         <div className="flex space-x-1 rounded-lg bg-black/20 p-1 mb-4">
           <button
             onClick={() => setActiveTab("summary")}
@@ -145,9 +141,8 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
           </button>
         </div>
 
-        {/* Tab Content */}
+        
         <div className="mt-4">
-          {/* Summary Tab */}
           {activeTab === "summary" && (
             <div>
               <div className="h-80">
@@ -178,7 +173,7 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
             </div>
           )}
 
-          {/* Income Tab */}
+          
           {activeTab === "income" && (
             <div className="h-80">
               <ResponsiveContainer width="100%" height="100%">
@@ -204,7 +199,7 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
             </div>
           )}
 
-          {/* Expenses Tab */}
+          
           {activeTab === "expenses" && (
             <div className="h-80">
               <ResponsiveContainer width="100%" height="100%">
