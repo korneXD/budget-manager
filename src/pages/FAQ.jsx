@@ -97,7 +97,7 @@ const faqData = [
   },
 ]
 
-// Icons as simple components
+
 const SearchIcon = () => (
   <svg
     className="absolute left-3 top-1/2 transform -translate-y-1/2 text-sky-500 h-4 w-4"
@@ -134,7 +134,7 @@ export const FAQ = ()=> {
   const [expandedCategories, setExpandedCategories] = useState([])
   const [expandedQuestions, setExpandedQuestions] = useState([])
 
-  // Filter questions based on search query
+  
   const filteredFAQs = faqData
     .map((category) => ({
       ...category,
@@ -146,14 +146,14 @@ export const FAQ = ()=> {
     }))
     .filter((category) => category.questions.length > 0)
 
-  // Toggle category expansion
+  
   const toggleCategory = (category) => {
     setExpandedCategories((prev) =>
       prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category],
     )
   }
 
-  // Toggle question expansion
+  
   const toggleQuestion = (id) => {
     setExpandedQuestions((prev) => (prev.includes(id) ? prev.filter((q) => q !== id) : [...prev, id]))
   }
@@ -162,7 +162,7 @@ export const FAQ = ()=> {
     <div>
     <Navbar />
     <div className="container mx-auto px-4 py-12 max-w-4xl">
-      {/* Header */}
+      
       <div className="text-center mb-12">
         <h1 className="text-3xl font-bold tracking-tight mb-4">Frequently Asked Questions</h1>
         <p className="text-white max-w-2xl mx-auto">
@@ -171,7 +171,7 @@ export const FAQ = ()=> {
         </p>
       </div>
 
-      {/* Search bar */}
+    
       <div className="relative mb-10 max-w-md mx-auto">
         <div className="relative">
           <SearchIcon />
@@ -190,12 +190,12 @@ export const FAQ = ()=> {
         )}
       </div>
 
-      {/* FAQ content */}
+    
       <div className="space-y-8">
         {filteredFAQs.length > 0 ? (
           filteredFAQs.map((category) => (
             <div key={category.category} className="border border-gray-200 rounded-lg p-6">
-              {/* Category header */}
+              
               <div
                 className="flex justify-between items-center cursor-pointer"
                 onClick={() => toggleCategory(category.category)}
@@ -206,7 +206,7 @@ export const FAQ = ()=> {
                 </button>
               </div>
 
-              {/* Questions */}
+              
               {(expandedCategories.includes(category.category) || searchQuery) && (
                 <div className="mt-4 space-y-3">
                   {category.questions.map((item) => (
@@ -237,7 +237,7 @@ export const FAQ = ()=> {
         )}
       </div>
 
-      {/* Contact section */}
+  
       <div className="mt-16 text-center p-8 border border-gray-200 rounded-lg">
         <h2 className="text-xl font-semibold mb-4">Still have questions?</h2>
         <p className="text-white mb-6">
