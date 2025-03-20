@@ -2,11 +2,15 @@ import { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { toast } from "sonner";
+import { useState } from "react";
+import { extractUrlAndId } from "../utility/utils";
 
 const Header = () => {
   const { user, logOut, msg, setMsg } = useContext(UserContext);
 
   const navigate = useNavigate();
+
+  const [avatar, setAvatar] = useState(null);
 
   const navLinks = [
     { name: "kezelőpanel", path: "/dashboard" },
@@ -31,8 +35,14 @@ const Header = () => {
     }
   };
 
+  useEffect(() => {
+    if (user?.photoURL) {
+      setAvatar(extractUrlAndId(user.photoURL).url);
+    }
+  }, [user]);
+
   return (
-    <nav className="fixed top-0 z-50 w-full border-b border-b-sky-950 bg-black/30 px-6 py-4 shadow-lg backdrop-blur-sm">
+    <nav className="fixed top-0 z-50 w-full select-none border-b border-b-sky-950 bg-black/30 px-6 py-4 shadow-lg backdrop-blur-sm">
       <div className="flex items-center justify-between">
         <div className="flex w-full items-center justify-center">
           {user && (
@@ -74,20 +84,27 @@ const Header = () => {
                 Kijelentkezés
               </button>
               <Link to={"/profile"}>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth="1.5"
-                  stroke="currentColor"
-                  className="size-8 text-sky-200"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                {!avatar ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="1.5"
+                    stroke="currentColor"
+                    className="size-8 select-none text-sky-200"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
+                    />
+                  </svg>
+                ) : (
+                  <img
+                    src={avatar}
+                    className="pointer-events-none flex w-24 items-center justify-center rounded-full border-2 border-sky-950 bg-black shadow-md"
                   />
-                </svg>
+                )}
               </Link>
             </>
           )}
