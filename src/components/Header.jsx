@@ -14,7 +14,7 @@ const Header = () => {
 
   const navLinks = [
     { name: "kezelőpanel", path: "/dashboard" },
-    { name: "statisztika", path: "/dashboard" },
+    { name: "statisztika", path: "/statistics" },
     { name: "beállítások", path: "/settings" },
   ];
 
