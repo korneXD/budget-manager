@@ -19,6 +19,7 @@ import { BudgetDiagram } from "./components/budget-diagram";
 import BudgetTips from "./pages/BudgetTips";
 import { CategoryDetailDiagram } from "./components/category-detail-diagram";
 import CategoryAnalysisPage from "./pages/category-analysis";
+import { Satistics } from "./pages/Satistics";
 
 const router = createBrowserRouter(
   [
@@ -39,7 +40,8 @@ const router = createBrowserRouter(
     { path: "/budget-diagram", element: <BudgetDiagram /> },
     { path: "/tips", element: <BudgetTips/> },
     { path: "/category-detail-diagram", element: <CategoryDetailDiagram/> },
-    { path: "/category-analysis", element: <CategoryAnalysisPage/> }
+    { path: "/category-analysis", element: <CategoryAnalysisPage/> },
+    { path: "/statistics", element: <Satistics />}
 
   ],
   {
