@@ -1,3 +1,4 @@
+
 import { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 import { deleteTransaction } from "../utility/crudUtility";
@@ -45,6 +46,7 @@ const Checkout = ({ categories, transactions }) => {
         />
       </div>
       <Targets />
+    <div className="flex flex-col items-center justify-center">
       <div className="flex h-fit items-center">
         <div className="mx-auto w-full px-5">
           <div className="mx-auto max-w-5xl">
