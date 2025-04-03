@@ -27,7 +27,6 @@ const BudgetManager = ({ values }) => {
       amount: parseFloat(amount),
       name: name,
       type: type,
-      currency: currency,
       categId: data?.id,
       userId: user?.uid,
     };
@@ -44,8 +43,6 @@ const BudgetManager = ({ values }) => {
       setType("Bevétel");
     }
   };
-
-  const currencies = ["EUR", "USD", "GBP", "HUF"];
 
   return (
     <div className="flex h-full w-full flex-col items-center justify-center">
@@ -82,17 +79,6 @@ const BudgetManager = ({ values }) => {
               )}
             </select>
           )}
-          <select
-            value={currency}
-            onChange={(e) => setCurrency(e.target.value)}
-            className="ml-1 w-fit rounded-lg border-2 border-sky-950 bg-black/30 px-2 py-1 font-nohemiLight text-xl tracking-wide text-gray-400 outline-none backdrop-blur-sm"
-          >
-            {currencies.map((curr) => (
-              <option key={curr} value={curr}>
-                {curr}
-              </option>
-            ))}
-          </select>
           <button
             onClick={() => setType("Bevétel")}
             className="mx-1 w-fit rounded-lg border-2 border-green-500 bg-green-500/30 font-nohemiLight text-xl tracking-wide text-gray-400 outline-none backdrop-blur-sm"

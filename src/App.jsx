@@ -1,4 +1,3 @@
-import "./App.css";
 import { Homepage } from "./pages/Homepage";
 
 import { Auth } from "./pages/Auth";
@@ -33,7 +32,7 @@ const router = createBrowserRouter(
     { path: "*", element: <NotFound /> },
     { path: "/whychooseus", element: <WhyChooseUs /> },
     { path: "/faq", element: <FAQ /> },
-    { path: "/budget-diagram", element: <BudgetDiagram /> }
+    { path: "/budget-diagram", element: <BudgetDiagram /> },
   ],
   {
     future: {

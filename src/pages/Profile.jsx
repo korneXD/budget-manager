@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { UserContext } from "../context/UserContext";
-import NotFound from "./NotFound";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import Header from "../components/Header";
@@ -102,7 +101,7 @@ export const Profile = () => {
               },
             })}
             onChange={(e) => setAvatar(URL.createObjectURL(e.target.files[0]))}
-            className="flex appearance-none bg-black font-nohemiLight"
+            className="flex appearance-none bg-white/20 font-nohemiLight backdrop-blur-sm"
             style={{
               padding: "8px",
               borderRadius: "4px",
@@ -115,13 +114,14 @@ export const Profile = () => {
         </div>
         <input
           type="submit"
+          value="Fájl feltöltése"
           className="text-md my-2 cursor-pointer rounded-xl border-2 border-sky-950 bg-sky-900 px-3 py-1 font-nohemi uppercase tracking-wide text-sky-400 shadow-md transition-all hover:text-sky-200"
         />
       </form>
       {avatar && (
         <img
           src={avatar}
-          className="pointer-events-none rounded-full border-4 border-sky-950 bg-black shadow-md"
+          className="pointer-events-none rounded-full border-4 border-sky-950 bg-white/20 shadow-md backdrop-blur-sm"
           style={{
             marginTop: "15px",
             maxWidth: "300px",
@@ -141,7 +141,7 @@ export const Profile = () => {
       </div>
       <button
         onClick={handleDelete}
-        className="rounded-lg border-2 border-sky-950 bg-red-600/90 px-2 font-nohemi text-xl tracking-wide text-white shadow-md backdrop-blur-sm"
+        className="rounded-lg border-2 border-red-950 bg-red-600/90 px-2 font-nohemi text-xl tracking-wide text-white shadow-md backdrop-blur-sm"
       >
         Fiók törlése
       </button>

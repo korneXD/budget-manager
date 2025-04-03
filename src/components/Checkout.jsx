@@ -1,57 +1,72 @@
-import { useContext, useState, useEffect } from "react"
-import { UserContext } from "../context/UserContext"
-import { deleteTransaction } from "../utility/crudUtility"
-import { Context } from "../context/Context"
-import { toast } from "sonner"
-import { BudgetDiagram } from "./budget-diagram"
+import { useContext, useState, useEffect } from "react";
+import { UserContext } from "../context/UserContext";
+import { deleteTransaction } from "../utility/crudUtility";
+import { Context } from "../context/Context";
+import { toast } from "sonner";
+import { BudgetDiagram } from "./budget-diagram";
+import Targets from "./Targets";
 
 const Checkout = ({ categories, transactions }) => {
-  const [currencyName, setCurrency] = useState("")
-  const { user } = useContext(UserContext)
-  const { settings } = useContext(Context)
+  const [currencyName, setCurrency] = useState("");
+  const { user } = useContext(UserContext);
+  const { settings } = useContext(Context);
 
   useEffect(() => {
     settings?.forEach((e) => {
       if (e.id === user.uid) {
-        setCurrency(e.currency)
+        setCurrency(e.currency);
       }
-    })
-  }, [settings, user])
+    });
+  }, [settings, user]);
 
   const deleteTrans = (id) => {
     try {
-      deleteTransaction(id)
-      toast.success("Tranzakció sikeresen kitörölve!")
+      deleteTransaction(id);
+      toast.success("Tranzakció sikeresen kitörölve!");
     } catch (error) {
-      console.log(error)
-      toast.error("Tranzakció törlése sikertelen!")
+      console.log(error);
+      toast.error("Tranzakció törlése sikertelen!");
     }
-  }
+  };
 
   // Filter transactions for current user
-  const userTransactions = transactions?.filter((x) => x.userId === user?.uid) || []
+  const userTransactions =
+    transactions?.filter((x) => x.userId === user?.uid) || [];
 
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-center gap-6">
       <h1 className="font-nohemiLight text-3xl">Tranzakciók</h1>
-      <h1 className="font-nohemiLight text-3xl">Checkout</h1>
-
       {/* Budget Diagram Component */}
-      <div className="w-full max-w-screen-lg mb-8">
-        <BudgetDiagram transactions={userTransactions} categories={categories} currency={currencyName} />
+      <div className="w-full max-w-screen-lg">
+        <BudgetDiagram
+          transactions={userTransactions}
+          categories={categories}
+          currency={currencyName}
+        />
       </div>
+      <Targets />
       <div className="flex h-fit items-center">
         <div className="mx-auto w-full px-5">
-          <div className="mx-auto max-w-screen-lg">
+          <div className="mx-auto max-w-5xl">
             <div className="min-w-full overflow-x-auto rounded-lg border-2 border-sky-950 shadow-md">
               <table className="min-w-full whitespace-nowrap rounded">
-                <thead className="border-b-2 border-sky-950 bg-black/30 backdrop-blur-sm">
+                <thead className="border-b-2 border-sky-950 bg-black/20 backdrop-blur-sm">
                   <tr>
-                    <th className="px-3 py-3 text-left font-nohemiLight text-lg text-white">📈 Típus</th>
-                    <th className="px-3 py-3 text-left font-nohemiLight text-lg text-white">🛍️ Kategória</th>
-                    <th className="px-3 py-3 text-center font-nohemiLight text-lg text-white">🕰️ Dátum</th>
-                    <th className="px-3 py-3 text-center font-nohemiLight text-lg text-white">📝 Tranzakció</th>
-                    <th className="px-3 py-3 text-right font-nohemiLight text-lg text-white">💸 Összeg</th>
+                    <th className="px-3 py-3 text-left font-nohemiLight text-lg text-white">
+                      📈 Típus
+                    </th>
+                    <th className="px-3 py-3 text-left font-nohemiLight text-lg text-white">
+                      🛍️ Kategória
+                    </th>
+                    <th className="px-3 py-3 text-center font-nohemiLight text-lg text-white">
+                      🕰️ Dátum
+                    </th>
+                    <th className="px-3 py-3 text-center font-nohemiLight text-lg text-white">
+                      📝 Tranzakció
+                    </th>
+                    <th className="px-3 py-3 text-right font-nohemiLight text-lg text-white">
+                      💸 Összeg
+                    </th>
                     <th className="flex justify-center px-3 py-3 font-nohemiLight text-lg text-white">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -73,14 +88,26 @@ const Checkout = ({ categories, transactions }) => {
                 <tbody className="divide-y divide-sky-950">
                   {transactions?.map((x, index) =>
                     x.userId === user?.uid ? (
-                      <tr key={index} className={x.type == "Bevétel" ? "bg-green-600/50" : "bg-red-600/50"}>
-                        <td className="px-3 py-4 text-center font-nohemiLight text-lg text-white">{x.type}</td>
+                      <tr
+                        key={index}
+                        className={
+                          x.type == "Bevétel"
+                            ? "bg-green-600/50"
+                            : "bg-red-600/50"
+                        }
+                      >
+                        <td className="px-3 py-4 text-center font-nohemiLight text-lg text-white">
+                          {x.type}
+                        </td>
                         <td className="px-3 py-4 text-left">
                           {categories?.map(
                             (e) =>
                               e.userId === user?.uid &&
                               e.id === x.categId && (
-                                <span key={e.name} className="font-nohemiLight text-lg text-white">
+                                <span
+                                  key={e.name}
+                                  className="font-nohemiLight text-lg text-white"
+                                >
                                   {e.name}
                                 </span>
                               ),
@@ -122,11 +149,7 @@ const Checkout = ({ categories, transactions }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Checkout
-
-
-
-
+export default Checkout;
