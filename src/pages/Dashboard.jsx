@@ -11,6 +11,7 @@ import Checkout from "../components/Checkout";
 import { useState } from "react";
 import Loading from "./Loading";
 import BudgetManager from "../components/CurrenyExchangeTest";
+import Targets from "../components/Targets";
 
 const Dashboard = () => {
   const { user } = useContext(UserContext);
@@ -29,7 +30,7 @@ const Dashboard = () => {
       <h1 className="flex w-[90%] gap-2 text-left font-nohemiLight text-3xl">
         Üdvözlünk, <span className="text-sky-200">{user?.displayName}</span>
       </h1>
-      <div className="flex h-full w-[90%] flex-col items-center justify-center gap-4 rounded-lg border-2 border-sky-950 bg-black/20 p-4 shadow-md backdrop-blur-md">
+      <div className="flex h-full w-[90%] flex-col items-center justify-center gap-4 rounded-lg border-2 border-sky-950 bg-[#080E18]/70 p-4 shadow-md backdrop-blur-md">
         <div className="flex w-full flex-col items-start justify-center gap-10 md:flex-row md:gap-0">
           <Categories values={categories} />
           <BudgetManager values={categories} />

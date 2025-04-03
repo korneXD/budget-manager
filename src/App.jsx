@@ -1,4 +1,3 @@
-import "./App.css";
 import { Homepage } from "./pages/Homepage";
 
 import { Auth } from "./pages/Auth";
@@ -42,7 +41,6 @@ const router = createBrowserRouter(
     { path: "/category-detail-diagram", element: <CategoryDetailDiagram/> },
     { path: "/category-analysis", element: <CategoryAnalysisPage/> },
     { path: "/statistics", element: <Satistics />}
-
   ],
   {
     future: {

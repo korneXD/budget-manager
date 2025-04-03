@@ -2,19 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+@layer base {
+  :root {
+    --background: #000000;
+    --foreground: #fff;
+    --color-primary: #2e2e42;
+  }
 }
 
 @font-face {
   font-family: "Nohemi-Black";
-  src: local("Nohemi-Black"), url(./fonts/Nohemi-Black.woff2) format("opentype");
+  src:
+    local("Nohemi-Black"),
+    url(./fonts/Nohemi-Black.woff2) format("opentype");
 }
 
 @font-face {
   font-family: "Nohemi-ExtraLight";
-  src: local("Nohemi-ExtraLight"),
+  src:
+    local("Nohemi-ExtraLight"),
     url(./fonts/Nohemi-ExtraLight.woff2) format("opentype");
 }
 
