@@ -13,7 +13,10 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
+  AreaChart,
+  Area,
 } from "recharts";
+import { curveCardinal } from "d3-shape";
 
 export const BudgetDiagram = ({ transactions, categories, currency }) => {
   const [incomeData, setIncomeData] = useState([]);
@@ -21,36 +24,32 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
   const [summaryData, setSummaryData] = useState([]);
   const [activeTab, setActiveTab] = useState("summary");
 
-  // Colors for the charts
   const COLORS = [
     "#4ade80",
     "#22c55e",
     "#16a34a",
-    "#15803d", // greens for income
+    "#15803d", // greens
     "#f87171",
     "#ef4444",
     "#dc2626",
-    "#b91c1c", // reds for expenses
+    "#b91c1c", // reds
     "#60a5fa",
     "#3b82f6",
     "#2563eb",
-    "#1d4ed8", // blues for other
+    "#1d4ed8", // blues
   ];
 
   useEffect(() => {
     if (!transactions || !categories) return;
 
-    // Process transactions into chart data
     const incomeTransactions = transactions.filter((t) => t.type === "Bevétel");
     const expenseTransactions = transactions.filter(
       (t) => t.type !== "Bevétel",
     );
 
-    // Group by category and sum amounts
     const incomeByCategory = {};
     const expenseByCategory = {};
 
-    // Process income
     incomeTransactions.forEach((transaction) => {
       const category =
         categories.find((c) => c.id === transaction.categId)?.name || "Egyéb";
@@ -60,7 +59,6 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
       incomeByCategory[category] += Number.parseFloat(transaction.amount);
     });
 
-    // Process expenses
     expenseTransactions.forEach((transaction) => {
       const category =
         categories.find((c) => c.id === transaction.categId)?.name || "Egyéb";
@@ -70,7 +68,6 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
       expenseByCategory[category] += Number.parseFloat(transaction.amount);
     });
 
-    // Convert to array format for charts
     const incomeChartData = Object.keys(incomeByCategory).map((category) => ({
       name: category,
       value: incomeByCategory[category],
@@ -81,7 +78,6 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
       value: expenseByCategory[category],
     }));
 
-    // Create summary data
     const totalIncome = incomeChartData.reduce(
       (sum, item) => sum + item.value,
       0,
@@ -101,11 +97,32 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
     setSummaryData(summaryChartData);
   }, [transactions, categories]);
 
-  // Format number with currency
   const formatAmount = (amount) => {
     return `${amount.toLocaleString()} ${currency}`;
   };
 
+  const cardinal = curveCardinal.tension(0.2);
+
+  const data = [
+    {
+      name: "Page A",
+      uv: 4000,
+      pv: 2400,
+      amt: 2000,
+    },
+    {
+      name: "Page B",
+      uv: 3000,
+      pv: 1398,
+      amt: 2210,
+    },
+    {
+      name: "Page C",
+      uv: 2000,
+      pv: 9800,
+      amt: 2290,
+    },
+  ];
   return (
     <div className="w-full overflow-hidden rounded-lg border-2 border-sky-950 bg-black/30 shadow-md backdrop-blur-sm">
       <div className="border-b border-sky-950 p-4">
@@ -206,27 +223,36 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
           {activeTab === "income" && (
             <div className="h-80 font-nohemiLight">
               <ResponsiveContainer width="100%" height="100%">
-                <PieChart>
-                  <Pie
-                    data={incomeData}
-                    cx="50%"
-                    cy="50%"
-                    labelLine={false}
-                    outerRadius={80}
-                    dataKey="value"
-                    label={({ name, percent }) =>
-                      `${name} ${(percent * 100).toFixed(0)}%`
-                    }
-                  >
-                    {incomeData.map((entry, index) => (
-                      <Cell
-                        key={`cell-${index}`}
-                        fill={COLORS[index % COLORS.length]}
-                      />
-                    ))}
-                  </Pie>
-                  <Legend />
-                </PieChart>
+                <AreaChart
+                  width={500}
+                  height={400}
+                  data={data}
+                  margin={{
+                    top: 10,
+                    right: 30,
+                    left: 0,
+                    bottom: 0,
+                  }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Area
+                    type="monotone"
+                    dataKey="uv"
+                    stroke="#8884d8"
+                    fill="#8884d8"
+                    fillOpacity={0.3}
+                  />
+                  <Area
+                    type={cardinal}
+                    dataKey="uv"
+                    stroke="#82ca9d"
+                    fill="#82ca9d"
+                    fillOpacity={0.3}
+                  />
+                </AreaChart>
               </ResponsiveContainer>
             </div>
           )}

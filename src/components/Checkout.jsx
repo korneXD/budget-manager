@@ -19,6 +19,8 @@ const Checkout = ({ categories, transactions }) => {
     });
   }, [settings, user]);
 
+  const currency = settings?.find((e) => e.id === user.uid);
+
   const deleteTrans = (id) => {
     try {
       deleteTransaction(id);
@@ -29,14 +31,12 @@ const Checkout = ({ categories, transactions }) => {
     }
   };
 
-  // Filter transactions for current user
   const userTransactions =
     transactions?.filter((x) => x.userId === user?.uid) || [];
 
   return (
     <div className="flex flex-col items-center justify-center gap-6">
       <h1 className="font-nohemiLight text-3xl">Tranzakciók</h1>
-      {/* Budget Diagram Component */}
       <div className="w-full max-w-screen-lg">
         <BudgetDiagram
           transactions={userTransactions}
@@ -115,13 +115,13 @@ const Checkout = ({ categories, transactions }) => {
                             )}
                           </td>
                           <td className="px-3 py-4 text-center font-nohemiLight text-lg text-white">
-                            {x.timeStamp?.toDate().toLocaleDateString()}
+                            {x.date}
                           </td>
                           <td className="max-w-[150px] truncate px-3 py-4 text-left font-nohemiLight text-lg text-white">
                             {x.name}
                           </td>
                           <td className="max-w-[250px] truncate px-3 py-4 text-right font-nohemiLight text-lg text-white">
-                            {x.amount + " " + x.currency}
+                            {x.amount + " " + currency?.currency}
                           </td>
                           <td className="flex w-20 items-center justify-center gap-4 px-3 py-4 text-center text-white">
                             <svg

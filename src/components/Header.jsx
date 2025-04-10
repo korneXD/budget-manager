@@ -83,7 +83,7 @@ const Header = () => {
               >
                 Kijelentkezés
               </button>
-              <Link to={"/profile"}>
+              <Link to={"/profile"} className="size-12">
                 {!avatar ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +102,7 @@ const Header = () => {
                 ) : (
                   <img
                     src={avatar}
-                    className="pointer-events-none flex w-24 items-center justify-center rounded-full border-2 border-sky-950 bg-black shadow-md"
+                    className="pointer-events-none aspect-square size-12 rounded-full border-2 border-sky-950 bg-white/20 shadow-md backdrop-blur-sm"
                   />
                 )}
               </Link>
