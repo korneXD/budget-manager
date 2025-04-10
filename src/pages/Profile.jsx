@@ -6,8 +6,14 @@ import { toast } from "sonner";
 import Header from "../components/Header";
 import { Spotlight } from "../components/Spotlight";
 import { extractUrlAndId } from "../utility/utils";
-import { uploadFile } from "../utility/UploadFile";
+import { delPhoto, uploadFile } from "../utility/UploadFile";
 import { useRef } from "react";
+import {
+  deleteCategories,
+  deleteSettings,
+  deleteTransaction,
+  deleteTransactions,
+} from "../utility/crudUtility";
 
 export const Profile = () => {
   const { user, deleteAccount, updateCredentials, logOut, msg } =
@@ -33,6 +39,12 @@ export const Profile = () => {
 
   const handleDelete = () => {
     try {
+      if (avatar != null) {
+        delPhoto(extractUrlAndId(user.photoURL).id);
+      }
+      deleteCategories(user.uid);
+      deleteTransaction(user.uid);
+      deleteSettings(user.uid);
       deleteAccount();
     } catch (error) {
       console.log(error);
@@ -121,18 +133,18 @@ export const Profile = () => {
       {avatar && (
         <img
           src={avatar}
-          className="pointer-events-none rounded-full border-4 border-sky-950 bg-white/20 shadow-md backdrop-blur-sm"
-          style={{
-            marginTop: "15px",
-            maxWidth: "300px",
-            maxHeight: "300px",
-            objectFit: "cover",
-          }}
+          className="pointer-events-none size-64 rounded-full border-4 border-sky-950 bg-white/20 shadow-md backdrop-blur-sm"
         />
       )}
       <p className="font-nohemiLight text-xl">
         {avatar ? "Jelenlegi profilképed" : "Nincs profilképed"}
       </p>
+      <button
+        onClick={() => delPhoto(extractUrlAndId(user.photoURL).id)}
+        className="rounded-lg border-2 border-red-950 bg-red-600/90 px-2 font-nohemi text-xl tracking-wide text-white shadow-md backdrop-blur-sm"
+      >
+        Profilkép törlése
+      </button>
       <div className="flex flex-row items-center justify-center gap-2 text-xl">
         <p className="font-nohemiLight">Felhasználóneved: </p>
         <span className="font-nohemiLight text-sky-200">

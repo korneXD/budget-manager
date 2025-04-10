@@ -1,4 +1,33 @@
+import { useContext, useState } from "react";
+import { UserContext } from "../context/UserContext";
+import { toast } from "sonner";
+
 const Targets = () => {
+  const [targetMaker, showTargetMaker] = useState(false);
+  const [targetName, setTargetName] = useState("");
+  const [targetAmount, setTargetAmount] = useState("");
+  const [targetProgress, setTargetProgress] = useState("");
+
+  const { user } = useContext(UserContext);
+
+  const createTarget = () => {
+    let targetData = {
+      name: targetName,
+      amount: targetAmount,
+      progress: targetProgress,
+      userId: user?.uid,
+    };
+    try {
+      addTarget(targetData);
+      setTargetName("");
+      setTargetAmount("");
+      setTargetProgress("");
+      toast.success("Cél létrehozva!");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center gap-2">
       <h2 className="font-nohemiLight text-3xl text-white">Célok</h2>
@@ -8,13 +37,60 @@ const Targets = () => {
         {"'  "}
         gombot megnyomva.
       </p>
-      <form>
-        <input
-          type="submit"
-          value="Cél létrehozása"
-          className="my-2 flex cursor-pointer items-center justify-center rounded-xl border-2 border-sky-950 bg-sky-900 px-3 py-1 font-nohemi text-xl uppercase tracking-wide text-white shadow-md transition-all"
-        />
-      </form>
+      <button
+        onClick={() => showTargetMaker(!targetMaker)}
+        className="my-2 flex cursor-pointer items-center justify-center rounded-xl border-2 border-sky-950 bg-sky-900 px-3 py-1 font-nohemi text-xl uppercase tracking-wide text-white shadow-md transition-all"
+      >
+        Cél létrehozása
+      </button>
+      {targetMaker && (
+        <div className="relative flex h-fit w-fit items-center justify-center rounded-xl border-2 border-sky-950 bg-sky-800 p-4 shadow-md">
+          <div className="flex flex-col items-end justify-center gap-2">
+            <div className="flex items-center justify-center">
+              <p className="font-nohemiLight">Cél neve:</p>
+              <input
+                type="text"
+                value={targetName}
+                onChange={(e) => setTargetName(e.target.value)}
+                className="ml-2 w-fit rounded-lg border-2 border-sky-950 bg-black/50 p-1 font-nohemiLight text-sky-200 focus:outline-none"
+                placeholder="Pl.: Lakás, Autó, Utazás"
+              />
+            </div>
+            <div className="flex items-center justify-center">
+              <p className="font-nohemiLight">Célösszeg:</p>
+              <input
+                type="text"
+                value={targetAmount}
+                onChange={(e) => setTargetAmount(e.target.value)}
+                className="ml-2 w-fit rounded-lg border-2 border-sky-950 bg-black/50 p-1 font-nohemiLight text-sky-200 focus:outline-none"
+                placeholder="Pl.: 125.000 HUF"
+              />
+            </div>
+            <div className="flex items-center justify-center">
+              <p className="font-nohemiLight">Haladás:</p>
+              <input
+                type="text"
+                value={targetProgress}
+                onChange={(e) => setTargetProgress(e.target.value)}
+                className="ml-2 w-fit rounded-lg border-2 border-sky-950 bg-black/50 p-1 font-nohemiLight text-sky-200 focus:outline-none"
+                placeholder="Pl.: 50.000 HUF"
+              />
+            </div>
+            <div className="flex w-full items-center justify-center">
+              <button
+                onClick={() =>
+                  targetName != "" || targetAmount != "" || targetProgress != ""
+                    ? createTarget()
+                    : toast.error("Hiányzó adatok!")
+                }
+                className="my-2 flex cursor-pointer items-center justify-center rounded-xl border-2 border-sky-950 bg-sky-900 px-3 py-1 font-nohemi text-xl uppercase tracking-wide text-white shadow-md transition-all"
+              >
+                Létrehozás
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="flex max-w-5xl flex-wrap items-center justify-center gap-6">
         <div className="flex w-fit flex-col items-start justify-center rounded-xl border-2 border-sky-950 bg-black/30 p-2 shadow-md">
           <p className="w-full text-center font-nohemi text-2xl tracking-wide text-sky-200">

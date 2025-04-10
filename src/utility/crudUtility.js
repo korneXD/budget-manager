@@ -26,6 +26,15 @@ export const readCategories = (setCategories) => {
   return unsubscribe;
 };
 
+export const readTargets = (setTargets) => {
+  const collectionRef = collection(db, "targets");
+  const q = query(collectionRef);
+  const unsubscribe = onSnapshot(q, (snapshot) => {
+    setTargets(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  });
+  return unsubscribe;
+};
+
 export const readTransactions = (setTransactions) => {
   const collectionRef = collection(db, "transactions");
   const q = query(collectionRef, orderBy("name", "asc"));
@@ -56,7 +65,13 @@ export const addCateg = async (categData) => {
 
 export const addTransaction = async (transactionData) => {
   const collectionRef = collection(db, "transactions");
-  const newItem = { ...transactionData, timeStamp: serverTimestamp() };
+  const newItem = { ...transactionData };
+  await addDoc(collectionRef, newItem);
+};
+
+export const addTarget = async (targetData) => {
+  const collectionRef = collection(db, "targets");
+  const newItem = { ...targetData };
   await addDoc(collectionRef, newItem);
 };
 
@@ -102,6 +117,3 @@ export const deleteSettings = async (userId) => {
   const docRef = doc(db, "settings", userId);
   await deleteDoc(docRef);
 };
-
-
-
