@@ -71,12 +71,12 @@ const Checkout = ({ categories, transactions }) => {
         Összes tranzakció törlése
       </button>
 
-      {/* Ha nincsenek tranzakciók */}
+      
       {userTransactions.length === 0 && (
         <p className="text-xl text-gray-600">Nincs hozzáadva egy tranzakció sem.</p>
       )}
 
-      {/* Egyedi tranzakció törlésének megerősítése */}
+      
       {transactionToDelete && (
         <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-center w-full  bg-opacity-50 py-8">
           <div className="rounded-xl bg-white p-6 shadow-xl text-center">
