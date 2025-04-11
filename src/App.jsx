@@ -37,10 +37,10 @@ const router = createBrowserRouter(
     { path: "/whychooseus", element: <WhyChooseUs /> },
     { path: "/faq", element: <FAQ /> },
     { path: "/budget-diagram", element: <BudgetDiagram /> },
-    { path: "/tips", element: <BudgetTips/> },
-    { path: "/category-detail-diagram", element: <CategoryDetailDiagram/> },
-    { path: "/category-analysis", element: <CategoryAnalysisPage/> },
-    { path: "/statistics", element: <Satistics />}
+    { path: "/tips", element: <BudgetTips /> },
+    { path: "/category-detail-diagram", element: <CategoryDetailDiagram /> },
+    { path: "/category-analysis", element: <CategoryAnalysisPage /> },
+    { path: "/statistics", element: <Satistics /> },
   ],
   {
     future: {

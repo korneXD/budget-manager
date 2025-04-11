@@ -6,6 +6,7 @@ import { UserContext } from "../context/UserContext";
 import NotFound from "./NotFound";
 import { Context } from "../context/Context";
 import { updateCurrency } from "../utility/crudUtility";
+import { toast } from "sonner";
 
 const Settings = () => {
   const [currencyName, setCurrency] = useState("");
@@ -55,7 +56,7 @@ const Settings = () => {
         {currencies.map((e) => (
           <div
             key={e.name}
-            onClick={() => selectCurrency(e.name)}
+            onClick={() => toast.warning("Egyenlőre nem elérhető...")}
             className="cursor-pointer"
           >
             <img

@@ -12,6 +12,8 @@ const Header = () => {
 
   const [avatar, setAvatar] = useState(null);
 
+  const [open, setOpen] = useState(false);
+
   const navLinks = [
     { name: "kezelőpanel", path: "/dashboard" },
     { name: "statisztika", path: "/statistics" },
@@ -43,7 +45,8 @@ const Header = () => {
 
   return (
     <nav className="fixed top-0 z-50 w-full select-none border-b border-b-sky-950 bg-black/30 px-6 py-4 shadow-lg backdrop-blur-sm">
-      <div className="flex items-center justify-between">
+      {/* Desktop */}
+      <div className="hidden items-center justify-between md:flex">
         <div className="flex w-full items-center justify-center">
           {user && (
             <div className="flex w-full items-center justify-around gap-8">
@@ -109,6 +112,63 @@ const Header = () => {
             </>
           )}
         </div>
+      </div>
+      {/* Mobile */}
+      <div className="flex w-full items-center justify-end md:hidden">
+        <button
+          onClick={() => setOpen(!open)}
+          className="rounded-full border-2 border-sky-950 p-1"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="size-6 text-sky-200"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5M12 17.25h8.25"
+            />
+          </svg>
+        </button>
+        {open && (
+          <div className="flex items-center justify-center">
+            <div className="absolute right-0 top-0 z-10 flex min-h-screen w-full flex-col items-center justify-center gap-4 rounded-lg border-2 border-sky-950 bg-black px-6 text-center shadow-md backdrop-blur-sm">
+              <button
+                className="absolute right-6 top-4"
+                onClick={() => setOpen(false)}
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth={1.5}
+                  stroke="currentColor"
+                  className="size-7 text-sky-200"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M6 18 18 6M6 6l12 12"
+                  />
+                </svg>
+              </button>
+              {navLinks.map((e) => (
+                <Link
+                  to={e.path}
+                  key={e.name}
+                  onClick={() => setOpen(false)}
+                  className="flex w-full cursor-pointer items-center justify-center rounded-lg py-2 text-center font-nohemiLight text-lg uppercase tracking-widest text-sky-200 transition-all hover:text-sky-500"
+                >
+                  {e.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </nav>
   );

@@ -37,7 +37,7 @@ const Checkout = ({ categories, transactions }) => {
   return (
     <div className="flex flex-col items-center justify-center gap-6">
       <h1 className="font-nohemiLight text-3xl">Tranzakciók</h1>
-      <div className="w-full max-w-screen-lg">
+      <div className="flex w-full items-center justify-center">
         <BudgetDiagram
           transactions={userTransactions}
           categories={categories}
@@ -53,22 +53,22 @@ const Checkout = ({ categories, transactions }) => {
                 <table className="min-w-full whitespace-nowrap rounded">
                   <thead className="border-b-2 border-sky-950 bg-black/20 backdrop-blur-sm">
                     <tr>
-                      <th className="px-3 py-3 text-left font-nohemiLight text-lg text-white">
+                      <th className="px-3 py-3 text-left font-nohemiLight text-xs text-white md:text-lg">
                         📈 Típus
                       </th>
-                      <th className="px-3 py-3 text-left font-nohemiLight text-lg text-white">
+                      <th className="px-3 py-3 text-left font-nohemiLight text-xs text-white md:text-lg">
                         🛍️ Kategória
                       </th>
-                      <th className="px-3 py-3 text-center font-nohemiLight text-lg text-white">
+                      <th className="px-3 py-3 text-center font-nohemiLight text-xs text-white md:text-lg">
                         🕰️ Dátum
                       </th>
-                      <th className="px-3 py-3 text-center font-nohemiLight text-lg text-white">
+                      <th className="px-3 py-3 text-center font-nohemiLight text-xs text-white md:text-lg">
                         📝 Tranzakció
                       </th>
-                      <th className="px-3 py-3 text-right font-nohemiLight text-lg text-white">
+                      <th className="px-3 py-3 text-right font-nohemiLight text-xs text-white md:text-lg">
                         💸 Összeg
                       </th>
-                      <th className="flex justify-center px-3 py-3 font-nohemiLight text-lg text-white">
+                      <th className="flex justify-center px-3 py-3 font-nohemiLight text-xs text-white md:text-lg">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -97,7 +97,7 @@ const Checkout = ({ categories, transactions }) => {
                               : "bg-red-600/50"
                           }
                         >
-                          <td className="px-3 py-4 text-center font-nohemiLight text-lg text-white">
+                          <td className="px-3 py-4 text-center font-nohemiLight text-xs text-white md:text-lg">
                             {x.type}
                           </td>
                           <td className="px-3 py-4 text-left">
@@ -107,23 +107,23 @@ const Checkout = ({ categories, transactions }) => {
                                 e.id === x.categId && (
                                   <span
                                     key={e.name}
-                                    className="font-nohemiLight text-lg text-white"
+                                    className="font-nohemiLight text-xs text-white md:text-lg"
                                   >
                                     {e.name}
                                   </span>
                                 ),
                             )}
                           </td>
-                          <td className="px-3 py-4 text-center font-nohemiLight text-lg text-white">
+                          <td className="px-3 py-4 text-center font-nohemiLight text-xs text-white md:text-lg">
                             {x.date}
                           </td>
-                          <td className="max-w-[150px] truncate px-3 py-4 text-left font-nohemiLight text-lg text-white">
+                          <td className="w-fit truncate px-3 py-4 text-left font-nohemiLight text-xs text-white md:max-w-[150px] md:text-lg">
                             {x.name}
                           </td>
-                          <td className="max-w-[250px] truncate px-3 py-4 text-right font-nohemiLight text-lg text-white">
+                          <td className="w-fit truncate px-3 py-4 text-right font-nohemiLight text-xs text-white md:max-w-[250px] md:text-lg">
                             {x.amount + " " + currency?.currency}
                           </td>
-                          <td className="flex w-20 items-center justify-center gap-4 px-3 py-4 text-center text-white">
+                          <td className="flex w-fit items-center justify-center gap-4 px-3 py-4 text-center text-white md:w-20">
                             <svg
                               onClick={() => deleteTrans(x.id)}
                               xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +131,7 @@ const Checkout = ({ categories, transactions }) => {
                               viewBox="0 0 24 24"
                               strokeWidth="1.5"
                               stroke="currentColor"
-                              className="size-6 cursor-pointer"
+                              className="size-4 cursor-pointer md:size-6"
                             >
                               <path
                                 strokeLinecap="round"

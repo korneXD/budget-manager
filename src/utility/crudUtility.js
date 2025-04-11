@@ -28,7 +28,7 @@ export const readCategories = (setCategories) => {
 
 export const readTargets = (setTargets) => {
   const collectionRef = collection(db, "targets");
-  const q = query(collectionRef);
+  const q = query(collectionRef, orderBy("name", "asc"));
   const unsubscribe = onSnapshot(q, (snapshot) => {
     setTargets(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   });
@@ -99,6 +99,11 @@ export const deleteCategories = async (userId) => {
   });
 };
 
+export const deleteCategory = async (id) => {
+  const docRef = doc(db, "categories", id);
+  await deleteDoc(docRef);
+};
+
 export const deleteTransactions = async (userId) => {
   const collectionRef = collection(db, "transactions");
   const q = query(collectionRef, where("userId", "==", userId));
@@ -106,6 +111,11 @@ export const deleteTransactions = async (userId) => {
   snapshot.forEach(async (docSnapshot) => {
     await deleteDoc(doc(db, "transactions", docSnapshot.id));
   });
+};
+
+export const deleteTarget = async (id) => {
+  const docRef = doc(db, "targets", id);
+  await deleteDoc(docRef);
 };
 
 export const deleteTransaction = async (id) => {
