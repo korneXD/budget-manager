@@ -28,15 +28,15 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
     "#4ade80",
     "#22c55e",
     "#16a34a",
-    "#15803d", // greens
+    "#15803d",
     "#f87171",
     "#ef4444",
     "#dc2626",
-    "#b91c1c", // reds
+    "#b91c1c", 
     "#60a5fa",
     "#3b82f6",
     "#2563eb",
-    "#1d4ed8", // blues
+    "#1d4ed8", 
   ];
 
   useEffect(() => {
