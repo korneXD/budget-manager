@@ -14,6 +14,7 @@ import {
   deleteTransaction,
   deleteTransactions,
 } from "../utility/crudUtility";
+import NotFound from "./NotFound";
 
 export const Profile = () => {
   const { user, deleteAccount, updateCredentials, logOut, msg } =
@@ -89,6 +90,26 @@ export const Profile = () => {
       setLoading(false);
     }
   };
+
+  if (!user) {
+    return <NotFound />;
+  }
+
+  if (avatar) {
+    fetch(avatar)
+      .then((response) => {
+        if (response.ok) {
+          setAvatar(extractUrlAndId(user.photoURL).url);
+        } else {
+          setAvatar(null);
+        }
+      })
+      .catch((error) => {
+        console.log("nem jó valami");
+      });
+  } else {
+    console.log("nem jó valami");
+  }
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center gap-2 pt-20">
