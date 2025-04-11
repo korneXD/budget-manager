@@ -41,6 +41,7 @@ export const Profile = () => {
     try {
       if (avatar != null) {
         delPhoto(extractUrlAndId(user.photoURL).id);
+        setAvatar(null);
       }
       deleteCategories(user.uid);
       deleteTransaction(user.uid);
@@ -53,7 +54,11 @@ export const Profile = () => {
 
   useEffect(() => {
     if (user?.photoURL) {
-      setAvatar(extractUrlAndId(user.photoURL).url);
+      if (user?.photoURL != null) {
+        setAvatar(extractUrlAndId(user.photoURL).url);
+      } else {
+        setAvatar(null);
+      }
     }
   }, [user]);
 
@@ -71,6 +76,9 @@ export const Profile = () => {
 
   const onSubmit = async (data) => {
     setLoading(true);
+    if (avatar != null) {
+      delPhoto(extractUrlAndId(user.photoURL).id);
+    }
     try {
       const file = data?.file ? data?.file[0] : null;
       const { url, id } = file ? await uploadFile(file) : null;

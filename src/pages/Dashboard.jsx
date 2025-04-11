@@ -12,6 +12,7 @@ import { useState } from "react";
 import Loading from "./Loading";
 import BudgetManager from "../components/CurrenyExchangeTest";
 import Targets from "../components/Targets";
+import Footer from "../components/Footer";
 
 const Dashboard = () => {
   const { user } = useContext(UserContext);
@@ -38,6 +39,7 @@ const Dashboard = () => {
         <Checkout categories={categories} transactions={transactions} />
       </div>
       <Spotlight />
+      <Footer />
     </div>
   );
 };

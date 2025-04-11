@@ -75,7 +75,7 @@ const BudgetManager = ({ values }) => {
                   setData(selectedData);
                 }
               }}
-              className="w-fit rounded-lg border-2 border-sky-950 bg-black/30 px-2 py-1 font-nohemiLight text-xl tracking-wide text-gray-400 outline-none backdrop-blur-sm"
+              className="w-full max-w-[200px] truncate rounded-lg border-2 border-sky-950 bg-black/30 px-2 py-1 font-nohemiLight text-xl tracking-wide text-gray-400 outline-none backdrop-blur-sm"
             >
               {values?.map(
                 (data, index) =>
