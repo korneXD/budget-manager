@@ -23,7 +23,7 @@ export const Features = () => {
     },
     {
       name: "Gyakori kérdések",
-      desc: "Ezene az oldalon megtalálod a leggyakoribb kérdéseket az oldallal kapcsolatban.",
+      desc: "Ezen  az oldalon megtalálod a leggyakoribb kérdéseket az oldallal kapcsolatban.",
     },
     {
       name: "Elérhetőség",
