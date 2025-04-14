@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import { UserContext } from "../context/UserContext";
 import { toast } from "sonner";
 import { useState } from "react";
@@ -10,12 +10,15 @@ const Header = () => {
 
   const navigate = useNavigate();
 
+  const path = useLocation();
+
   const [avatar, setAvatar] = useState(null);
 
   const [open, setOpen] = useState(false);
 
   const navLinks = [
     { name: "kezelőpanel", path: "/dashboard" },
+    { name: "célok", path: "/targets" },
     { name: "statisztika", path: "/statistics" },
     { name: "beállítások", path: "/settings" },
   ];
@@ -39,7 +42,26 @@ const Header = () => {
 
   useEffect(() => {
     if (user?.photoURL) {
-      setAvatar(extractUrlAndId(user.photoURL).url);
+      if (user?.photoURL != null) {
+        if (extractUrlAndId(user.photoURL).url) {
+          fetch(extractUrlAndId(user.photoURL).url)
+            .then((response) => {
+              if (response.ok) {
+                setAvatar(extractUrlAndId(user.photoURL).url);
+              } else {
+                setAvatar(null);
+              }
+            })
+            .catch((error) => {
+              console.log("Hiba a kép betöltésekor");
+            });
+        } else {
+          console.log("Hiba a kép URL-jében");
+          setAvatar(null);
+        }
+      } else {
+        setAvatar(null);
+      }
     }
   }, [user]);
 
@@ -54,7 +76,11 @@ const Header = () => {
                 <Link
                   to={e.path}
                   key={e.name}
-                  className="flex-1 flex-grow cursor-pointer text-center font-nohemiLight text-sm uppercase tracking-widest text-sky-200 transition-all hover:text-sky-500"
+                  className={
+                    e.path == path.pathname
+                      ? "flex-1 flex-grow cursor-pointer text-center font-nohemiLight text-sm uppercase tracking-widest text-sky-400 transition-all"
+                      : "flex-1 flex-grow cursor-pointer text-center font-nohemiLight text-sm uppercase tracking-widest text-sky-200 transition-all hover:text-sky-500"
+                  }
                 >
                   {e.name}
                 </Link>
@@ -62,7 +88,7 @@ const Header = () => {
             </div>
           )}
         </div>
-        <div className="items-center space-x-4 md:flex">
+        <div className="items-center justify-center space-x-4 md:flex">
           {!user ? (
             <>
               <Link
@@ -79,14 +105,17 @@ const Header = () => {
               </Link>
             </>
           ) : (
-            <>
+            <div className="flex items-center justify-center gap-4">
               <button
                 onClick={handleLogout}
                 className="my-2 rounded-xl border-2 border-sky-950 bg-sky-900 px-3 py-1 font-nohemi text-lg uppercase tracking-wide text-sky-400 shadow-md transition-all hover:text-sky-200"
               >
                 Kijelentkezés
               </button>
-              <Link to={"/profile"} className="size-12">
+              <Link
+                to={"/profile"}
+                className="flex size-12 items-center justify-center"
+              >
                 {!avatar ? (
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -109,12 +138,15 @@ const Header = () => {
                   />
                 )}
               </Link>
-            </>
+            </div>
           )}
         </div>
       </div>
       {/* Mobile */}
       <div className="flex w-full items-center justify-end md:hidden">
+        <p className="w-full text-left font-nohemi text-xl italic text-sky-400">
+          Budget Manager
+        </p>
         <button
           onClick={() => setOpen(!open)}
           className="rounded-full border-2 border-sky-950 p-1"
@@ -161,7 +193,11 @@ const Header = () => {
                   to={e.path}
                   key={e.name}
                   onClick={() => setOpen(false)}
-                  className="flex w-full cursor-pointer items-center justify-center rounded-lg py-2 text-center font-nohemiLight text-lg uppercase tracking-widest text-sky-200 transition-all hover:text-sky-500"
+                  className={
+                    e.path == path.pathname
+                      ? "flex w-full cursor-pointer items-center justify-center rounded-lg py-2 text-center font-nohemiLight text-lg uppercase tracking-widest text-sky-400 transition-all"
+                      : "flex w-full cursor-pointer items-center justify-center rounded-lg py-2 text-center font-nohemiLight text-lg uppercase tracking-widest text-sky-200 transition-all hover:text-sky-500"
+                  }
                 >
                   {e.name}
                 </Link>

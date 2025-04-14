@@ -50,111 +50,98 @@ const Checkout = ({ categories, transactions }) => {
     <div className="flex flex-col items-center justify-center gap-6">
       <h1 className="font-nohemiLight text-3xl">Tranzakciók</h1>
 
-      <div className="flex w-full items-center justify-center">
-        <BudgetDiagram
-          transactions={userTransactions}
-          categories={categories}
-          currency={currencyName}
-        />
-      </div>
-
-      <Targets />
-
-      <div className="flex justify-center items-center flex-col relative">
+      <div className="relative flex flex-col items-center justify-center">
         <button
-        onClick={() => setShowDeleteAllConfirm(true)}
-        className={`${
-          userTransactions.length === 0 ? "cursor-not-allowed opacity-50" : ""
-        } rounded-lg bg-red-600 px-6 py-2 font-nohemiLight text-white shadow hover:bg-red-700 transition`}
-        disabled={userTransactions.length === 0}
-      >
-        Összes tranzakció törlése
-      </button>
+          onClick={() =>
+            userTransactions.length == 0
+              ? toast.info("Nincs egy tranzakciód sem.")
+              : setShowDeleteAllConfirm(true)
+          }
+          className={`${
+            userTransactions.length === 0 ? "opacity-50" : ""
+          } rounded-lg bg-red-600 px-6 py-2 font-nohemiLight text-white shadow transition hover:bg-red-700`}
+        >
+          Összes tranzakció törlése
+        </button>
 
-      
-      {userTransactions.length === 0 && (
-        <p className="text-xl text-gray-600">Nincs hozzáadva egy tranzakció sem.</p>
-      )}
-
-      
-      {transactionToDelete && (
-        <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-center w-full  bg-opacity-50 py-8">
-          <div className="rounded-xl bg-white p-6 shadow-xl text-center">
-            <h2 className="mb-4 font-nohemiLight text-xl text-black">
-              Biztosan törlöd ezt a tranzakciót?
-            </h2>
-            <div className="flex justify-center gap-4">
-              <button
-                onClick={() => {
-                  deleteTrans(transactionToDelete);
-                  setTransactionToDelete(null);
-                }}
-                className="rounded bg-red-600 px-4 py-2 font-nohemiLight text-white hover:bg-red-700 transition"
-              >
-                Igen, törlöm
-              </button>
-              <button
-                onClick={() => setTransactionToDelete(null)}
-                className="rounded bg-gray-300 px-4 py-2 font-nohemiLight text-black hover:bg-gray-400 transition"
-              >
-                Mégse
-              </button>
+        {transactionToDelete && (
+          <div className="absolute left-0 right-0 top-0 z-50 flex w-full items-center justify-center py-8">
+            <div className="rounded-xl border-2 border-sky-950 bg-black/70 p-6 text-center shadow-md backdrop-blur-sm">
+              <h2 className="mb-4 font-nohemiLight text-xl text-white">
+                Biztosan törlöd ezt a tranzakciót?
+              </h2>
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={() => {
+                    deleteTrans(transactionToDelete);
+                    setTransactionToDelete(null);
+                  }}
+                  className="rounded bg-red-600 px-4 py-0 font-nohemiLight text-white transition hover:bg-red-700"
+                >
+                  Igen, törlöm
+                </button>
+                <button
+                  onClick={() => setTransactionToDelete(null)}
+                  className="rounded bg-gray-300 px-4 py-0 font-nohemiLight text-black transition hover:bg-gray-400"
+                >
+                  Mégse
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
-       {showDeleteAllConfirm && (
-        <div className="absolute top-0 left-0 right-0 z-50 flex items-center justify-center bg-opacity-50 py-8">
-          <div className="rounded-xl bg-white p-6 shadow-xl text-center">
-            <h2 className="mb-4 font-nohemiLight text-xl text-black">
-              Biztosan törlöd az összes tranzakciót?
-            </h2>
-            <div className="flex justify-center gap-4">
-              <button
-                onClick={() => {
-                  deleteAllTransactions();
-                  setShowDeleteAllConfirm(false);
-                }}
-                className="rounded bg-red-600 px-4 py-2 font-nohemiLight text-white hover:bg-red-700 transition"
-              >
-                Igen, törlöm
-              </button>
-              <button
-                onClick={() => setShowDeleteAllConfirm(false)}
-                className="rounded bg-gray-300 px-4 py-2 font-nohemiLight text-black hover:bg-gray-400 transition"
-              >
-                Mégse
-              </button>
+        )}
+        {showDeleteAllConfirm && (
+          <div className="absolute left-0 right-0 top-0 z-50 flex items-center justify-center bg-opacity-50 py-8">
+            <div className="rounded-xl border-2 border-sky-950 bg-black/70 p-6 text-center shadow-md backdrop-blur-sm">
+              <h2 className="mb-4 font-nohemiLight text-xl text-white">
+                Biztosan törlöd az összes tranzakciót?
+              </h2>
+              <div className="flex justify-center gap-4">
+                <button
+                  onClick={() => {
+                    deleteAllTransactions();
+                    setShowDeleteAllConfirm(false);
+                  }}
+                  className="rounded bg-red-600 px-4 py-0 font-nohemiLight text-white transition hover:bg-red-700"
+                >
+                  Igen, törlöm
+                </button>
+                <button
+                  onClick={() => setShowDeleteAllConfirm(false)}
+                  className="rounded bg-gray-300 px-4 py-0 font-nohemiLight text-black transition hover:bg-gray-400"
+                >
+                  Mégse
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      )}
+        )}
       </div>
 
       <div className="flex flex-col items-center justify-center">
-        <div className="flex h-fit items-center">
+        <div className="flex h-fit w-full items-center">
           <div className="mx-auto w-full px-5">
-            <div className="mx-auto max-w-5xl">
+            <div className="mx-auto w-full md:max-w-5xl">
               <div className="min-w-full overflow-x-auto rounded-lg border-2 border-sky-950 shadow-md">
                 <table className="min-w-full whitespace-nowrap rounded">
                   <thead className="border-b-2 border-sky-950 bg-black/20 backdrop-blur-sm">
-                    <tr>
-                      <th className="px-3 py-3 text-left font-nohemiLight text-xs text-white md:text-lg">
+                    <tr className="flex flex-col items-start justify-center md:flex-row">
+                      <th className="px-3 py-3 text-left font-nohemiLight text-lg text-white">
                         📈 Típus
                       </th>
-                      <th className="px-3 py-3 text-left font-nohemiLight text-xs text-white md:text-lg">
+                      <th className="px-3 py-3 text-left font-nohemiLight text-lg text-white">
                         🛍️ Kategória
                       </th>
-                      <th className="px-3 py-3 text-center font-nohemiLight text-xs text-white md:text-lg">
+                      <th className="px-3 py-3 text-center font-nohemiLight text-lg text-white">
                         🕰️ Dátum
                       </th>
-                      <th className="px-3 py-3 text-center font-nohemiLight text-xs text-white md:text-lg">
+                      <th className="px-3 py-3 text-center font-nohemiLight text-lg text-white">
                         📝 Tranzakció
                       </th>
-                      <th className="px-3 py-3 text-right font-nohemiLight text-xs text-white md:text-lg">
+                      <th className="px-3 py-3 text-right font-nohemiLight text-lg text-white">
                         💸 Összeg
                       </th>
-                      <th className="flex justify-center px-3 py-3 font-nohemiLight text-xs text-white md:text-lg">
+                      <th className="flex justify-center px-3 py-3 font-nohemiLight text-lg text-white">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
@@ -178,11 +165,11 @@ const Checkout = ({ categories, transactions }) => {
                         key={index}
                         className={
                           x.type === "Bevétel"
-                            ? "bg-green-600/50"
-                            : "bg-red-600/50"
+                            ? "flex flex-col items-center justify-center bg-green-600/50 md:flex-row"
+                            : "flex flex-col items-center justify-center bg-red-600/50 md:flex-row"
                         }
                       >
-                        <td className="px-3 py-4 text-center font-nohemiLight text-xs text-white md:text-lg">
+                        <td className="px-3 py-4 text-center font-nohemiLight text-lg text-white">
                           {x.type}
                         </td>
                         <td className="px-3 py-4 text-left">
@@ -192,20 +179,20 @@ const Checkout = ({ categories, transactions }) => {
                               e.id === x.categId && (
                                 <span
                                   key={e.name}
-                                  className="font-nohemiLight text-xs text-white md:text-lg"
+                                  className="font-nohemiLight text-lg text-white"
                                 >
                                   {e.name}
                                 </span>
-                              )
+                              ),
                           )}
                         </td>
-                        <td className="px-3 py-4 text-center font-nohemiLight text-xs text-white md:text-lg">
+                        <td className="px-3 py-4 text-center font-nohemiLight text-lg text-white">
                           {x.date}
                         </td>
-                        <td className="w-fit truncate px-3 py-4 text-left font-nohemiLight text-xs text-white md:max-w-[150px] md:text-lg">
+                        <td className="w-fit truncate px-3 py-4 text-left font-nohemiLight text-lg text-white md:max-w-[150px]">
                           {x.name}
                         </td>
-                        <td className="w-fit truncate px-3 py-4 text-right font-nohemiLight text-xs text-white md:max-w-[250px] md:text-lg">
+                        <td className="w-fit truncate px-3 py-4 text-right font-nohemiLight text-lg text-white md:max-w-[250px]">
                           {x.amount + " " + currency?.currency}
                         </td>
                         <td className="flex w-fit items-center justify-center gap-4 px-3 py-4 text-center text-white md:w-20">
@@ -239,8 +226,6 @@ const Checkout = ({ categories, transactions }) => {
           </div>
         </div>
       </div>
-
-     
     </div>
   );
 };

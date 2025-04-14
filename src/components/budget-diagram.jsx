@@ -55,6 +55,8 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
     "#1d4ed8",
   ];
 
+  const date = new Date();
+
   useEffect(() => {
     if (!transactions || !categories) return;
 
@@ -159,7 +161,7 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
                 : "font-nohemiLight hover:bg-sky-950/80"
             }`}
           >
-            Kiadások
+            Használat
           </button>
         </div>
 
@@ -213,7 +215,7 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
             </div>
           )}
 
-          {/* Income Tab */}
+          {/* Target Tab */}
           {activeTab === "income" && (
             <div className="flex min-h-80 w-full flex-col items-center justify-start gap-2 font-nohemiLight">
               {userTargets.length != 0 ? (
@@ -233,7 +235,7 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
                       max={100}
                       className="h-5 overflow-hidden rounded-xl border-2 border-sky-950"
                     />
-                    <p>{(e.progress / e.amount) * 100}%</p>
+                    <p>{((e.progress / e.amount) * 100).toFixed(2)}%</p>
                     {(() => {
                       const percent = (e.progress / e.amount) * 100;
 
@@ -269,7 +271,26 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
 
           {/* Expenses Tab */}
           {activeTab === "expenses" && (
-            <div className="h-80 font-nohemiLight"></div>
+            <div className="flex h-80 flex-col items-center justify-start font-nohemiLight">
+              <p>
+                Regisztráció dátuma:{" "}
+                {new Date(user.metadata.creationTime).toLocaleDateString()}
+              </p>
+              <p>
+                Regisztrálás óta eltelt idő:{" "}
+                {date.getDate() -
+                  new Date(user.metadata.creationTime)
+                    .toLocaleDateString()
+                    .split(".")[2] ==
+                0
+                  ? "Ma"
+                  : date.getDate() -
+                    new Date(user.metadata.creationTime)
+                      .toLocaleDateString()
+                      .split(".")[2]}{" "}
+                nap
+              </p>
+            </div>
           )}
         </div>
       </div>

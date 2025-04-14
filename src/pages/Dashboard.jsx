@@ -20,7 +20,7 @@ const Dashboard = () => {
   const { transactions } = useContext(Context);
 
   useEffect(() => {
-    document.title = "Budget Manager | Kezelőpanel";
+    document.title = "Money Map | Kezelőpanel";
   }, []);
 
   if (!user) return <NotFound />;

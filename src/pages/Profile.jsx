@@ -21,6 +21,7 @@ export const Profile = () => {
     useContext(UserContext);
   const [loading, setLoading] = useState(false);
   const [avatar, setAvatar] = useState(null);
+  const [deleteBoolean, setDeleteBoolean] = useState(false);
 
   const navigate = useNavigate();
 
@@ -42,6 +43,7 @@ export const Profile = () => {
     try {
       if (avatar != null) {
         delPhoto(extractUrlAndId(user.photoURL).id);
+        updateCredentials(user.displayName, "törölve");
         setAvatar(null);
       }
       deleteCategories(user.uid);
@@ -52,16 +54,6 @@ export const Profile = () => {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    if (user?.photoURL) {
-      if (user?.photoURL != null) {
-        setAvatar(extractUrlAndId(user.photoURL).url);
-      } else {
-        setAvatar(null);
-      }
-    }
-  }, [user]);
 
   const imageinputRef = useRef(null);
 
@@ -75,11 +67,11 @@ export const Profile = () => {
     },
   });
 
+  console.log(user);
+
   const onSubmit = async (data) => {
     setLoading(true);
-    if (avatar != null) {
-      delPhoto(extractUrlAndId(user.photoURL).id);
-    }
+
     try {
       const file = data?.file ? data?.file[0] : null;
       const { url, id } = file ? await uploadFile(file) : null;
@@ -91,24 +83,29 @@ export const Profile = () => {
     }
   };
 
+  const deletePhoto = async () => {
+    if (avatar != null) {
+      delPhoto(extractUrlAndId(user.photoURL).id);
+      updateCredentials(user.displayName, "törölve");
+      toast.success("Profilkép törölve!");
+      setAvatar(null);
+    } else {
+      toast.warning("Nincs profilkép kiválasztva!");
+    }
+  };
+
+  useEffect(() => {
+    if (user?.photoURL) {
+      if (user?.photoURL != null && user?.photoURL != null) {
+        setAvatar(extractUrlAndId(user.photoURL).url);
+      } else if (user?.photoURL == null && user?.photoURL == "törölve") {
+        setAvatar(null);
+      }
+    }
+  }, [user]);
+
   if (!user) {
     return <NotFound />;
-  }
-
-  if (avatar) {
-    fetch(avatar)
-      .then((response) => {
-        if (response.ok) {
-          setAvatar(extractUrlAndId(user.photoURL).url);
-        } else {
-          setAvatar(null);
-        }
-      })
-      .catch((error) => {
-        console.log("nem jó valami");
-      });
-  } else {
-    console.log("nem jó valami");
   }
 
   return (
@@ -169,7 +166,7 @@ export const Profile = () => {
         {avatar ? "Jelenlegi profilképed" : "Nincs profilképed"}
       </p>
       <button
-        onClick={() => delPhoto(extractUrlAndId(user.photoURL).id)}
+        onClick={() => deletePhoto()}
         className="rounded-lg border-2 border-red-950 bg-red-600/90 px-2 font-nohemi text-xl tracking-wide text-white shadow-md backdrop-blur-sm"
       >
         Profilkép törlése
@@ -181,12 +178,18 @@ export const Profile = () => {
         </span>
       </div>
       <button
-        onClick={handleDelete}
+        onClick={() => setDeleteBoolean(true)}
         className="rounded-lg border-2 border-red-950 bg-red-600/90 px-2 font-nohemi text-xl tracking-wide text-white shadow-md backdrop-blur-sm"
       >
         Fiók törlése
       </button>
-
+      {deleteBoolean && (
+        <div className="flex">
+          <p>Biztos ki akarod törölni?</p>
+          <button onClick={() => handleDelete()}>Igen</button>
+          <button onClick={() => setDeleteBoolean(false)}>Nem</button>
+        </div>
+      )}
       <Spotlight />
     </div>
   );
