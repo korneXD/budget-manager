@@ -12,7 +12,7 @@ const Footer = () => {
     <footer className="mt-10 flex h-fit w-full max-w-5xl flex-col items-center justify-center font-nohemiLight">
       <div className="flex w-full flex-col items-center justify-center md:flex-row">
         {routes.map((route) => (
-          <Link className="w-full flex-1 text-center" href={route.path}>
+          <Link className="w-full flex-1 text-center" to={route.path}>
             {route.name}
           </Link>
         ))}

@@ -14,11 +14,11 @@
 
 A **főoldalon** lehetőségünk van **regisztrálni** vagy **bejelentkezni**, illetve a felül megjelenő **menüpontokból választani**.
 
-![Főoldal](./public/1.png)
+![Főoldal](/budget-manager/public/1.png)
 
 Regisztrálás után manuálisan tudjuk feltölteni **kiadásainkat** és **bevételeinket**.
 
-![Regisztráció](./public/2.png)
+![Regisztráció](/budget-manager/public/2.png)
 
 Ehhez először **kategóriát kell létrehoznunk**, majd a kiválasztott kategóriához meg kell adnunk:
 
@@ -27,7 +27,7 @@ Ehhez először **kategóriát kell létrehoznunk**, majd a kiválasztott kateg�
 - az **összegét**
 - valamint a **típusát**: _kiadás_ vagy _bevétel_
 
-![Kezelőpanel](./public/3.png)
+![Kezelőpanel](/budget-manager/public/3.png)
 
 Ezeket az adatokat a **Kezelőpanel** menüpont alatt tudjuk:
 
@@ -35,7 +35,7 @@ Ezeket az adatokat a **Kezelőpanel** menüpont alatt tudjuk:
 - **szerkeszteni**
 - **törölni**
 
-![Kezelőpanel](./public/4.png)
+![Kezelőpanel](/budget-manager/public/4.png)
 
 ---
 
@@ -53,7 +53,7 @@ Példa:
 - **Előrehaladás: 1.000.000 Ft**
 - **Célösszeg: 10.000.000 Ft**
 
-![Célok](./public/5.png)
+![Célok](/budget-manager/public/5.png)
 
 ---
 
@@ -65,7 +65,7 @@ A **Statisztika** oldalon 3 különböző diagram jelenik meg:
 2. **Célok előrehaladása százalékban**
 3. ...
 
-![Statisztika](./public/6.png)
+![Statisztika](/budget-manager/public/6.png)
 
 ---
 
@@ -73,7 +73,7 @@ A **Statisztika** oldalon 3 különböző diagram jelenik meg:
 
 A **Beállítások** menüpont alatt lehetőség van a **pénznem kiválasztására**, azonban ez a lehetőség még nem elérhető.
 
-![Beállítások](./public/7.png)
+![Beállítások](/budget-manager/public/7.png)
 
 ---
 
@@ -85,7 +85,7 @@ A **jobb felső sarokban lévő profil ikonra** kattintva megjelenik a **személ
 - Lehetőség van a **profil törlésére**
 - Felhasználónév megtekintésére
 
-![Profil](./public/8.png)
+![Profil](/budget-manager/public/8.png)
 
 ---
 
@@ -93,31 +93,31 @@ A **jobb felső sarokban lévő profil ikonra** kattintva megjelenik a **személ
 
 ### 📸 Miért válassz minket?
 
-![Miért válassz minket kép](./public/miertvalasszminket.png)
+![Miért válassz minket kép](/budget-manager/public/miertvalasszminket.png)
 
 ---
 
 ### 💡 Jellemzők
 
-![Jellemzők kép](./public/jellemzok.png)
+![Jellemzők kép](/budget-manager/public/jellemzok.png)
 
 ---
 
 ### 🧠 Tippek
 
-![Tippek kép](./public/tippek.png)
+![Tippek kép](/budget-manager/public/tippek.png)
 
 ---
 
 ### 📬 Elérhetőség
 
-![Elérhetőség kép](./public/elerhetoseg.png)
+![Elérhetőség kép](/budget-manager/public/elerhetoseg.png)
 
 ---
 
 ### ❓ Gyakori kérdések
 
-![Gyakori kérdések kép](./public/gyakorikerdesek.png)
+![Gyakori kérdések kép](/budget-manager/public/gyakorikerdesek.png)
 
 ---
 

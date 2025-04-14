@@ -23,7 +23,7 @@ const Dashboard = () => {
     document.title = "Budget Manager | Kezelőpanel";
   }, []);
 
-  if (!user) return <Loading />;
+  if (!user) return <NotFound />;
 
   return (
     <div className="flex min-h-screen w-full flex-col items-center justify-center py-40">
