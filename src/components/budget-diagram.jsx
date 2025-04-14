@@ -48,11 +48,11 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
     "#f87171",
     "#ef4444",
     "#dc2626",
-    "#b91c1c", 
+    "#b91c1c",
     "#60a5fa",
     "#3b82f6",
     "#2563eb",
-    "#1d4ed8", 
+    "#1d4ed8",
   ];
 
   useEffect(() => {
@@ -216,7 +216,7 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
           {/* Income Tab */}
           {activeTab === "income" && (
             <div className="flex min-h-80 w-full flex-col items-center justify-start gap-2 font-nohemiLight">
-              {userTargets &&
+              {userTargets.length != 0 ? (
                 userTargets.map((e) => (
                   <div
                     className={
@@ -254,7 +254,16 @@ export const BudgetDiagram = ({ transactions, categories, currency }) => {
                       }
                     })()}
                   </div>
-                ))}
+                ))
+              ) : (
+                <div className="flex items-center justify-center text-center">
+                  <h2>
+                    Egyenlőre nincsenek céljaid.
+                    <br />
+                    Hozz létre egyet!
+                  </h2>
+                </div>
+              )}
             </div>
           )}
 
