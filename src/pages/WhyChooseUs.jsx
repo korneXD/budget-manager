@@ -88,6 +88,6 @@ export const WhyChooseUs = () => {
         <Footer />
       </div>
       <Spotlight />
-    </div>  
+    </div>    
   );
 };
