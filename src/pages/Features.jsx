@@ -54,7 +54,7 @@ export const Features = () => {
               <h4 className="text-2xl font-semibold text-sky-400">
                 {feature.name}
               </h4>
-              <p className="mt-2 font-nohemiLight text-white">{feature.desc}</p>
+              <p className="mt-2 font-nohemiLight text-white">{feature.desc}</p> 
             </div>
           ))}
         </div>
