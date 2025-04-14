@@ -1,47 +1,93 @@
-import React from 'react'
-import { Globe, Anchor, Hourglass, Database, HardDriveUpload, Camera } from "lucide-react";
-import Navbar from '../components/Navbar';
-import { Spotlight } from '../components/Spotlight';
+import React, { useEffect } from "react";
+import {
+  Globe,
+  Anchor,
+  Hourglass,
+  Database,
+  HardDriveUpload,
+  Camera,
+} from "lucide-react";
+import Navbar from "../components/Navbar";
+import { Spotlight } from "../components/Spotlight";
+import Footer from "../components/Footer";
 
-export const WhyChooseUs = ()=> {
+export const WhyChooseUs = () => {
+  useEffect(() => {
+    document.title = "Money Map | Miért válassz minket?";
+  }, []);
+
   const features = [
-    { icon: Globe, title: "Modern Design", description: "We use the latest technology to meet people's demands." },
-    { icon: Anchor, title: "Creative Design", description: "We always listen to our customers and create the best designs." },
-    { icon: Hourglass, title: "24 x 7 User Support", description: "We are always happy to help our customers with any queries." },
-    { icon: Database, title: "Business Growth", description: "Success comes from continuous growth and improvement." },
-    { icon: HardDriveUpload, title: "Market Strategy", description: "We use innovative strategies to stay ahead in the market." },
-    { icon: Camera, title: "Affordable Cost", description: "We provide high-quality services at an affordable price." },
+    {
+      icon: Globe,
+      title: "Modern Dizájn",
+      description:
+        "A legújabb technológiát használjuk, hogy megfeleljünk az emberek igényeinek.",
+    },
+    {
+      icon: Anchor,
+      title: "Kreatív Dizájn",
+      description:
+        "Mindig meghallgatjuk ügyfeleinket, és a legjobb dizájnokat hozzuk létre.",
+    },
+    {
+      icon: Hourglass,
+      title: "Ügyfélszolgálat",
+      description: "Mindig örömmel segítünk ügyfeleinknek bármilyen kérdésben.",
+    },
+    {
+      icon: Database,
+      title: "Üzleti Növekedés",
+      description: "A siker folyamatos fejlődésből és javulásból fakad.",
+    },
+    {
+      icon: HardDriveUpload,
+      title: "Piaci Stratégia",
+      description:
+        "Innovatív stratégiákat alkalmazunk, hogy az élen maradjunk a piacon.",
+    },
+    {
+      icon: Camera,
+      title: "Ingyenes",
+      description: "Kiváló minőségű szolgáltatásokat nyújtunk ingyen.",
+    },
   ];
 
   return (
     <div>
-    <Navbar />
-    <div className="py-10 min-h-screen flex items-center">
-      <div className="container mx-auto px-6 w-full">
-        <div className="text-center mb-12">
-          <h4 className="text-3xl font-bold text-sky-400 relative inline-block">
-            Why Choose <span className="text-gray-800">Us?</span>
-            <span className="block w-16 h-1 bg-sky-500 mx-auto mt-2"></span>
-          </h4>
-          <p className="text-white mx-auto mt-4 max-w-4xl">
-          When you choose us, you'll feel the benefit of 10 years' experience of Web Development. Because we know the digital world and we know that how to handle it. With working knowledge of online, SEO and social media.
-          </p>
+      <Navbar />
+      <div className="relative z-0 mb-12 flex min-h-screen flex-col items-center md:mt-16">
+        <div className="container mx-auto w-full px-6 pt-12">
+          <div className="mb-12 text-center">
+            <h4 className="inline-block font-nohemi text-3xl font-bold text-sky-400">
+              Miért válassz <span className="italic text-white">minket?</span>
+            </h4>
+            <p className="mx-auto mt-4 max-w-4xl font-nohemiLight tracking-wide text-white">
+              "Amikor minket választasz, érezni fogod az 5 év webfejlesztési
+              tapasztalatának előnyét. Ismerjük a digitális világot, és tudjuk,
+              hogyan kell kezelni. Gyakorlati ismeretekkel rendelkezünk az
+              online jelenlét, a SEO és a közösségi média területén."
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {features.map(({ icon: Icon, title, description }, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center rounded-2xl border-2 border-sky-950 bg-black/30 p-6 text-center shadow-lg backdrop-blur-sm"
+              >
+                <Icon className="mb-4 text-4xl text-sky-400" size={48} />
+                <h6 className="font-nohemi text-xl font-semibold text-sky-400">
+                  {title}
+                </h6>
+                <p className="font-nohemiLight tracking-wide text-white">
+                  {description}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map(({ icon: Icon, title, description }, index) => (
-            <div
-              key={index}
-              className="bg-transparent text-center p-6 rounded-2xl shadow-lg border-2 border-sky-950 hover:bg-sky-500 hover:text-white transition flex flex-col items-center"
-            >
-              <Icon className="text-sky-900 text-4xl mb-4" size={48} />
-              <h6 className="text-xl text-sky-700 font-semibold">{title}</h6>
-              <p className="text-white group-hover:text-white">{description}</p>
-            </div>
-          ))}
-        </div>
+        <Footer />
       </div>
-    </div>
-    <Spotlight />
+      <Spotlight />
     </div>
   );
-}
+};
