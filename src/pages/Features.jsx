@@ -47,7 +47,7 @@ export const Features = () => {
         </h2>
         <div className="mt-12 grid w-11/12 grid-cols-1 place-items-center gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((feature) => (
-            <div
+            <div  
               key={feature.name}
               className="flex h-full w-[90%] flex-col items-center justify-center gap-4 rounded-lg border-2 border-sky-950 bg-black/30 p-4 font-nohemi shadow-md backdrop-blur-sm"
             >
