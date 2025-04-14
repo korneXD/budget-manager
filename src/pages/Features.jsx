@@ -51,7 +51,7 @@ export const Features = () => {
               key={feature.name}
               className="flex h-full w-[90%] flex-col items-center justify-center gap-4 rounded-lg border-2 border-sky-950 bg-black/30 p-4 font-nohemi shadow-md backdrop-blur-sm"
             >
-              <h4 className="text-2xl font-semibold text-sky-400">
+              <h4 className="text-2xl font-semibold text-sky-400">  
                 {feature.name}
               </h4>
               <p className="mt-2 font-nohemiLight text-white">{feature.desc}</p> 
