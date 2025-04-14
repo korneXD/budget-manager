@@ -1,106 +1,106 @@
-import { useState } from "react"
-import Navbar from "../components/Navbar"
-import { Spotlight } from "../components/Spotlight"
+import { useEffect, useState } from "react";
+import Navbar from "../components/Navbar";
+import { Spotlight } from "../components/Spotlight";
+import Footer from "../components/Footer";
 
 const budgetTipsData = [
   {
-    category: "Budgeting Basics",
+    category: "Költségvetés Alapjai",
     tips: [
       {
         id: "basics-1",
-        title: "The 50/30/20 Rule",
+        title: "Az 50/30/20 Szabály",
         description:
-          "Allocate 50% of your income to needs, 30% to wants, and 20% to savings and debt repayment. This simple framework helps create a balanced budget that covers all your financial bases.",
+          "A bevételed 50%-át szánd szükségletekre, 30%-át vágyakra, és 20%-át megtakarításra és adósságtörlesztésre. Ez az egyszerű keretrendszer segít kiegyensúlyozott költségvetést kialakítani, amely minden pénzügyi szükségletet lefed.",
       },
       {
         id: "basics-2",
-        title: "Track Your Spending",
+        title: "Kövesd Nyomon a Kiadásaidat",
         description:
-          "Record all your expenses for at least 30 days to understand where your money is going. This awareness is the foundation of any successful budget and often reveals surprising spending patterns.",
+          "Legalább 30 napon keresztül jegyezd fel az összes kiadásodat, hogy átlásd, mire megy el a pénzed. Ez a tudatosság minden sikeres költségvetés alapja, és gyakran meglepő kiadási mintákat tár fel.",
       },
       {
         id: "basics-3",
-        title: "Use Budgeting Tools",
+        title: "Használj Költségvetési Eszközöket",
         description:
-          "Take advantage of budgeting apps and spreadsheets to automate tracking and categorization. Many free tools are available that can sync with your accounts and provide visual reports of your finances.",
+          "Használj költségvetés-tervező alkalmazásokat és táblázatokat a nyomon követés és kategorizálás automatizálására. Számos ingyenes eszköz szinkronizálható a fiókjaiddal, és vizuális jelentéseket nyújt a pénzügyeidről.",
       },
     ],
   },
   {
-    category: "Saving Strategies",
+    category: "Megtakarítási Stratégiák",
     tips: [
       {
         id: "saving-1",
-        title: "Build an Emergency Fund",
+        title: "Vészhelyzeti Alap Kialakítása",
         description:
-          "Save 3-6 months of essential expenses in an easily accessible account. This fund provides financial security and prevents you from going into debt when unexpected expenses arise.",
+          "Takaríts meg 3–6 hónapnyi alapvető kiadást egy könnyen hozzáférhető számlán. Ez az alap pénzügyi biztonságot nyújt, és megakadályozza, hogy adósságba ess váratlan kiadások esetén.",
       },
       {
         id: "saving-2",
-        title: "Automate Your Savings",
+        title: "Automatizáld a Megtakarítást",
         description:
-          "Set up automatic transfers to your savings account on payday. What you don't see, you won't spend, and your savings will grow consistently without requiring willpower.",
+          "Állíts be automatikus átutalást a megtakarítási számládra fizetésnapon. Amit nem látsz, arra nem költesz, és a megtakarításaid következetesen nőnek erőfeszítés nélkül.",
       },
       {
         id: "saving-3",
-        title: "Use the 24-Hour Rule",
+        title: "A 24 Órás Szabály",
         description:
-          "Wait 24 hours before making any non-essential purchase over $50. This cooling-off period helps avoid impulse buying and ensures you only spend on things you truly value.",
+          "Várj 24 órát minden $50-nál nagyobb, nem létfontosságú vásárlás előtt. Ez a gondolkodási idő segít elkerülni az impulzusvásárlást, és biztosítja, hogy csak valóban fontos dolgokra költs.",
       },
     ],
   },
   {
-    category: "Debt Management",
+    category: "Adósságkezelés",
     tips: [
       {
         id: "debt-1",
-        title: "Debt Avalanche Method",
+        title: "Adósság Lavina Módszer",
         description:
-          "Focus on paying off debts with the highest interest rates first while making minimum payments on others. This approach saves you the most money in interest over time.",
+          "Fizesd vissza először a legmagasabb kamatozású adósságokat, miközben a többit csak minimálisan törleszted. Ez a megközelítés hosszú távon a legtöbb kamatot takarítja meg.",
       },
       {
         id: "debt-2",
-        title: "Debt Snowball Method",
+        title: "Adósság Hógolyó Módszer",
         description:
-          "Pay off your smallest debts first to build momentum and motivation. Each debt you eliminate gives you a psychological win that helps maintain your commitment to becoming debt-free.",
+          "Fizesd ki a legkisebb adósságaidat először, hogy lendületet és motivációt szerezz. Minden kifizetett tartozás pszichológiai győzelmet jelent, ami segít elkötelezett maradni az adósságmentesség felé vezető úton.",
       },
       {
         id: "debt-3",
-        title: "Consider Consolidation",
+        title: "Fontold Meg a Konszolidációt",
         description:
-          "Look into debt consolidation options if you have high-interest debts. Combining multiple debts into a single loan with a lower interest rate can make repayment more manageable.",
+          "Vizsgáld meg az adósságkonszolidációs lehetőségeket, ha több, magas kamatozású tartozásod van. Az adósságok egy alacsonyabb kamatozású kölcsönbe való összevonása megkönnyítheti a törlesztést.",
       },
     ],
   },
   {
-    category: "Spending Less",
+    category: "Kevesebb Kiadás",
     tips: [
       {
         id: "spending-1",
-        title: "Review Subscriptions",
+        title: "Előfizetések Áttekintése",
         description:
-          "Audit all your subscriptions and memberships monthly. Cancel those you don't use regularly or don't provide sufficient value relative to their cost.",
+          "Havonta vizsgáld felül az összes előfizetésedet és tagságodat. Szűntesd meg azokat, amiket nem használsz rendszeresen, vagy nem érnek annyit, amennyibe kerülnek.",
       },
       {
         id: "spending-2",
-        title: "Meal Planning",
+        title: "Étkezés Tervezése",
         description:
-          "Plan your meals for the week and shop with a list. This reduces food waste and prevents expensive impulse purchases or frequent takeout orders.",
+          "Tervezd meg az heti étkezéseket és vásárolj lista alapján. Ez csökkenti az ételpazarlást és megelőzi a drága impulzusvásárlásokat vagy a gyakori ételrendelést.",
       },
       {
         id: "spending-3",
-        title: "Use Cashback and Rewards",
+        title: "Használj Visszatérítéseket és Jutalmakat",
         description:
-          "Maximize cashback apps, credit card rewards, and loyalty programs for purchases you would make anyway. These small amounts add up significantly over time.",
+          "Használd ki a visszatérítési alkalmazásokat, bankkártya-jutalmakat és hűségprogramokat azokra a vásárlásokra, amelyeket amúgy is elvégeznél. Ezek az apró összegek idővel sokat számíthatnak.",
       },
     ],
   },
-]
-
+];
 
 const SearchIcon = () => (
   <svg
-    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-sky-500 h-4 w-4"
+    className="absolute left-3 top-1/2 h-6 w-6 -translate-y-1/2 transform text-sky-950"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     fill="none"
@@ -112,7 +112,7 @@ const SearchIcon = () => (
     <circle cx="11" cy="11" r="8" />
     <path d="m21 21-4.3-4.3" />
   </svg>
-)
+);
 
 const ChevronIcon = ({ isOpen }) => (
   <svg
@@ -127,14 +127,17 @@ const ChevronIcon = ({ isOpen }) => (
   >
     <path d={isOpen ? "m18 15-6-6-6 6" : "m6 9 6 6 6-6"} />
   </svg>
-)
+);
 
 export const BudgetTips = () => {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [expandedCategories, setExpandedCategories] = useState([])
-  const [expandedTips, setExpandedTips] = useState([])
+  const [searchQuery, setSearchQuery] = useState("");
+  const [expandedCategories, setExpandedCategories] = useState([]);
+  const [expandedTips, setExpandedTips] = useState([]);
 
-  
+  useEffect(() => {
+    document.title = "Money Map | Tippek";
+  }, []);
+
   const filteredTips = budgetTipsData
     .map((category) => ({
       ...category,
@@ -144,103 +147,125 @@ export const BudgetTips = () => {
           item.description.toLowerCase().includes(searchQuery.toLowerCase()),
       ),
     }))
-    .filter((category) => category.tips.length > 0)
+    .filter((category) => category.tips.length > 0);
 
   const toggleCategory = (category) => {
     setExpandedCategories((prev) =>
-      prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category],
-    )
-  }
+      prev.includes(category)
+        ? prev.filter((c) => c !== category)
+        : [...prev, category],
+    );
+  };
 
-  
   const toggleTip = (id) => {
-    setExpandedTips((prev) => (prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]))
-  }
+    setExpandedTips((prev) =>
+      prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id],
+    );
+  };
 
   return (
     <div>
-         <Navbar />
-    <div className="min-h-screen">
-      <div className="container mx-auto px-4 py-12 max-w-4xl">
-        
-        <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold tracking-tight mb-4 text-white">Budget Tips & Strategies</h1>
-          <p className="text-white max-w-2xl mx-auto">
-            Discover practical budgeting advice to help you save more, spend wisely, and achieve your financial goals.
-          </p>
-        </div>
-
-        
-        <div className="relative mb-10 max-w-md mx-auto">
-          <div className="relative">
-            <SearchIcon />
-            <input
-              type="text"
-              placeholder="Search for budget tips..."
-              className="w-full pl-10 pr-4 py-2 border text-sky-500 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-          {searchQuery && (
-            <p className="text-sm text-sky-500 mt-2">
-              {filteredTips.reduce((count, category) => count + category.tips.length, 0)} results found
+      <Navbar />
+      <div className="mt-16 flex min-h-screen flex-col items-center justify-center md:mt-12">
+        <div className="container mx-auto max-w-4xl px-4 py-12">
+          <div className="mb-12 text-center">
+            <h1 className="mb-4 font-nohemi text-3xl font-bold tracking-tight text-sky-400">
+              Tippek
+            </h1>
+            <p className="mx-auto max-w-2xl font-nohemiLight text-white">
+              A következő tippek segíthetnek több pénzt megtakarítani és jobban
+              kezelni a költségvetését. Használja ezeket az ötleteket, hogy
+              pénzügyi céljait elérje, és a lehető legjobban kihasználja a
+              pénzét.
             </p>
-          )}
-        </div>
+          </div>
 
-    
-        <div className="space-y-8">
-          {filteredTips.length > 0 ? (
-            filteredTips.map((category) => (
-              <div key={category.category} className="border border-sky-700 rounded-lg p-6 bg-sky-800">
-                
-                <div
-                  className="flex justify-between items-center cursor-pointer"
-                  onClick={() => toggleCategory(category.category)}
-                >
-                  <h2 className="text-xl font-semibold text-white">{category.category}</h2>
-                  <button className="text-gray-400 hover:text-sky-500 px-3 py-1 rounded-md hover:bg-sky-700">
-                    {expandedCategories.includes(category.category) ? "Hide" : "Show"}
-                  </button>
-                </div>
-
-                
-                {(expandedCategories.includes(category.category) || searchQuery) && (
-                  <div className="mt-4 space-y-3">
-                    {category.tips.map((item) => (
-                      <div key={item.id} className="border-t border-sky-700 pt-3">
-                        <button
-                          className="w-full flex justify-between items-center text-left py-2 focus:outline-none"
-                          onClick={() => toggleTip(item.id)}
-                          aria-expanded={expandedTips.includes(item.id)}
-                        >
-                          <span className="font-medium text-white">{item.title}</span>
-                          <ChevronIcon isOpen={expandedTips.includes(item.id)} />
-                        </button>
-                        {expandedTips.includes(item.id) && (
-                          <div className="mt-2 text-sky-300 pl-2 pr-6 pb-2">
-                            <p>{item.description}</p>
-                          </div>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))
-          ) : (
-            <div className="text-center py-10 bg-gray-800 rounded-lg">
-              <p className="text-white">No budget tips found matching your search. Try a different query.</p>
+          <div className="relative mx-auto mb-10 max-w-md">
+            <div className="relative rounded-md bg-black/30 backdrop-blur-sm">
+              <SearchIcon />
+              <input
+                type="text"
+                placeholder="Keress a tippek között..."
+                className="w-full rounded-md border-2 border-sky-950 bg-transparent py-2 pl-10 pr-4 font-nohemiLight text-sky-400 focus:border-sky-400 focus:outline-none"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
             </div>
-          )}
+            {searchQuery && (
+              <p className="mt-2 font-nohemiLight text-sm text-sky-400">
+                {filteredTips.reduce(
+                  (count, category) => count + category.tips.length,
+                  0,
+                )}{" "}
+                találat
+              </p>
+            )}
+          </div>
+
+          <div className="space-y-8">
+            {filteredTips.length > 0 ? (
+              filteredTips.map((category) => (
+                <div
+                  key={category.category}
+                  className="rounded-lg border-2 border-sky-950 bg-black/30 p-6 backdrop-blur-sm"
+                >
+                  <div
+                    className="flex cursor-pointer items-center justify-between"
+                    onClick={() => toggleCategory(category.category)}
+                  >
+                    <h2 className="font-nohemi text-xl font-semibold tracking-wide text-white">
+                      {category.category}
+                    </h2>
+                    <button className="rounded-md px-3 py-1 font-nohemiLight text-gray-400 hover:bg-sky-700 hover:text-sky-500">
+                      {expandedCategories.includes(category.category)
+                        ? "Rejtsd"
+                        : "Mutasd"}
+                    </button>
+                  </div>
+
+                  {(expandedCategories.includes(category.category) ||
+                    searchQuery) && (
+                    <div className="mt-4 space-y-3">
+                      {category.tips.map((item) => (
+                        <div
+                          key={item.id}
+                          className="border-t-2 border-sky-950 pt-3 font-nohemiLight"
+                        >
+                          <button
+                            className="flex w-full items-center justify-between py-2 text-left focus:outline-none"
+                            onClick={() => toggleTip(item.id)}
+                            aria-expanded={expandedTips.includes(item.id)}
+                          >
+                            <span className="font-medium text-white">
+                              {item.title}
+                            </span>
+                            <ChevronIcon
+                              isOpen={expandedTips.includes(item.id)}
+                            />
+                          </button>
+                          {expandedTips.includes(item.id) && (
+                            <div className="mt-2 pb-2 pl-2 pr-6 text-sky-300">
+                              <p>{item.description}</p>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))
+            ) : (
+              <div className="rounded-lg border-2 border-sky-950 bg-black/70 py-10 text-center font-nohemiLight backdrop-blur-sm">
+                <p className="text-white">Nem található információ.</p>
+              </div>
+            )}
+          </div>
         </div>
+        <Footer />
       </div>
+      <Spotlight />
     </div>
-    <Spotlight />
-    </div>
-  )
-}
+  );
+};
 
-export default BudgetTips
-
+export default BudgetTips;

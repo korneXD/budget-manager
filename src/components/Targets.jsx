@@ -24,8 +24,6 @@ const Targets = () => {
     });
   }, [targets]);
 
-  console.log(userTargets);
-
   const createTarget = () => {
     let targetData = {
       name: targetName,

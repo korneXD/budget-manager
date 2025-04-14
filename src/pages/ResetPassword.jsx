@@ -7,7 +7,7 @@ import { toast } from "sonner";
 
 export const ResetPassword = () => {
   useEffect(() => {
-    document.title = "Budget Manager | Jelszó visszaállítás";
+    document.title = "Money Map | Jelszó visszaállítás";
   }, []);
 
   const navigate = useNavigate();
@@ -43,22 +43,22 @@ export const ResetPassword = () => {
         onSubmit={handleSubmit}
         className="flex h-fit flex-col items-center justify-center gap-2 rounded-lg border-2 border-sky-800 bg-black/20 p-4 shadow-md backdrop-blur-md"
       >
-        <h1 className="mb-2 font-nohemi text-4xl">Reset Your Password</h1>
+        <h1 className="mb-2 font-nohemi text-4xl">Jelszó visszaállítás</h1>
         <input
           type="text"
           id="email"
           name="email"
           className="w-fit max-w-[300px] rounded-lg bg-black/30 py-1 text-center font-nohemiLight text-2xl text-white shadow-md outline-none"
-          placeholder="Your Email"
+          placeholder="Email címed"
         />
         <button
           type="submit"
           className="my-2 rounded-xl border-2 border-sky-950 bg-sky-900 px-3 py-1 font-nohemi text-2xl uppercase tracking-wide text-sky-400 shadow-md transition-all hover:text-sky-200"
         >
-          Reset
+          Visszaállítás
         </button>
         <Link to={"/"} className="font-nohemiLight text-lg font-bold">
-          Back to <span className="text-sky-400">homepage.</span>
+          Vissza a <span className="text-sky-400">főoldalra.</span>
         </Link>
       </form>
       <Spotlight />

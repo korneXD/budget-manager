@@ -1,106 +1,106 @@
-import { useState } from "react"
-import { Spotlight } from "../components/Spotlight"
-import Navbar from "../components/Navbar"
+import { useEffect, useState } from "react";
+import { Spotlight } from "../components/Spotlight";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const faqData = [
   {
-    category: "Account",
+    category: "Fiók",
     questions: [
       {
         id: "account-1",
-        question: "How do I create an account?",
+        question: "Hogyan hozhatok létre fiókot?",
         answer:
-          "To create an account, click on the 'Sign Up' button in the top right corner of the homepage. Fill in your details including your name, email address, and password. Then click 'Create Account' to complete the process.",
+          "Fiók létrehozásához kattints a kezdőlap jobb felső sarkában található 'Regisztráció' gombra. Töltsd ki az adataidat, beleértve a nevedet, e-mail címedet és jelszavadat. Ezután kattints a 'Fiók létrehozása' gombra a folyamat befejezéséhez.",
       },
       {
         id: "account-2",
-        question: "How do I reset my password?",
+        question: "Hogyan tudom visszaállítani a jelszavamat?",
         answer:
-          "To reset your password, click on the 'Login' button, then select 'Forgot Password'. Enter the email address associated with your account, and we'll send you instructions to reset your password.",
+          "A jelszó visszaállításához kattints a 'Bejelentkezés' gombra, majd válaszd a 'Elfelejtett jelszó' opciót. Add meg a fiókoddal társított e-mail címet, és küldünk egy útmutatót a jelszó visszaállításához.",
       },
       {
         id: "account-3",
-        question: "Can I have multiple accounts?",
+        question: "Lehet több fiókom is?",
         answer:
-          "Yes, you can create multiple accounts with different email addresses. However, please note that each account will be treated separately and will have its own settings, history, and preferences.",
+          "Igen, létrehozhatsz több fiókot különböző e-mail címekkel. Fontos azonban megjegyezni, hogy minden fiók külön lesz kezelve, és saját beállításokkal, előzményekkel és preferenciákkal fog rendelkezni.",
       },
     ],
   },
   {
-    category: "Billing",
+    category: "Számlázás",
     questions: [
       {
         id: "billing-1",
-        question: "What payment methods do you accept?",
+        question: "Milyen fizetési módokat fogadnak el?",
         answer:
-          "We accept all major credit cards (Visa, MasterCard, American Express), PayPal, and bank transfers for annual subscriptions.",
+          "Elfogadjuk az összes nagyobb hitelkártyát (Visa, MasterCard, American Express), a PayPalt, valamint éves előfizetés esetén a banki átutalást is.",
       },
       {
         id: "billing-2",
-        question: "How do I update my billing information?",
+        question: "Hogyan frissíthetem a számlázási adataimat?",
         answer:
-          "You can update your billing information by going to 'Account Settings' > 'Billing' and clicking on 'Edit Payment Method'. From there, you can update your credit card details or change your payment method.",
+          "Számlázási adataidat a 'Fiókbeállítások' > 'Számlázás' menüpontban frissítheted, az 'Fizetési mód szerkesztése' gombra kattintva. Itt módosíthatod a bankkártya adataidat vagy válthatsz másik fizetési módra.",
       },
       {
         id: "billing-3",
-        question: "Can I get a refund?",
+        question: "Kaphatok visszatérítést?",
         answer:
-          "We offer a 30-day money-back guarantee for all new subscriptions. If you're not satisfied with our service, you can request a refund within 30 days of your initial purchase. For refund requests, please contact our support team.",
+          "Igen, minden új előfizetésre 30 napos pénzvisszafizetési garanciát kínálunk. Ha nem vagy elégedett a szolgáltatásunkkal, a vásárlástól számított 30 napon belül kérheted a visszatérítést. Ehhez vedd fel a kapcsolatot az ügyfélszolgálatunkkal.",
       },
     ],
   },
   {
-    category: "Services",
+    category: "Szolgáltatások",
     questions: [
       {
         id: "services-1",
-        question: "What services do you offer?",
+        question: "Milyen szolgáltatásokat kínálnak?",
         answer:
-          "We offer a wide range of services including web design, development, hosting, maintenance, SEO optimization, and digital marketing. Each service can be customized to meet your specific needs and requirements.",
+          "Szolgáltatásaink közé tartozik a webdesign, fejlesztés, tárhelyszolgáltatás, karbantartás, SEO optimalizálás és digitális marketing. Minden szolgáltatásunk testre szabható az egyéni igényeidnek megfelelően.",
       },
       {
         id: "services-2",
-        question: "Do you offer custom solutions?",
+        question: "Kínálnak egyedi megoldásokat is?",
         answer:
-          "Yes, we specialize in creating custom solutions tailored to your business needs. Our team will work closely with you to understand your requirements and develop a solution that meets your specific goals.",
+          "Igen, szakterületünk az egyedi megoldások fejlesztése, amelyek az üzleti igényeidre vannak szabva. Csapatunk szorosan együttműködik veled, hogy megértse az elvárásaidat, és egy olyan megoldást hozzon létre, amely eléri a céljaidat.",
       },
       {
         id: "services-3",
-        question: "How long does it take to complete a project?",
+        question: "Mennyi idő alatt készül el egy projekt?",
         answer:
-          "Project timelines vary depending on the scope and complexity of the work. A simple website might take 2-4 weeks, while more complex projects could take several months. We'll provide you with a detailed timeline during the initial consultation.",
+          "A projektek időtartama a munka terjedelmétől és összetettségétől függ. Egy egyszerű weboldal elkészítése általában 2–4 hetet vesz igénybe, míg egy bonyolultabb projekt akár több hónapot is. Az első konzultáció során részletes időtervet biztosítunk.",
       },
     ],
   },
   {
-    category: "Support",
+    category: "Támogatás",
     questions: [
       {
         id: "support-1",
-        question: "How can I contact customer support?",
+        question: "Hogyan vehetem fel a kapcsolatot az ügyfélszolgálattal?",
         answer:
-          "You can contact our customer support team via email at support@example.com, through the live chat on our website, or by calling our support line at (123) 456-7890. Our support hours are Monday to Friday, 9 AM to 6 PM EST.",
+          "Ügyfélszolgálatunkat elérheted e-mailben a support@example.com címen, weboldalunk élő chatjén keresztül, vagy telefonon a (123) 456-7890 számon. Ügyfélszolgálatunk hétfőtől péntekig 9:00 és 18:00 (EST) között áll rendelkezésre.",
       },
       {
         id: "support-2",
-        question: "Do you offer 24/7 support?",
+        question: "Van 0–24-es ügyfélszolgálat?",
         answer:
-          "We offer 24/7 emergency support for critical issues. For non-critical issues, our regular support hours apply. Premium support plans with extended hours are available for enterprise customers.",
+          "Igen, kritikus problémák esetén 0–24-es sürgősségi támogatást nyújtunk. Nem sürgős esetekben a normál nyitvatartási idő érvényes. Vállalati ügyfelek számára elérhetők prémium támogatási csomagok meghosszabbított időszakkal.",
       },
       {
         id: "support-3",
-        question: "Is there a knowledge base or documentation?",
+        question: "Van tudásbázis vagy dokumentáció?",
         answer:
-          "Yes, we have a comprehensive knowledge base with tutorials, guides, and documentation. You can access it by clicking on the 'Help' section in your account dashboard or by visiting docs.example.com.",
+          "Igen, rendelkezünk átfogó tudásbázissal, amely oktatóanyagokat, útmutatókat és dokumentációkat tartalmaz. Ezt a 'Súgó' menüpontban találod a fiókod irányítópultján, vagy ellátogathatsz a docs.example.com weboldalra.",
       },
     ],
   },
-]
-
+];
 
 const SearchIcon = () => (
   <svg
-    className="absolute left-3 top-1/2 transform -translate-y-1/2 text-sky-500 h-4 w-4"
+    className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-sky-500"
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 24 24"
     fill="none"
@@ -112,7 +112,7 @@ const SearchIcon = () => (
     <circle cx="11" cy="11" r="8" />
     <path d="m21 21-4.3-4.3" />
   </svg>
-)
+);
 
 const ChevronIcon = ({ isOpen }) => (
   <svg
@@ -127,14 +127,17 @@ const ChevronIcon = ({ isOpen }) => (
   >
     <path d={isOpen ? "m18 15-6-6-6 6" : "m6 9 6 6 6-6"} />
   </svg>
-)
+);
 
-export const FAQ = ()=> {
-  const [searchQuery, setSearchQuery] = useState("")
-  const [expandedCategories, setExpandedCategories] = useState([])
-  const [expandedQuestions, setExpandedQuestions] = useState([])
+export const FAQ = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [expandedCategories, setExpandedCategories] = useState([]);
+  const [expandedQuestions, setExpandedQuestions] = useState([]);
 
-  
+  useEffect(() => {
+    document.title = "Money Map | Gyakori Kérdések";
+  }, []);
+
   const filteredFAQs = faqData
     .map((category) => ({
       ...category,
@@ -144,112 +147,119 @@ export const FAQ = ()=> {
           item.answer.toLowerCase().includes(searchQuery.toLowerCase()),
       ),
     }))
-    .filter((category) => category.questions.length > 0)
+    .filter((category) => category.questions.length > 0);
 
-  
   const toggleCategory = (category) => {
     setExpandedCategories((prev) =>
-      prev.includes(category) ? prev.filter((c) => c !== category) : [...prev, category],
-    )
-  }
+      prev.includes(category)
+        ? prev.filter((c) => c !== category)
+        : [...prev, category],
+    );
+  };
 
-  
   const toggleQuestion = (id) => {
-    setExpandedQuestions((prev) => (prev.includes(id) ? prev.filter((q) => q !== id) : [...prev, id]))
-  }
+    setExpandedQuestions((prev) =>
+      prev.includes(id) ? prev.filter((q) => q !== id) : [...prev, id],
+    );
+  };
 
   return (
     <div>
-    <Navbar />
-    <div className="container mx-auto px-4 py-12 max-w-4xl">
-      
-      <div className="text-center mb-12">
-        <h1 className="text-3xl font-bold tracking-tight mb-4">Frequently Asked Questions</h1>
-        <p className="text-white max-w-2xl mx-auto">
-          Find answers to common questions about our products and services. If you can't find what you're looking for,
-          please contact our support team.
-        </p>
-      </div>
-
-    
-      <div className="relative mb-10 max-w-md mx-auto">
-        <div className="relative">
-          <SearchIcon />
-          <input
-            type="text"
-            placeholder="Search for questions..."
-            className="w-full pl-10 pr-4 py-2 border text-sky-500 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-        {searchQuery && (
-          <p className="text-sm text-sky-500 mt-2">
-            {filteredFAQs.reduce((count, category) => count + category.questions.length, 0)} results found
+      <Navbar />
+      <div className="container mx-auto mt-32 max-w-4xl px-4 md:mt-24">
+        <div className="mb-12 text-center">
+          <h1 className="mb-4 font-nohemi text-3xl font-bold tracking-tight text-sky-400">
+            Gyakori Kérdések
+          </h1>
+          <p className="mx-auto max-w-2xl font-nohemiLight text-white">
+            Találd meg a válaszokat a leggyakrabban feltett kérdésekre, és
+            ismerd meg jobban szolgáltatásainkat. Ha további kérdéseid lennének,
+            ne habozz kapcsolatba lépni velünk.
           </p>
-        )}
-      </div>
+        </div>
 
-    
-      <div className="space-y-8">
-        {filteredFAQs.length > 0 ? (
-          filteredFAQs.map((category) => (
-            <div key={category.category} className="border border-gray-200 rounded-lg p-6">
-              
-              <div
-                className="flex justify-between items-center cursor-pointer"
-                onClick={() => toggleCategory(category.category)}
-              >
-                <h2 className="text-xl font-semibold">{category.category}</h2>
-                <button className="text-gray-500 hover:text-sky-500 px-3 py-1 rounded-md hover:bg-gray-100">
-                  {expandedCategories.includes(category.category) ? "Hide" : "Show"}
-                </button>
-              </div>
-
-              
-              {(expandedCategories.includes(category.category) || searchQuery) && (
-                <div className="mt-4 space-y-3">
-                  {category.questions.map((item) => (
-                    <div key={item.id} className="border-t border-gray-100 pt-3">
-                      <button
-                        className="w-full flex justify-between items-center text-left py-2 focus:outline-none"
-                        onClick={() => toggleQuestion(item.id)}
-                        aria-expanded={expandedQuestions.includes(item.id)}
-                      >
-                        <span className="font-medium">{item.question}</span>
-                        <ChevronIcon isOpen={expandedQuestions.includes(item.id)} />
-                      </button>
-                      {expandedQuestions.includes(item.id) && (
-                        <div className="mt-2 text-white pl-2 pr-6 pb-2">
-                          <p>{item.answer}</p>
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          ))
-        ) : (
-          <div className="text-center py-10">
-            <p className="text-white">No questions found matching your search. Try a different query.</p>
+        <div className="relative mx-auto mb-10 max-w-md">
+          <div className="relative rounded-md bg-black/30 backdrop-blur-sm">
+            <SearchIcon />
+            <input
+              type="text"
+              placeholder="Keresés kérdések között..."
+              className="w-full rounded-md border-2 border-sky-950 bg-transparent py-2 pl-10 pr-4 font-nohemiLight text-sky-400 focus:border-sky-400 focus:outline-none"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
-        )}
-      </div>
+          {searchQuery && (
+            <p className="mt-2 font-nohemiLight text-sm text-sky-400">
+              {filteredFAQs.reduce(
+                (count, category) => count + category.questions.length,
+                0,
+              )}{" "}
+              találat
+            </p>
+          )}
+        </div>
 
-  
-      <div className="mt-16 text-center p-8 border border-gray-200 rounded-lg">
-        <h2 className="text-xl font-semibold mb-4">Still have questions?</h2>
-        <p className="text-white mb-6">
-          If you couldn't find the answer to your question, our support team is here to help.
-        </p>
-        <button className="bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded-md transition-colors">
-          Contact Support
-        </button>
-      </div>
-    </div>
-    <Spotlight />
-    </div>
-  )
-}
+        <div className="space-y-8">
+          {filteredFAQs.length > 0 ? (
+            filteredFAQs.map((category) => (
+              <div
+                key={category.category}
+                className="rounded-lg border-2 border-sky-950 bg-black/30 p-6 backdrop-blur-sm"
+              >
+                <div
+                  className="flex cursor-pointer items-center justify-between"
+                  onClick={() => toggleCategory(category.category)}
+                >
+                  <h2 className="font-nohemi text-xl font-semibold tracking-wide text-white">
+                    {category.category}
+                  </h2>
+                  <button className="rounded-md px-3 py-1 font-nohemiLight text-gray-400 hover:bg-sky-700 hover:text-sky-500">
+                    {expandedCategories.includes(category.category)
+                      ? "Rejtsd"
+                      : "Mutasd"}
+                  </button>
+                </div>
 
+                {(expandedCategories.includes(category.category) ||
+                  searchQuery) && (
+                  <div className="mt-4 space-y-3">
+                    {category.questions.map((item) => (
+                      <div
+                        key={item.id}
+                        className="border-t-2 border-sky-950 pt-3 font-nohemiLight"
+                      >
+                        <button
+                          className="flex w-full items-center justify-between py-2 text-left focus:outline-none"
+                          onClick={() => toggleQuestion(item.id)}
+                          aria-expanded={expandedQuestions.includes(item.id)}
+                        >
+                          <span className="font-medium">{item.question}</span>
+                          <ChevronIcon
+                            isOpen={expandedQuestions.includes(item.id)}
+                          />
+                        </button>
+                        {expandedQuestions.includes(item.id) && (
+                          <div className="mt-2 pb-2 pl-2 pr-6 text-white">
+                            <p>{item.answer}</p>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))
+          ) : (
+            <div className="rounded-xl border-2 border-sky-950 bg-black/70 py-10 text-center font-nohemiLight backdrop-blur-sm">
+              <p className="text-white">Kérdés nem található.</p>
+            </div>
+          )}
+        </div>
+
+        <Footer />
+      </div>
+      <Spotlight />
+    </div>
+  );
+};

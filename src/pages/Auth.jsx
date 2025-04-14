@@ -15,9 +15,9 @@ export const Auth = () => {
 
   useEffect(() => {
     if (isSignIn) {
-      document.title = "Budget Manager | Belépés";
+      document.title = "Money Map | Belépés";
     } else if (!isSignIn) {
-      document.title = "Budget Manager | Regisztráció";
+      document.title = "Money Map | Regisztráció";
     }
   }, [isSignIn]);
 
@@ -52,7 +52,7 @@ export const Auth = () => {
         className="flex h-[408px] w-fit flex-col items-center justify-center gap-2 rounded-lg border-2 border-sky-950 bg-black/20 p-4 shadow-md backdrop-blur-md"
       >
         <h1 className="mb-2 font-nohemi text-4xl">
-          {isSignIn ? <p>Login</p> : <p>Sign Up</p>}
+          {isSignIn ? <p>Bejelentkezés</p> : <p>Regisztráció</p>}
         </h1>
         <div className="flex flex-col items-center justify-center gap-6">
           <input
@@ -60,7 +60,7 @@ export const Auth = () => {
             name="email"
             required
             className="max-w-[250px] rounded-lg bg-black/30 py-1 text-center font-nohemiLight text-2xl text-white shadow-md outline-none"
-            placeholder="Your Email"
+            placeholder="Email címed"
           />
           {!isSignIn && (
             <input
@@ -68,7 +68,7 @@ export const Auth = () => {
               name="displayName"
               required
               className="max-w-[250px] rounded-lg bg-black/30 py-1 text-center font-nohemiLight text-2xl text-white shadow-md outline-none"
-              placeholder="Your Username"
+              placeholder="Felhasználóneved"
             />
           )}
           <input
@@ -76,36 +76,36 @@ export const Auth = () => {
             name="password"
             required
             className="max-w-[250px] rounded-lg bg-black/30 py-1 text-center font-nohemiLight text-2xl text-white shadow-md outline-none"
-            placeholder="Password"
+            placeholder="Jelszavad"
           />
         </div>
         <button
           type="submit"
           className="my-2 rounded-xl border-2 border-sky-950 bg-sky-900 px-3 py-1 font-nohemi text-2xl uppercase tracking-wide text-sky-400 shadow-md transition-all hover:text-sky-200"
         >
-          {isSignIn ? <p>Login</p> : <p>Sign Up</p>}
+          {isSignIn ? <p>Bejelentkezés</p> : <p>Regisztráció</p>}
         </button>
         <div className="flex flex-col items-center justify-center gap-2">
           <div className="flex flex-row items-center justify-center gap-2">
             <span className="font-nohemiLight text-xl">
               {isSignIn ? (
                 <div className="flex">
-                  <p>Don&apos;t have an account?</p>
+                  <p>Nincs még fiókod?</p>
                 </div>
               ) : (
-                <p>Already have an account?</p>
+                <p>Van már fiókod?</p>
               )}
             </span>
             <Link
               to={isSignIn ? "/auth/up" : "/auth/in"}
               className="font-nohemi text-xl text-sky-200 transition-all hover:text-sky-300"
             >
-              {isSignIn ? <p>Sign Up</p> : <p>Login</p>}
+              {isSignIn ? <p>Regisztráció</p> : <p>Bejelentkezés</p>}
             </Link>
           </div>
           {isSignIn && (
             <Link to={"/reset"} className="font-nohemiLight text-lg">
-              Forgot your password?
+              Elfelejtetted a jelszavad?
             </Link>
           )}
         </div>

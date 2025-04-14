@@ -1,5 +1,9 @@
 import React from "react";
-import { addCateg, deleteCategory } from "../utility/crudUtility";
+import {
+  addCateg,
+  deleteCategory,
+  deleteTransactionByCategory,
+} from "../utility/crudUtility";
 import { useState } from "react";
 import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
@@ -24,6 +28,7 @@ const Categories = ({ values }) => {
 
   const handleDeleteCategory = (id) => {
     try {
+      deleteTransactionByCategory(id);
       deleteCategory(id);
       setData({});
       toast.success("Kategória törölve!");

@@ -18,7 +18,8 @@ import { BudgetDiagram } from "./components/budget-diagram";
 import BudgetTips from "./pages/BudgetTips";
 import { CategoryDetailDiagram } from "./components/category-detail-diagram";
 import CategoryAnalysisPage from "./pages/category-analysis";
-import { Satistics } from "./pages/Satistics";
+import { Satistics } from "./pages/Statistics";
+import { TargetPage } from "./pages/TargetPage";
 
 const router = createBrowserRouter(
   [
@@ -31,6 +32,7 @@ const router = createBrowserRouter(
     { path: "/profile", element: <Profile /> },
     { path: "/settings", element: <Settings /> },
     { path: "/results", element: <Results /> },
+    { path: "/targets", element: <TargetPage /> },
     { path: "/contact", element: <Contact /> },
     { path: "/features", element: <Features /> },
     { path: "*", element: <NotFound /> },

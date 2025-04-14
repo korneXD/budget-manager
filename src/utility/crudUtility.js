@@ -113,6 +113,15 @@ export const deleteTransactions = async (userId) => {
   });
 };
 
+export const deleteTransactionByCategory = async (categId) => {
+  const collectionRef = collection(db, "transactions");
+  const q = query(collectionRef, where("categId", "==", categId));
+  const snapshot = await getDocs(q);
+  snapshot.forEach(async (docSnapshot) => {
+    await deleteDoc(doc(db, "transactions", docSnapshot.id));
+  });
+};
+
 export const deleteTarget = async (id) => {
   const docRef = doc(db, "targets", id);
   await deleteDoc(docRef);
