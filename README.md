@@ -1,12 +1,12 @@
 # 💰 Money Map
 
-# Még nem végleges!
+## Megjegyzés: Még nem végleges! Folyamatos fejlesztés...
 
 ## 👥 Készítők
 
-- Rácz Patrik
-- Halmosi Kornél
-- Vincze Dániel
+- Rácz Patrik (Backend, Frontend összekötése Backenddel és dokumentáció)
+- Halmosi Kornél (Frontend, design, Firebase)
+- Vincze Dániel (Frontend, szövegírás, dokumentáció)
 
 ---
 

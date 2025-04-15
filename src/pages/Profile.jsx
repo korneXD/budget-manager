@@ -67,8 +67,6 @@ export const Profile = () => {
     },
   });
 
-  console.log(user);
-
   const onSubmit = async (data) => {
     setLoading(true);
 
@@ -184,10 +182,22 @@ export const Profile = () => {
         Fiók törlése
       </button>
       {deleteBoolean && (
-        <div className="flex">
-          <p>Biztos ki akarod törölni?</p>
-          <button onClick={() => handleDelete()}>Igen</button>
-          <button onClick={() => setDeleteBoolean(false)}>Nem</button>
+        <div className="flex flex-col items-center justify-center">
+          <p className="font-nohemiLight">Biztos ki akarod törölni?</p>
+          <div className="flex items-center justify-center gap-4">
+            <button
+              className="rounded-xl border-2 border-sky-950 bg-sky-800 px-2 py-1 font-nohemi text-lg text-sky-200"
+              onClick={() => handleDelete()}
+            >
+              Igen
+            </button>
+            <button
+              className="rounded-xl border-2 border-sky-950 bg-sky-800 px-2 py-1 font-nohemi text-lg text-sky-200"
+              onClick={() => setDeleteBoolean(false)}
+            >
+              Nem
+            </button>
+          </div>
         </div>
       )}
       <Spotlight />
