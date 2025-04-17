@@ -131,7 +131,7 @@ export const Profile = () => {
                 const acceptedFormates = ["jpg", "png"];
                 if (!acceptedFormates.includes(fileExtension))
                   return "Invalid file format!";
-                if (value[0].size > 1 * 1000 * 1024)
+                if (value[0].size > 3 * 1000 * 1024)
                   return "Az engedélyezett fájl mérete 1MB";
                 return true;
               },
