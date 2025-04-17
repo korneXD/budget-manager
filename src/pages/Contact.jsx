@@ -11,19 +11,19 @@ export const Contact = () => {
   const testimonials = [
     {
       name: "Rácz Patrik",
-      designation: "Fejlesztő",
+      designation: "Backend, frontend",
       src: "https://z91p97z26q.ufs.sh/f/kJZWr7GeXU2tKw9ZmM8JdtzI93vqScTACarW4Qfo0L1gP5pB",
       github: "https://github.com/Patrik930",
     },
     {
       name: "Halmosi Kornél",
-      designation: "Fejlesztő",
+      designation: "Frontend, backend",
       src: "https://z91p97z26q.ufs.sh/f/kJZWr7GeXU2tB74mCatL1bIGRagnhSAi8Yfuv6r2JeXw5lqs",
       github: "https://github.com/korneXD",
     },
     {
       name: "Vincze Dániel",
-      designation: "Fejlesztő",
+      designation: "Szövegírás, tesztelés, frontend design",
       src: "https://z91p97z26q.ufs.sh/f/kJZWr7GeXU2tz4xDRtW6zkHhCl9Bu8NADdgiExW3JaSoR175",
       github: "https://github.com/VinczeDaniel2",
     },
@@ -31,9 +31,9 @@ export const Contact = () => {
   return (
     <>
       <Navbar />
-      <div className="flex min-h-screen items-center justify-center px-10">
+      <div className="flex min-h-screen items-center justify-center px-10 pt-32">
         {testimonials && (
-          <div className="grid h-full w-full grid-cols-3 items-center justify-center gap-10">
+          <div className="grid h-full w-full grid-cols-1 items-center justify-center gap-10 md:grid-cols-3">
             {testimonials.map((e, i) => (
               <div
                 key={i}
@@ -45,7 +45,7 @@ export const Contact = () => {
                   alt={e.name}
                   className="h-80 rounded-xl border-2 border-sky-950 object-contain"
                 />
-                <p className="font-nohemiLight text-xl italic tracking-wide">
+                <p className="text-center font-nohemiLight text-xl italic tracking-wide">
                   {e.designation}
                 </p>
                 <Link to={e.github} target="_blank">

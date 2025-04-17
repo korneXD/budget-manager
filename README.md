@@ -1,93 +1,62 @@
-# 💰 Money Map
+# 🏦 Money Map – Pénzügyi Asszisztens
 
-# Még nem végleges!
+A pénzügyi tudatosság új szintje
 
-## 👥 Készítők
+⚙️ **Megjegyzés:** A jelenlegi verzió még nem végleges! Folyamatos fejlesztés alatt áll, új funkciók és vizuális elemek bevezetése várható.
 
-- Rácz Patrik
-- Halmosi Kornél
-- Vincze Dániel
+🔗 [Weboldal megtekintése](https://moneymaphun.netlify.app)
 
----
+## 💸 Projekt leírása
 
-## 📌 Bemutató
+A Money Map egy webes alkalmazás, amely lehetőséget nyújt kiadásaink és bevételeink nyomon követésére, céljaink meghatározására, valamint vizuális statisztikák megjelenítésére. A felhasználói élményre és egyszerű kezelhetőségre összpontosít, kezdők és haladók számára egyaránt.
 
-A **főoldalon** lehetőségünk van **regisztrálni** vagy **bejelentkezni**, illetve a felül megjelenő **menüpontokból választani**.
+📆 2025-ben indult projekt  
+🧠 Kézi adatbevitel és célkezelés  
+📊 Vizualizált statisztikák több nézetben
+
+## 💼 Funkciók
+
+| Funkció                             | Leírás                                                          |
+| ----------------------------------- | --------------------------------------------------------------- |
+| 📝 **Regisztráció / Bejelentkezés** | A főoldalon lehetőség van regisztrálni vagy bejelentkezni       |
+| 📂 **Kategóriák kezelése**          | Egyéni kategóriák létrehozása a tranzakciókhoz                  |
+| 💳 **Kiadások és bevételek**        | Manuális rögzítés: név, dátum, összeg, típus                    |
+| 📋 **Kezelőpanel**                  | Adatok megtekintése, szerkesztése, törlése                      |
+| 🎯 **Célok kezelése**               | Célok létrehozása, követése, módosítása, törlése                |
+| 📈 **Statisztika**                  | Diagramok: bevételek és kiadások, célok előrehaladása           |
+| ⚙️ **Beállítások**                  | Pénznem kiválasztása (jelenleg nem elérhető)                    |
+| 👤 **Profil**                       | Profilkép módosítása, fiók törlése, felhasználónév megtekintése |
+
+## 🖼️ Képernyőképek
+
+### Főoldal
 
 ![Főoldal](./public/1.png)
 
-Regisztrálás után manuálisan tudjuk feltölteni **kiadásainkat** és **bevételeinket**.
+### Regisztráció
 
 ![Regisztráció](./public/2.png)
 
-Ehhez először **kategóriát kell létrehoznunk**, majd a kiválasztott kategóriához meg kell adnunk:
+### Kezelőpanel – Tranzakciók
 
-- a **tranzakció nevét**
-- a **dátumát**
-- az **összegét**
-- valamint a **típusát**: _kiadás_ vagy _bevétel_
-
-![Kezelőpanel](./public/3.png)
-
-Ezeket az adatokat a **Kezelőpanel** menüpont alatt tudjuk:
-
-- **megtekinteni**
-- **szerkeszteni**
-- **törölni**
-
+![Kezelőpanel](./public/3.png)  
 ![Kezelőpanel](./public/4.png)
 
----
-
-## 🎯 Célok
-
-A **Célok** menüpont alatt létrehozhatunk új célokat, melyek vizuálisan mutatják az előrehaladást.  
-A célokat szintén lehet:
-
-- **módosítani**
-- **törölni**
-
-Példa:
-
-- **Név: Lakás**
-- **Előrehaladás: 1.000.000 Ft**
-- **Célösszeg: 10.000.000 Ft**
+### Célok
 
 ![Célok](./public/5.png)
 
----
-
-## 📊 Statisztika
-
-A **Statisztika** oldalon 3 különböző diagram jelenik meg:
-
-1. **Bevétel és kiadás oszloponként**
-2. **Célok előrehaladása százalékban**
-3. ...
+### Statisztika
 
 ![Statisztika](./public/6.png)
 
----
-
-## ⚙️ Beállítások
-
-A **Beállítások** menüpont alatt lehetőség van a **pénznem kiválasztására**, azonban ez a lehetőség még nem elérhető.
+### Beállítások
 
 ![Beállítások](./public/7.png)
 
----
-
-## 👤 Profil
-
-A **jobb felső sarokban lévő profil ikonra** kattintva megjelenik a **személyes profilunk**, ahol:
-
-- **Profilképet módosíthatunk**
-- Lehetőség van a **profil törlésére**
-- Felhasználónév megtekintésére
+### Profil
 
 ![Profil](./public/8.png)
-
----
 
 ## 🌐 További menüpontok
 
@@ -95,25 +64,17 @@ A **jobb felső sarokban lévő profil ikonra** kattintva megjelenik a **személ
 
 ![Miért válassz minket kép](./public/miertvalasszminket.png)
 
----
-
 ### 💡 Jellemzők
 
 ![Jellemzők kép](./public/jellemzok.png)
-
----
 
 ### 🧠 Tippek
 
 ![Tippek kép](./public/tippek.png)
 
----
-
 ### 📬 Elérhetőség
 
 ![Elérhetőség kép](./public/elerhetoseg.png)
-
----
 
 ### ❓ Gyakori kérdések
 
@@ -121,6 +82,21 @@ A **jobb felső sarokban lévő profil ikonra** kattintva megjelenik a **személ
 
 ---
 
-> 📌 A projekt célja, hogy egyszerűen kezelhető felületet biztosítson a pénzügyek nyomon követéséhez. Jövőbeli fejlesztések: AI (Mestersége intelligencia) integrálás, adatok automatikus beolvasása banki applikációkból.
+## 📌 A projekt célja
 
-Az webes applikáció elérhető publikált linkje: [Money Map](https://moneymaphun.netlify.app)
+Egyszerűen kezelhető, átlátható felület biztosítása a pénzügyek tudatos nyomon követéséhez.
+
+### 💡 Jövőbeli fejlesztések:
+
+- Mesterséges intelligencia integrálása
+- Banki applikációkból történő automatikus adatbeolvasás
+
+---
+
+## 👥 Készítők
+
+| Név            | Szerepkör                                   |
+| -------------- | ------------------------------------------- |
+| Rácz Patrik    | Backend, Frontend összekötése, dokumentáció |
+| Halmosi Kornél | Frontend, design, Firebase                  |
+| Vincze Dániel  | Frontend, szövegírás, dokumentáció          |
