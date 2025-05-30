@@ -1,125 +1,102 @@
-# 💰 Money Map
+# 🏦 Money Map – Financial Assistant
 
-## 👥 Created by
+A new level of financial awareness
 
-- Rácz Patrik
-- Halmosi Kornél
-- Vincze Dániel
+⚙️ **Note:** This version is not final! Ongoing development is in progress, with new features and visual elements expected.
 
----
+🔗 [View Website](https://moneymaphun.netlify.app)
 
-## 📌 Overview
+## 💸 Project Description
 
-On the **homepage**, users can either **register** or **log in**, and navigate using the **top menu**.
+Money Map is a web application that allows users to track their expenses and income, set financial goals, and view visual statistics. It focuses on user experience and ease of use, catering to both beginners and advanced users.
 
-![Homepage](/budget-manager/public/1.png)
+📆 Project started in 2025  
+🧠 Manual data entry and goal management  
+📊 Visualized statistics in multiple views
 
-After registering, users can manually upload their **expenses** and **incomes**.
+## 💼 Features
 
-![Registration](/budget-manager/public/2.png)
+| Feature                     | Description                                           |
+| --------------------------- | ----------------------------------------------------- |
+| 📝 **Registration / Login** | Users can register or log in from the homepage        |
+| 📂 **Category Management**  | Create custom categories for transactions             |
+| 💳 **Expenses and Income**  | Manual entry: name, date, amount, type                |
+| 📋 **Control Panel**        | View, edit, and delete data                           |
+| 🎯 **Goal Management**      | Create, track, modify, and delete goals               |
+| 📈 **Statistics**           | Charts: income and expenses, goal progress            |
+| ⚙️ **Settings**             | Currency selection (currently not available)          |
+| 👤 **Profile**              | Change profile picture, delete account, view username |
 
-To do this, users must first **create a category**, then for each transaction in that category, provide:
+## 🖼️ Screenshots
 
-- the **name of the transaction**
-- the **date**
-- the **amount**
-- and the **type**: _expense_ or _income_
+### Homepage
 
-![Dashboard](/budget-manager/public/3.png)
+![Homepage](./public/1.png)
 
-This data can be accessed under the **Dashboard** menu where users can:
+### Registration
 
-- **view**
-- **edit**
-- **delete** their entries
+![Registration](./public/2.png)
 
-![Dashboard](/budget-manager/public/4.png)
+### Control Panel – Transactions
 
----
+![Control Panel](./public/3.png)  
+![Control Panel](./public/4.png)
 
-## 🎯 Goals
+### Goals
 
-In the **Goals** section, users can create new financial goals which visually display the progress.  
-Goals can also be:
+![Goals](./public/5.png)
 
-- **edited**
-- **deleted**
+### Statistics
 
-Example:
+![Statistics](./public/6.png)
 
-- **Name: Apartment**
-- **Progress: 1,000,000 HUF**
-- **Goal Amount: 10,000,000 HUF**
+### Settings
 
-![Goals](/budget-manager/public/5.png)
+![Settings](./public/7.png)
 
----
+### Profile
 
-## 📊 Statistics
+![Profile](./public/8.png)
 
-The **Statistics** page includes three different charts:
+## 🌐 Additional Menu Sections
 
-1. **Income and expenses in bar chart format**
-2. **Goal progress in percentages**
-3. ...
+### 📸 Why Choose Us?
 
-![Statistics](/budget-manager/public/6.png)
-
----
-
-## ⚙️ Settings
-
-In the **Settings** menu, users can choose a **currency**, although this feature is currently **not fully functional**.
-
-![Settings](/budget-manager/public/7.png)
-
----
-
-## 👤 Profile
-
-Clicking the **profile icon in the top right corner** opens the **personal profile** where users can:
-
-- **Change their profile picture**
-- **Delete their profile**
-- View their **username**
-
-![Profile](/budget-manager/public/8.png)
-
----
-
-## 🌐 Additional Pages
-
-### 📸 Why choose us?
-
-![Why choose us image](/budget-manager/public/miertvalasszminket.png)
-
----
+![Why Choose Us Image](./public/miertvalasszminket.png)
 
 ### 💡 Features
 
-![Features image](/budget-manager/public/jellemzok.png)
-
----
+![Features Image](./public/jellemzok.png)
 
 ### 🧠 Tips
 
-![Tips image](/budget-manager/public/tippek.png)
-
----
+![Tips Image](./public/tippek.png)
 
 ### 📬 Contact
 
-![Contact image](/budget-manager/public/elerhetoseg.png)
-
----
+![Contact Image](./public/elerhetoseg.png)
 
 ### ❓ Frequently Asked Questions
 
-![FAQ image](/budget-manager/public/gyakorikerdesek.png)
+![FAQ Image](./public/gyakorikerdesek.png)
 
 ---
 
-> 📌 The goal of this project is to provide a simple and user-friendly interface for tracking financial data.  
-> Future improvements: AI integration, automatic data import from banking applications.
+## 📌 Project Goal
 
-Published Web Application: [Money Map](https://moneymaphun.netlify.app)
+To provide a simple, transparent interface for consciously tracking personal finances.
+
+### 💡 Future Developments:
+
+- Integration of artificial intelligence
+- Automatic data import from banking applications
+
+---
+
+## 👥 Creators
+
+| Name           | Role                                           |
+| -------------- | ---------------------------------------------- |
+| Patrik Rácz    | Backend, connecting frontend and backend, docs |
+| Kornél Halmosi | Frontend, design, Firebase                     |
+| Dániel Vincze  | Frontend, copywriting, documentation           |
