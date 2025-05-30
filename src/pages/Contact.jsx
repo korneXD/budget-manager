@@ -12,7 +12,7 @@ export const Contact = () => {
     {
       name: "Rácz Patrik",
       designation: "Backend, frontend",
-      src: "https://z91p97z26q.ufs.sh/f/kJZWr7GeXU2tKw9ZmM8JdtzI93vqScTACarW4Qfo0L1gP5pB",
+      src: "https://z91p97z26q.ufs.sh/f/kJZWr7GeXU2twdfMk9RWIe93imrxLVzQ5h21jJGakRKXvO6s",
       github: "https://github.com/Patrik930",
     },
     {
