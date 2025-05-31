@@ -1,7 +1,5 @@
 # 🏦 Money Map – Pénzügyi Asszisztens
 
-A pénzügyi tudatosság új szintje
-
 ⚙️ **Megjegyzés:** A jelenlegi verzió még nem végleges! Folyamatos fejlesztés alatt áll, új funkciók és vizuális elemek bevezetése várható.
 
 🔗 [Weboldal megtekintése](https://moneymaphun.netlify.app)
@@ -74,11 +72,24 @@ A Money Map egy webes alkalmazás, amely lehetőséget nyújt kiadásaink és be
 
 ### 📬 Elérhetőség
 
-![Elérhetőség kép](./public/elerhetoseg.png)
+![Elérhetőség kép](./public/elerhetoseg2.png)
 
 ### ❓ Gyakori kérdések
 
 ![Gyakori kérdések kép](./public/gyakorikerdesek.png)
+
+---
+
+## 🛠️ Felhasznált technológiák
+
+A Money Map fejlesztése során a következő modern technológiákat használtuk:
+
+- **React** – a felhasználói felület kialakításához
+- **Tailwind CSS** – a gyors és reszponzív designért
+- **Cloudinary** – a képek kezeléséhez és tárolásához
+- **Firebase** – az adatbázis és hitelesítés kezeléséhez
+- **Express** – a szerveroldali logika megvalósításához
+- **Axios** – az API-kommunikáció egyszerű és hatékony lebonyolításához
 
 ---
 

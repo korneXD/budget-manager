@@ -1,7 +1,5 @@
 # 🏦 Money Map – Financial Assistant
 
-A new level of financial awareness
-
 ⚙️ **Note:** This version is not final! Ongoing development is in progress, with new features and visual elements expected.
 
 🔗 [View Website](https://moneymaphun.netlify.app)
@@ -74,11 +72,24 @@ Money Map is a web application that allows users to track their expenses and inc
 
 ### 📬 Contact
 
-![Contact Image](./public/elerhetoseg.png)
+![Contact Image](./public/elerhetoseg2.png)
 
 ### ❓ Frequently Asked Questions
 
 ![FAQ Image](./public/gyakorikerdesek.png)
+
+---
+
+## 🛠️ Used Technologies
+
+The development of Money Map involved the following modern technologies:
+
+- **React** – for building the user interface
+- **Tailwind CSS** – for fast and responsive styling
+- **Cloudinary** – for image handling and storage
+- **Firebase** – for database and authentication
+- **Express** – for backend logic and APIs
+- **Axios** – for smooth and simple API communication
 
 ---
 
