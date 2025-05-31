@@ -72,7 +72,7 @@ Money Map is a web application that allows users to track their expenses and inc
 
 ### 📬 Contact
 
-![Contact Image](./public/elerhetoseg.png)
+![Contact Image](./public/elerhetoseg2.png)
 
 ### ❓ Frequently Asked Questions
 

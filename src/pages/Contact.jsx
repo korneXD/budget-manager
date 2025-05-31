@@ -24,7 +24,7 @@ export const Contact = () => {
     {
       name: "Vincze Dániel",
       designation: "Szövegírás, tesztelés, frontend design",
-      src: "https://z91p97z26q.ufs.sh/f/kJZWr7GeXU2tDjVnpZccHsj6aqMl1ZuQBmVDWwE0KG5P3YoF",
+      src: "https://z91p97z26q.ufs.sh/f/kJZWr7GeXU2tz4xDRtW6zkHhCl9Bu8NADdgiExW3JaSoR175",
       github: "https://github.com/VinczeDaniel2",
     },
   ];

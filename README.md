@@ -72,7 +72,7 @@ A Money Map egy webes alkalmazás, amely lehetőséget nyújt kiadásaink és be
 
 ### 📬 Elérhetőség
 
-![Elérhetőség kép](./public/elerhetoseg.png)
+![Elérhetőség kép](./public/elerhetoseg2.png)
 
 ### ❓ Gyakori kérdések
 
