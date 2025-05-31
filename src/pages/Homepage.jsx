@@ -16,7 +16,7 @@ export const Homepage = () => {
         Vedd kezelésbe saját pénzügyeidet,
         <br /> és kövesd nyomon a kiadásaidat!
       </span>
-      <div className="flex flex-row items-center justify-center gap-4">
+      <div className="flex flex-col items-center justify-center md:flex-row md:gap-4">
         <Link
           to="/auth/in"
           className="my-6 rounded-xl border-2 border-sky-900 bg-sky-600 px-3 py-1 font-nohemi text-2xl uppercase tracking-wide text-sky-400 shadow-md transition-all hover:text-sky-900"
